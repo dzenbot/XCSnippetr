@@ -1,9 +1,10 @@
-#SlackBoard
+#XCSnippetr
 
-Share code snippets to Slack without leaving XCode ever again! 😱
+Share code snippets to Slack and Gist without leaving XCode ever again! 😱
 
 ## Features
 
+- Upload code snippets using Slack's and Github's APIs.
 - The plugin is available from the code editor's contextual menu and main menu.
 - Extremely easy to sign-in using your API tokens. Your tokens are secure 🙈, stored in the system's Keychain.
 - Share to any of your teams, channels, groups and users.
@@ -27,12 +28,15 @@ Alternatively, install through [Alcatraz](http://alcatraz.io/), the package mana
 ## Configuration
 
 First, select any code snippet you would like to share, and right click on it.
-![contextual menu](Screenshots/screenshot_contextual_menu.png)
+![contextual menu](Documentation/Screenshots/screenshot_contextual_menu.png)
 
 The first time, you will be prompt to sign in.
-Use your API tokens available at https://api.slack.com/web
-![login view](Screenshots/screenshot_login.png)
+
+For Slack, use your API tokens available at https://api.slack.com/web
+![login view](Documentation/Screenshots/screenshot_login.png)
+
+For Gist, ...
 
 You should be ready to go now.
 Simply pick the team and channel to share to. Add a comment. Share! 💥
-![main view](Screenshots/screenshot_main.png)
+![main view](Documentation/Screenshots/screenshot_main.png)
