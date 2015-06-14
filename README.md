@@ -22,9 +22,11 @@ First, select any code snippet you would like to share, and right click on it.
 The first time, you will be prompt to sign in.
 
 For Slack, use your API tokens available at https://api.slack.com/web
-![login view](Documentation/Screenshots/screenshot_login.png)
+![login view](Documentation/Screenshots/screenshot_login_slack.png)
 
-For Gist, ...
+For Gist, use generate a new API tokens in [https://github.com/settings/tokens/](https://github.com/settings/tokens/new?description=xcsnippetr&scopes=gist)
+![login view](Documentation/Screenshots/screenshot_login_github.png)
+
 
 You should be ready to go now.
 Simply pick the team and channel to share to. Add a comment. Share! 💥
