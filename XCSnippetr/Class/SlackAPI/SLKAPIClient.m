@@ -8,46 +8,15 @@
 //
 
 #import "SLKAPIClient.h"
-#import "SLKAPIConstants.h"
 
 #import "SLKAccount.h"
 #import "SLKSnippet.h"
 #import "SLKRoom.h"
 #import "XCSMacros.h"
 
-@interface SLKAPIClient () <NSURLSessionTaskDelegate>
-@property (nonatomic, strong) NSURLSession *URLSession;
-@property (nonatomic, strong) NSURLSessionDataTask *URLSessionTask;
-@end
-
 @implementation SLKAPIClient
 
-#pragma mark - Initialization
-
-+ (instancetype)sharedClient
-{
-    static SLKAPIClient *_sharedClient;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedClient = [[SLKAPIClient alloc] init];
-    });
-    return _sharedClient;
-}
-
-
-#pragma mark - Getters
-
-- (NSURLSession *)URLSession
-{
-    if (!_URLSession) {
-        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _URLSession = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:nil];
-    }
-    return _URLSession;
-}
-
-
-#pragma mark - API Methods
+#pragma mark - SLKAPIClient
 
 - (void)authWithToken:(NSString *)token completion:(void (^)(SLKAccount *account, NSError *error))completion
 {
@@ -55,9 +24,9 @@
         return;
     }
     
-    NSDictionary *params = @{kAPIParamToken: token};
+    NSDictionary *params = @{kSlackAPIParamToken: token};
     
-    [self post:kAPIMethodAuthTest params:params completion:^(id response, NSError *error) {
+    [self post:kSlackAPIMethodAuthTest params:params completion:^(id response, NSError *error) {
         
         SLKAccount *account = nil;
         
@@ -80,9 +49,9 @@
         return;
     }
     
-    NSDictionary *params = @{kAPIParamTeam: teamId};
+    NSDictionary *params = @{kSlackAPIParamTeam: teamId};
     
-    [self post:kAPIMethodRTMStart params:params completion:^(id response, NSError *error) {
+    [self post:kSlackAPIMethodRTMStart params:params completion:^(id response, NSError *error) {
         
         if (completion) {
             completion([SLKRoom roomsFromResponse:response], error);
@@ -97,23 +66,23 @@
     }
     
     NSDictionary *params = [snippet params];
-    NSString *path = snippet.uploadAsFile ? kAPIMethodFilesUpload : kAPIMethodChatPostMessage;
+    NSString *path = snippet.uploadAsSnippet ? kSlackAPIMethodFilesUpload : kSlackAPIMethodChatPostMessage;
     
     [self post:path params:params completion:completion];
 }
 
 
-#pragma mark - Session Helpers
+#pragma mark - XCSBaseAPIProtocol
 
 - (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params
 {
     NSMutableDictionary *parameters = [params mutableCopy];
-    NSMutableString *url = [NSMutableString stringWithFormat:@"%@%@", kAPIBaseUrl, path];
+    NSMutableString *url = [NSMutableString stringWithFormat:@"%@%@", kSlackAPIBaseUrl, path];
     
     NSString *accessToken = [SLKAccount currentAccount].accessToken;
     
-    if (accessToken && ![path isEqualToString:kAPIMethodAuthTest]) {
-        [parameters setObject:accessToken forKey:kAPIParamToken];
+    if (accessToken && ![path isEqualToString:kSlackAPIMethodAuthTest]) {
+        [parameters setObject:accessToken forKey:kSlackAPIParamToken];
     }
     
     for (int i = 0; i < [parameters allKeys].count; i++) {
@@ -130,43 +99,6 @@
     }
     
     return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-}
-
-- (void)post:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion
-{
-    [self cancelRequestsIfNeeded];
-    
-    NSMutableURLRequest *request = [self requestfForPath:path andParams:params];
-    request.HTTPMethod = kHTTPMethodPOST;
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0ul), ^{
-        
-        id completionHandler = ^void(NSData *data, NSURLResponse *response, NSError *error) {
-            id json = [NSJSONSerialization JSONObjectWithData:data options:NSUTF8StringEncoding error:nil];
-            
-            if (!error && json[kAPIParamError]) {
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: json[kAPIParamError]};
-                error = [NSError errorWithDomain:SLKBundleIdentifier() code:400 userInfo:userInfo];
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (completion) {
-                    completion(json, error);
-                }
-            });
-        };
-
-        self.URLSessionTask = [self.URLSession dataTaskWithRequest:request completionHandler:completionHandler];
-        [self.URLSessionTask resume];
-    });
-}
-
-- (void)cancelRequestsIfNeeded
-{
-    if (_URLSessionTask) {
-        [_URLSessionTask cancel];
-        _URLSessionTask = nil;
-    }
 }
 
 

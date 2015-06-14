@@ -42,13 +42,13 @@
     
     NSMutableDictionary *params = [NSMutableDictionary new];
     
-    if (self.uploadAsFile) {
-        [params setObject:self.content forKey:kAPIParamContent];
-        [params setObject:StringOrEmpty(self.channelId) forKey:kAPIParamChannels];
-        [params setObject:StringOrEmpty(self.filename) forKey:kAPIParamFilename];
-        [params setObject:StringOrEmpty(self.title) forKey:kAPIParamTitle];
-        [params setObject:StringOrEmpty(self.comment) forKey:kAPIParamInitialComment];
-        [params setObject:SLKStringFromACEMode(self.filetype) forKey:kAPIParamFiletype];
+    if (self.uploadAsSnippet) {
+        [params setObject:self.content forKey:kSlackAPIParamContent];
+        [params setObject:StringOrEmpty(self.channelId) forKey:kSlackAPIParamChannels];
+        [params setObject:StringOrEmpty(self.filename) forKey:kSlackAPIParamFilename];
+        [params setObject:StringOrEmpty(self.title) forKey:kSlackAPIParamTitle];
+        [params setObject:StringOrEmpty(self.comment) forKey:kSlackAPIParamInitialComment];
+        [params setObject:SLKStringFromACEMode(self.filetype) forKey:kSlackAPIParamFiletype];
     }
     else {
         if (!isNonEmptyString(self.channelId)) {
@@ -61,9 +61,9 @@
             [text appendFormat:@"\n\n%@", self.comment];
         }
         
-        [params setObject:text forKey:kAPIParamText];
-        [params setObject:self.channelId forKey:kAPIParamChannel];
-        [params setObject:@YES forKey:kAPIParamAsUser];
+        [params setObject:text forKey:kSlackAPIParamText];
+        [params setObject:self.channelId forKey:kSlackAPIParamChannel];
+        [params setObject:@YES forKey:kSlackAPIParamAsUser];
     }
         
     return params;

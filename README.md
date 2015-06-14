@@ -14,17 +14,6 @@ Share code snippets to Slack and Gist without leaving XCode ever again! 😱
 - Auto-detection of the source file name, used as the snippet title by default.
 - Auto-detection of the source code type. No Swift support for now 😔.
 
-## Install
-
-1. Run `pod update` to install the dependencies.
-
-2. Build the project to install the plugin. The plugin is installed in `/Library/Application Support/Developer/Shared/Xcode/Plug-ins/SlackBoard.xcplugin`.
-
-2. Restart Xcode for the plugin to be loaded.
-
-Alternatively, install through [Alcatraz](http://alcatraz.io/), the package manager for Xcode (soon).
-
-
 ## Configuration
 
 First, select any code snippet you would like to share, and right click on it.
@@ -40,3 +29,13 @@ For Gist, ...
 You should be ready to go now.
 Simply pick the team and channel to share to. Add a comment. Share! 💥
 ![main view](Documentation/Screenshots/screenshot_main.png)
+
+## Install
+
+1. Run `pod update` to install the dependencies.
+
+2. Build the project to install the plugin. The plugin is installed in `/Library/Application Support/Developer/Shared/Xcode/Plug-ins/SlackBoard.xcplugin`.
+
+2. Restart Xcode for the plugin to be loaded.
+
+Alternatively, install through [Alcatraz](http://alcatraz.io/), the package manager for Xcode (soon).

@@ -111,10 +111,10 @@ static NSString *kUserDefaultsAccountId = @"com.dzn.XCSnippetr.userdefaults.acco
     
     self = [super init];
     if (self) {
-        _teamName = response[kAPIParamTeam];
-        _teamId = response[kAPIParamTeamId];
-        _userName = response[kAPIParamUser];
-        _userId = response[kAPIParamUserId];
+        _teamName = response[kSlackAPIParamTeam];
+        _teamId = response[kSlackAPIParamTeamId];
+        _userName = response[kSlackAPIParamUser];
+        _userId = response[kSlackAPIParamUserId];
     }
     return self;
 }

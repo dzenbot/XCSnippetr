@@ -11,6 +11,7 @@
                 <outlet property="detailTextView" destination="Pxv-Yv-eAY" id="7th-oL-cTt"/>
                 <outlet property="errorLabel" destination="V74-RN-4pJ" id="aH4-FZ-0NR"/>
                 <outlet property="progressIndicator" destination="mdb-W0-ncP" id="2Cs-Gy-Gbp"/>
+                <outlet property="serviceImageView" destination="HvC-iB-Z2X" id="jjH-0p-36v"/>
                 <outlet property="tokenTextField" destination="WCa-5u-U3L" id="rZe-j7-psC"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -24,7 +25,7 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="f0l-H9-LqU">
                     <rect key="frame" x="227" y="21" width="100" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="96" id="nWj-20-jxD"/>
+                        <constraint firstAttribute="width" constant="96" id="3rw-h5-V0V"/>
                     </constraints>
                     <buttonCell key="cell" type="bevel" title="title" bezelStyle="regularSquare" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y6T-xe-XWA">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -37,8 +38,8 @@
                 <button translatesAutoresizingMaskIntoConstraints="NO" id="JuF-zL-LV5">
                     <rect key="frame" x="114" y="21" width="100" height="32"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="96" id="0A7-Yg-qG0"/>
-                        <constraint firstAttribute="height" constant="27" id="vIK-DO-oqd"/>
+                        <constraint firstAttribute="width" constant="96" id="5VF-KK-OeP"/>
+                        <constraint firstAttribute="height" constant="27" id="Z7Y-Dq-4zk"/>
                     </constraints>
                     <buttonCell key="cell" type="bevel" title="title" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AnZ-Ys-YPb">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -54,7 +55,7 @@ Gw
                 <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V74-RN-4pJ">
                     <rect key="frame" x="83" y="76" width="274" height="17"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="17" id="kfu-FI-RPi"/>
+                        <constraint firstAttribute="height" constant="17" id="J6A-p7-DHs"/>
                     </constraints>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Error Message" id="olO-kg-7zS">
                         <font key="font" metaFont="cellTitle"/>
@@ -101,10 +102,7 @@ Gw
                     </scroller>
                 </scrollView>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WCa-5u-U3L">
-                    <rect key="frame" x="45" y="157" width="351" height="22"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="22" id="saz-GA-Xwy"/>
-                    </constraints>
+                    <rect key="frame" x="45" y="157" width="350" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" placeholderString="Placeholder" bezelStyle="round" id="Pve-H8-zj4">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -117,39 +115,40 @@ Gw
                 <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="mdb-W0-ncP">
                     <rect key="frame" x="404" y="160" width="16" height="16"/>
                 </progressIndicator>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HvC-iB-Z2X">
-                    <rect key="frame" x="108" y="194" width="225" height="95"/>
+                <imageView autoresizesSubviews="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HvC-iB-Z2X">
+                    <rect key="frame" x="45" y="194" width="351" height="95"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="95" id="er8-1S-U7K"/>
+                        <constraint firstAttribute="height" constant="95" id="k47-I2-Hg4"/>
                     </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="slack_logo" id="kso-kl-3OM"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="logo_placeholder" id="kso-kl-3OM"/>
                 </imageView>
             </subviews>
             <constraints>
-                <constraint firstItem="JuF-zL-LV5" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="116" id="4eu-oy-05f"/>
-                <constraint firstItem="mdb-W0-ncP" firstAttribute="centerY" secondItem="WCa-5u-U3L" secondAttribute="centerY" id="AJs-EP-Udc"/>
-                <constraint firstItem="f0l-H9-LqU" firstAttribute="baseline" secondItem="JuF-zL-LV5" secondAttribute="baseline" id="HIz-Yu-XKN"/>
-                <constraint firstItem="JuF-zL-LV5" firstAttribute="top" secondItem="V74-RN-4pJ" secondAttribute="bottom" constant="25" id="JYe-cz-kO7"/>
-                <constraint firstAttribute="trailing" secondItem="mdb-W0-ncP" secondAttribute="trailing" constant="20" symbolic="YES" id="KJZ-ep-kNx"/>
-                <constraint firstItem="yOg-o6-5Aj" firstAttribute="top" secondItem="WCa-5u-U3L" secondAttribute="bottom" constant="16" id="OW9-Zz-r8W"/>
-                <constraint firstItem="WCa-5u-U3L" firstAttribute="top" secondItem="HvC-iB-Z2X" secondAttribute="bottom" constant="15" id="ThH-OC-BDh"/>
-                <constraint firstItem="WCa-5u-U3L" firstAttribute="centerX" secondItem="yOg-o6-5Aj" secondAttribute="centerX" id="UhZ-zN-7zg"/>
-                <constraint firstItem="V74-RN-4pJ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="85" id="XFQ-eI-JH3"/>
-                <constraint firstItem="HvC-iB-Z2X" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="33" id="XpS-hp-eQA"/>
-                <constraint firstItem="JuF-zL-LV5" firstAttribute="top" secondItem="f0l-H9-LqU" secondAttribute="top" id="aW7-cY-GCe"/>
-                <constraint firstItem="f0l-H9-LqU" firstAttribute="leading" secondItem="JuF-zL-LV5" secondAttribute="trailing" constant="17" id="cZg-fF-jCJ"/>
-                <constraint firstItem="V74-RN-4pJ" firstAttribute="top" secondItem="yOg-o6-5Aj" secondAttribute="bottom" constant="18" id="eFd-lV-dba"/>
-                <constraint firstAttribute="bottom" secondItem="JuF-zL-LV5" secondAttribute="bottom" constant="24" id="f5c-pu-VzL"/>
-                <constraint firstItem="mdb-W0-ncP" firstAttribute="leading" secondItem="WCa-5u-U3L" secondAttribute="trailing" constant="8" symbolic="YES" id="gaL-zo-HfS"/>
-                <constraint firstItem="WCa-5u-U3L" firstAttribute="centerX" secondItem="HvC-iB-Z2X" secondAttribute="centerX" id="jWg-AX-Cs5"/>
-                <constraint firstItem="V74-RN-4pJ" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="oKf-bZ-erG"/>
-                <constraint firstItem="yOg-o6-5Aj" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="84" id="rh2-Ik-kKo"/>
-                <constraint firstItem="yOg-o6-5Aj" firstAttribute="centerX" secondItem="V74-RN-4pJ" secondAttribute="centerX" id="roc-50-49r"/>
+                <constraint firstItem="V74-RN-4pJ" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="85" id="0H7-Lm-Ng8"/>
+                <constraint firstItem="f0l-H9-LqU" firstAttribute="leading" secondItem="JuF-zL-LV5" secondAttribute="trailing" constant="17" id="46K-MM-oDv"/>
+                <constraint firstItem="yOg-o6-5Aj" firstAttribute="top" secondItem="WCa-5u-U3L" secondAttribute="bottom" constant="16" id="AfW-Vz-zOB"/>
+                <constraint firstItem="yOg-o6-5Aj" firstAttribute="centerX" secondItem="WCa-5u-U3L" secondAttribute="centerX" id="CcE-ZP-m8L"/>
+                <constraint firstItem="JuF-zL-LV5" firstAttribute="top" secondItem="V74-RN-4pJ" secondAttribute="bottom" constant="25" id="E5s-4K-mpa"/>
+                <constraint firstItem="V74-RN-4pJ" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="Eq0-R2-O6d"/>
+                <constraint firstItem="mdb-W0-ncP" firstAttribute="leading" secondItem="WCa-5u-U3L" secondAttribute="trailing" constant="9" id="FoQ-vf-5Hi"/>
+                <constraint firstItem="WCa-5u-U3L" firstAttribute="leading" secondItem="HvC-iB-Z2X" secondAttribute="leading" id="Ntn-1l-B44"/>
+                <constraint firstItem="yOg-o6-5Aj" firstAttribute="centerX" secondItem="V74-RN-4pJ" secondAttribute="centerX" id="O2M-7y-9vX"/>
+                <constraint firstItem="JuF-zL-LV5" firstAttribute="top" secondItem="f0l-H9-LqU" secondAttribute="top" id="TaW-Iz-Taf"/>
+                <constraint firstItem="HvC-iB-Z2X" firstAttribute="centerX" secondItem="WCa-5u-U3L" secondAttribute="centerX" id="cUp-mh-8Qe"/>
+                <constraint firstItem="HvC-iB-Z2X" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="33" id="emX-Er-V0h"/>
+                <constraint firstAttribute="bottom" secondItem="JuF-zL-LV5" secondAttribute="bottom" constant="24" id="gHO-7R-RQ4"/>
+                <constraint firstItem="WCa-5u-U3L" firstAttribute="centerY" secondItem="mdb-W0-ncP" secondAttribute="centerY" id="hBq-kr-6VR"/>
+                <constraint firstItem="WCa-5u-U3L" firstAttribute="top" secondItem="HvC-iB-Z2X" secondAttribute="bottom" constant="15" id="j2x-PI-deW"/>
+                <constraint firstItem="JuF-zL-LV5" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="116" id="o72-m2-FjR"/>
+                <constraint firstItem="JuF-zL-LV5" firstAttribute="baseline" secondItem="f0l-H9-LqU" secondAttribute="baseline" id="qyz-NN-BY1"/>
+                <constraint firstItem="yOg-o6-5Aj" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="84" id="rhp-YL-J6u"/>
+                <constraint firstAttribute="trailing" secondItem="mdb-W0-ncP" secondAttribute="trailing" constant="20" symbolic="YES" id="tdb-dQ-eoi"/>
+                <constraint firstItem="V74-RN-4pJ" firstAttribute="top" secondItem="yOg-o6-5Aj" secondAttribute="bottom" constant="18" id="x0f-Al-f1m"/>
             </constraints>
             <point key="canvasLocation" x="463" y="366"/>
         </customView>
     </objects>
     <resources>
-        <image name="slack_logo" width="225" height="94"/>
+        <image name="logo_placeholder" width="225" height="94"/>
     </resources>
 </document>

@@ -12,6 +12,8 @@
 
 @interface SLKSnippet : NSObject
 
+#pragma mark - Generic Values
+
 /** The snippet title. (optional) */
 @property (nonatomic, copy) NSString *title;
 /** The snippet content. (required) */
@@ -22,13 +24,21 @@
 @property (nonatomic, copy) NSString *filename;
 /** The code type such as objective-c, javascript, etc. (automatic) */
 @property (nonatomic) ACEMode filetype;
-/** The team's id where to upload. (required) */
-@property (nonatomic, copy) NSString *teamId;
-/** The channel's id where to upload. (optional) */
-@property (nonatomic, copy) NSString *channelId;
+/** Upload as a non-public snippet. */
+@property (nonatomic) BOOL uploadAsPrivate;
 
-/** YES if the snippet should be uploaded as a file. No if the snippet is an enced code block message.  (automatic) */
-@property (nonatomic) BOOL uploadAsFile;
+
+#pragma mark - Slack Specific Values
+
+/** Slack Only: The team's id where to upload. (required) */
+@property (nonatomic, copy) NSString *teamId;
+/** Slack Only: The channel's id where to upload. (optional) */
+@property (nonatomic, copy) NSString *channelId;
+/** Slack Only: YES if the snippet should be uploaded as a file. NO if the snippet should be uploaded as an enced code block message (optional). */
+@property (nonatomic) BOOL uploadAsSnippet;
+
+
+#pragma mark - Data Payload Converter
 
 /** 
  Returns a set of parameters to be used when uploading the snippet to Slack's API.

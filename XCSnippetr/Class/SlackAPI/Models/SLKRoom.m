@@ -47,12 +47,12 @@
     NSString *key = SLKKeyFromRoomType(SLKRoomTypeChannel);
     
     for (NSDictionary *raw in response[key]) {
-        if ([raw[kAPIParamIsChannel] boolValue] == NO || [raw[kAPIParamIsMember] boolValue] == NO || [raw[kAPIParamIsArchived] boolValue] == YES) {
+        if ([raw[kSlackAPIParamIsChannel] boolValue] == NO || [raw[kSlackAPIParamIsMember] boolValue] == NO || [raw[kSlackAPIParamIsArchived] boolValue] == YES) {
             continue;
         }
         
-        NSString *Id = raw[kAPIParamId];
-        NSString *name = [NSString stringWithFormat:@"#%@", raw[kAPIParamName]];
+        NSString *Id = raw[kSlackAPIParamId];
+        NSString *name = [NSString stringWithFormat:@"%@", raw[kSlackAPIParamName]];
         
         SLKRoom *room = [SLKRoom roomWithId:Id name:name];
         if (room) [channels addObject:room];
@@ -67,12 +67,12 @@
     NSString *key = SLKKeyFromRoomType(SLKRoomTypeGroup);
     
     for (NSDictionary *raw in response[key]) {
-        if ([raw[kAPIParamIsGroup] boolValue] == NO || [raw[kAPIParamIsOpen] boolValue] == NO || [raw[kAPIParamIsArchived] boolValue] == YES) {
+        if ([raw[kSlackAPIParamIsGroup] boolValue] == NO || [raw[kSlackAPIParamIsOpen] boolValue] == NO || [raw[kSlackAPIParamIsArchived] boolValue] == YES) {
             continue;
         }
         
-        NSString *Id = raw[kAPIParamId];
-        NSString *name = raw[kAPIParamName];
+        NSString *Id = raw[kSlackAPIParamId];
+        NSString *name = raw[kSlackAPIParamName];
         
         SLKRoom *room = [SLKRoom roomWithId:Id name:name];
         if (room) [groups addObject:room];
@@ -87,23 +87,23 @@
     NSString *key = SLKKeyFromRoomType(SLKRoomTypeIM);
     
     for (NSDictionary *raw in response[key]) {
-        if ([raw[kAPIParamIsIM] boolValue] == NO) {
+        if ([raw[kSlackAPIParamIsIM] boolValue] == NO) {
             continue;
         }
         
-        NSString *userId = raw[kAPIParamUser];
+        NSString *userId = raw[kSlackAPIParamUser];
         
         if (!isNonEmptyString(userId)) {
             continue;
         }
         
-        NSArray *users = response[kAPIParamUsers];
-        NSDictionary *user = [[users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@", kAPIParamId, userId]] firstObject];
+        NSArray *users = response[kSlackAPIParamUsers];
+        NSDictionary *user = [[users filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"%K == %@", kSlackAPIParamId, userId]] firstObject];
         
-        NSString *Id = raw[kAPIParamId];
+        NSString *Id = raw[kSlackAPIParamId];
         
-        NSString *username = [userId isEqualToString:kAPISlackbotId] ? kAPISlackbotName : user[kAPIParamName];
-        NSString *name = [NSString stringWithFormat:@"@%@", username];
+        NSString *username = [userId isEqualToString:kSlackAPISlackbotId] ? kSlackAPISlackbotName : user[kSlackAPIParamName];
+        NSString *name = [NSString stringWithFormat:@"%@", username];
         
         SLKRoom *room = [SLKRoom roomWithId:Id name:[name capitalizedString]];
         if (room) [ims addObject:room];
@@ -115,9 +115,9 @@
 NSString *SLKKeyFromRoomType(SLKRoomType type)
 {
     switch (type) {
-        case SLKRoomTypeChannel:     return kAPIParamChannels;
-        case SLKRoomTypeGroup:       return kAPIParamGroups;
-        case SLKRoomTypeIM:          return kAPIParamIMs;
+        case SLKRoomTypeChannel:     return kSlackAPIParamChannels;
+        case SLKRoomTypeGroup:       return kSlackAPIParamGroups;
+        case SLKRoomTypeIM:          return kSlackAPIParamIMs;
     }
 }
 

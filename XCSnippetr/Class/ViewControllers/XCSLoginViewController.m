@@ -11,7 +11,8 @@
 #import "XCSStrings.h"
 
 #import "SLKAPIClient.h"
-#import "SLKAPIConstants.h"
+#import "GHBAPIClient.h"
+
 #import "SLKAccount.h"
 #import "XCSMacros.h"
 
@@ -63,19 +64,36 @@
     }
 }
 
+- (NSString *)serviceTokenSourceUrl
+{
+    if (self.service == XCSServiceSlack) {
+        return kSlackWebAPIUrl;
+    }
+    else if (self.service == XCSServiceGist) {
+        return [NSString stringWithFormat:@"%@?%@=%@&%@=%@", kGistWebAPIUrl, kGithubAPIParamDescription, SLKBundleName(), kGithubAPIParamScopes, kGithubAPIParamGist];
+    }
+    
+    return nil;
+}
 
 #pragma mark - Configuration
 
 - (void)configureContent
 {
-    self.tokenTextField.placeholderString = kLoginPlaceholder;
-    self.detailTextView.string = [NSString stringWithFormat:@"%@ %@", kLoginDescriptionText, kWebAPIUrl];
+    NSString *webApiUrl = [self serviceTokenSourceUrl];
+    NSString *descriptionText = (self.service == XCSServiceSlack) ? kLoginDescriptionTextSlack : kLoginDescriptionTextGithub;
+    NSString *serviceImageName = (self.service == XCSServiceSlack) ? @"slack_logo" : @"github_logo";
+    NSImage *serviceImage = [SLKBundle() imageForResource:serviceImageName];
     
-    NSRange range = [self.detailTextView.string rangeOfString:kWebAPIUrl];
-    [[self.detailTextView textStorage] addAttribute:NSLinkAttributeName value:[NSURL URLWithString:kWebAPIUrl] range:range];
+    self.tokenTextField.placeholderString = kLoginPlaceholder;
+    self.detailTextView.string = [NSString stringWithFormat:@"%@ %@", descriptionText, webApiUrl];
+    self.serviceImageView.image = serviceImage;
+    
+    NSRange range = [self.detailTextView.string rangeOfString:webApiUrl];
+    [[self.detailTextView textStorage] addAttribute:NSLinkAttributeName value:[NSURL URLWithString:webApiUrl] range:range];
     
     self.cancelButton.title = kCancelButtonTitle;
-    self.acceptButton.title = kUploadButtonTitle;
+    self.acceptButton.title = kLoginButtonTitle;
     self.acceptButton.keyEquivalent = kReturnKeyEquivalent;
     
     if ([SLKAccount allAccounts].count == 0) {

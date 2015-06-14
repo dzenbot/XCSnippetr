@@ -12,7 +12,6 @@
 
 #import "SLKAPIClient.h"
 #import "SLKAccount.h"
-#import "SLKAPIConstants.h"
 #import "XCSMacros.h"
 
 #define kSharedManager [SLKRoomManager sharedManager]
@@ -52,12 +51,12 @@
 
 + (SLKRoom *)roomForId:(NSString *)tsid
 {
-    return [self roomForKey:kAPIParamTsid andValue:tsid];
+    return [self roomForKey:kSlackAPIParamTsid andValue:tsid];
 }
 
 + (SLKRoom *)roomForName:(NSString *)name
 {
-    return [self roomForKey:kAPIParamName andValue:name];
+    return [self roomForKey:kSlackAPIParamName andValue:name];
 }
 
 + (SLKRoom *)roomForKey:(id<NSCopying>)key andValue:(id<NSCopying>)value

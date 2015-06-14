@@ -12,6 +12,7 @@
 #import "XCSStrings.h"
 
 #import "XCSMacros.h"
+#import "XCSService.h"
 
 #import <DTXcodeUtils/DTXcodeUtils.h>
 #import <DTXcodeUtils/DTXcodeHeaders.h>
@@ -113,11 +114,6 @@ NSString *activeDocumentPath()
             }
         }
     }
-    else if ([keyWindow isKindOfClass:[NSWindow class]]) {
-        // Another window is presented modally, so there are low chances to get the active document's path here.
-        // The most important case, is where 'Source Control/Commit' is presented.
-        // Sharing to Slack will still work, but won't detect the title nor the code style for now.
-    }
     
     return nil;
     
@@ -130,16 +126,16 @@ NSString *activeDocumentName()
     return [filePath lastPathComponent];
 }
 
-- (BOOL)canShareInSlack
+- (BOOL)canShareSnippet
 {
-    if (![self slackMenuTarget]) {
+    if (![self menuTarget]) {
         return NO;
     }
     
     return YES;
 }
 
-- (id)slackMenuTarget
+- (id)menuTarget
 {
     return (self.selectedText.length > 1) ? self : nil;
 }
@@ -154,43 +150,46 @@ NSString *activeDocumentName()
     }
     
     NSMenu *submenu = nil;
-    NSString *keyEquivalent = kXCSnippetrSlackKeyEquivalent;
     
-    if ([menu.title isEqualToString:kIDEXcodeTitle]) {
-        submenu = [[menu itemWithTitle:kIDEBarMenuReferenceTitle] submenu];
-    }
-    else if ([menu itemWithTitle:kIDESubMenuReferenceTitle]) {
+    if ([menu itemWithTitle:kIDESubMenuReferenceTitle]) {
         submenu = menu;
     }
     
     if (submenu) {
-        
-        id target = [self slackMenuTarget];
+        id target = [self menuTarget];
         NSInteger idx = [self appropriateIndexInMenu:menu];
         
         // Creates the Slack Menu Item
-        NSMenuItem *slackItem = [[NSMenuItem alloc] initWithTitle:kTitleShareSlack action:@selector(shareInSlack:) keyEquivalent:keyEquivalent];
+        NSMenuItem *slackItem = [submenu itemWithTitle:kTitleShareSlack];
         
-        // Only add the key modifiers if needed
-        if (isNonEmptyString(keyEquivalent)) {
-            [slackItem setKeyEquivalentModifierMask:NSAlternateKeyMask | NSCommandKeyMask];
-        }
+        // Creates the Gist Menu Item
+        NSMenuItem *gistItem = [submenu itemWithTitle:kTitleShareGist];
         
-        // Skip when the menu is already included
-        if ([submenu itemWithTitle:kTitleShareSlack]) {
-            NSMenuItem *menuItem = [submenu itemWithTitle:kTitleShareSlack];
-            [menuItem setTarget:target];
+        // Configure Slack Item
+        if (!slackItem) {
+            slackItem = [[NSMenuItem alloc] initWithTitle:kTitleShareSlack action:@selector(shareCodeSnippet:) keyEquivalent:@""];
+            slackItem.tag = XCSServiceSlack;
+            slackItem.target = target;
+            
+            [submenu insertItem:slackItem atIndex:idx];
         }
         else {
-            [slackItem setTarget:target];
+            slackItem.target = target;
+        }
+        
+        // Configure Gist Item
+        if (!gistItem) {
+            gistItem = [[NSMenuItem alloc] initWithTitle:kTitleShareGist action:@selector(shareCodeSnippet:) keyEquivalent:@""];
+            gistItem.tag = XCSServiceGist;
+            gistItem.target = target;
             
-            // Inserts the menu item safely
-            @try {
-                [submenu insertItem:slackItem atIndex:idx];
-            }
-            @catch (NSException *exception) {
-                // Couldn't insert the item. Display some sort of error?
-            }
+            NSMenuItem *separator = [NSMenuItem separatorItem];
+            
+            [submenu insertItem:gistItem atIndex:idx+1];
+            [submenu insertItem:separator atIndex:idx+2];
+        }
+        else {
+            gistItem.target = target;
         }
     }
 }
@@ -241,9 +240,9 @@ NSString *activeDocumentName()
 
 #pragma mark - Events
 
-- (void)shareInSlack:(id)sender
+- (void)shareCodeSnippet:(NSMenuItem *)menuItem
 {
-    if (![self canShareInSlack]) {
+    if (![self canShareSnippet]) {
         return;
     }
     
@@ -256,6 +255,8 @@ NSString *activeDocumentName()
     // Setup content
     self.mainWindowController.fileName = documentName;
     self.mainWindowController.fileContent = selectedText;
+    self.mainWindowController.font = sourceTextView.font;
+    self.mainWindowController.service = menuItem.tag;
     
     // Deselects the text in Xcode
     sourceTextView.selectedRange = NSMakeRange(selectedRange.location, 0);

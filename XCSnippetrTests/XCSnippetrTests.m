@@ -46,7 +46,7 @@
 
 - (void)testAccountSerialization
 {
-    id response = [NSJSONSerialization JSONObjectFromBundleResource:kAPIMethodAuthTest];
+    id response = [NSJSONSerialization JSONObjectFromBundleResource:kSlackAPIMethodAuthTest];
         
     SLKAccount *account = [[SLKAccount alloc] initWithResponse:response];
     
@@ -60,7 +60,7 @@
 
 - (void)testRoomsSerialization
 {
-    id response = [NSJSONSerialization JSONObjectFromBundleResource:kAPIMethodRTMStart];
+    id response = [NSJSONSerialization JSONObjectFromBundleResource:kSlackAPIMethodRTMStart];
     
     NSDictionary *rooms = [SLKRoom roomsFromResponse:response];
     

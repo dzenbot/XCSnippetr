@@ -9,15 +9,15 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const kTitleShareSlack =                  @"Share in Slack";
-static NSString * const kTitleShareGist =                   @"Share in Gist";
+static NSString * const kTitleShareSlack =                  @"Upload Snippet to Slack";
+static NSString * const kTitleShareGist =                   @"Upload New Gist";
 
 static NSString * const kIDEXcodeTitle =                    @"Xcode";
 static NSString * const kIDEBarMenuReferenceTitle =         @"Navigate";
 static NSString * const kIDESubMenuReferenceTitle =         @"Reveal in Project Navigator";
 
 static NSString * const kAddTeamButtonTitle =               @"Add Team...";
-static NSString * const kSharePrivateButtonTitle =          @"Private";
+static NSString * const kAddUserButtonTitle =               @"Add User...";
 
 static NSString * const kCancelButtonTitle =                @"Cancel";
 static NSString * const kUploadButtonTitle =                @"Upload";
@@ -25,10 +25,11 @@ static NSString * const kLoginButtonTitle =                 @"Login";
 
 static NSString * const kMainTitlePlaceholder =             @"Title (optional)";
 static NSString * const kMainCommentPlaceholder =           @"Add Comment (optional)";
-static NSString * const kMainCheckBoxTitle =                @"Upload as snippet";
+static NSString * const kMainUploadAsSnippetTitle =         @"Upload as snippet";
+static NSString * const kMainUploadAsPrivateTitle =         @"Upload as private";
 
 static NSString * const kLoginPlaceholder =                 @"API Token";
-static NSString * const kLoginDescriptionText =             @"Please provide your team's auth token available at";
+static NSString * const kLoginDescriptionTextSlack =        @"Please provide a Slack team's auth token available at";
+static NSString * const kLoginDescriptionTextGithub =       @"Please provide a Github user's auth token available at";
 
-static NSString * const kXCSnippetrSlackKeyEquivalent =     @"k";
 static NSString * const kReturnKeyEquivalent =              @"\r";

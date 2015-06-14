@@ -9,7 +9,7 @@
 
 #import "NSJSONSerialization+FileContent.h"
 
-static NSString * const kJSONType =            @"json";
+static NSString * const kJSONType = @"json";
 
 @implementation NSJSONSerialization (FileContent)
 

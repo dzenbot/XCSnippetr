@@ -9,11 +9,17 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "XCSService.h"
+
 @class SLKAccount;
 
-typedef void (^SLKLoginViewControllerCompletionHandler)(BOOL didLogin);
+typedef void (^XCSLoginViewControllerCompletionHandler)(BOOL didLogin);
 
 @interface XCSLoginViewController : NSViewController <NSTextFieldDelegate>
+
+@property (nonatomic) XCSService service;
+
+@property (nonatomic, assign) IBOutlet NSImageView *serviceImageView;
 
 @property (nonatomic, assign) IBOutlet NSTextField *tokenTextField;
 @property (nonatomic, assign) IBOutlet NSTextView *detailTextView;
@@ -24,7 +30,7 @@ typedef void (^SLKLoginViewControllerCompletionHandler)(BOOL didLogin);
 @property (nonatomic, assign) IBOutlet NSTextField *errorLabel;
 @property (nonatomic, assign) IBOutlet NSProgressIndicator *progressIndicator;
 
-@property (nonatomic, strong) SLKLoginViewControllerCompletionHandler completionHandler;
+@property (nonatomic, strong) XCSLoginViewControllerCompletionHandler completionHandler;
 
 - (IBAction)cancelForm:(id)sender;
 - (IBAction)submitForm:(id)sender;

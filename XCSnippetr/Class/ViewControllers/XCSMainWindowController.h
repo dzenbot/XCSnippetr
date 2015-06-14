@@ -10,9 +10,16 @@
 #import <Cocoa/Cocoa.h>
 #import <ACEView/ACEView.h>
 
-typedef void (^SLKMainWindowControllerCompletionHandler)(NSModalResponse returnCode);
+#import "XCSService.h"
+
+typedef void (^XCSMainWindowControllerCompletionHandler)(NSModalResponse returnCode);
 
 @interface XCSMainWindowController : NSWindowController <ACEViewDelegate>
+
+@property (nonatomic, copy) NSString *fileName;
+@property (nonatomic, copy) NSString *fileContent;
+@property (nonatomic, copy) NSFont *font;
+@property (nonatomic) XCSService service;
 
 @property (nonatomic, assign) IBOutlet NSTextField *titleTextField;
 @property (nonatomic, assign) IBOutlet ACEView *sourceTextView;
@@ -21,23 +28,23 @@ typedef void (^SLKMainWindowControllerCompletionHandler)(NSModalResponse returnC
 @property (nonatomic, assign) IBOutlet NSPopUpButton *syntaxButton;
 @property (nonatomic, assign) IBOutlet NSPopUpButton *teamButton;
 @property (nonatomic, assign) IBOutlet NSPopUpButton *roomButton;
-@property (nonatomic, assign) IBOutlet NSButton *shareCheckBox;
+@property (nonatomic, assign) IBOutlet NSButton *privacyCheckBox;
+@property (nonatomic, assign) IBOutlet NSButton *uploadTypeCheckBox;
+
 @property (nonatomic, assign) IBOutlet NSProgressIndicator *progressIndicator;
 
 @property (nonatomic, assign) IBOutlet NSButton *cancelButton;
 @property (nonatomic, assign) IBOutlet NSButton *acceptButton;
 
-@property (nonatomic, copy) NSString *fileName;
-@property (nonatomic, copy) NSString *fileContent;
-@property (nonatomic, copy) NSFont *font;
-
-@property (nonatomic, strong) SLKMainWindowControllerCompletionHandler completionHandler;
+@property (nonatomic, strong) XCSMainWindowControllerCompletionHandler completionHandler;
 
 /* IB Fucking Actions*/
 - (IBAction)syntaxModeChanged:(id)sender;
 - (IBAction)teamChanged:(id)sender;
 - (IBAction)roomChanged:(id)sender;
-- (IBAction)uploadAsFileChanged:(id)sender;
+
+- (IBAction)uploadPrivacyChanged:(id)sender;
+- (IBAction)uploadTypeChanged:(id)sender;
 
 - (IBAction)cancelForm:(id)sender;
 - (IBAction)submitForm:(id)sender;

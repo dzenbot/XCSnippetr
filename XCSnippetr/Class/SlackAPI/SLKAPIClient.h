@@ -7,18 +7,14 @@
 //  Licence: MIT-Licence
 //
 
-#import <Foundation/Foundation.h>
+#import "XCSBaseAPI.h"
+#import "XCSBaseAPIProtocol.h"
+
+#import "SLKAPIConstants.h"
 
 @class SLKSnippet, SLKAccount;
 
-@interface SLKAPIClient : NSObject
-
-/**
- A client singleton object.
- 
- @returns The shared client.
- */
-+ (instancetype)sharedClient;
+@interface SLKAPIClient : XCSBaseAPI <XCSBaseAPIProtocol>
 
 /**
  Authenticates using an accepted access token.
@@ -45,10 +41,5 @@
  @param completion A block object to be executed when the task finishes successfully or unsuccessfully. If successfully, it returns a JSON response (either a File object or a Message object, depending of how the snippet was uploaded). If unsuccessfully, it returns an Error.
  */
 - (void)uploadSnippet:(SLKSnippet *)snippet completion:(void (^)(NSDictionary *JSON, NSError *error))completion;
-
-/**
- Cancels all HTTP requests, if any.
- */
-- (void)cancelRequestsIfNeeded;
 
 @end

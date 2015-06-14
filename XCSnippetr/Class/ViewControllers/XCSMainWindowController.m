@@ -10,14 +10,15 @@
 #import "XCSMainWindowController.h"
 #import "XCSLoginViewController.h"
 #import "XCSStrings.h"
+#import "XCSMacros.h"
 
 #import "SLKAPIClient.h"
+#import "GHBAPIClient.h"
+
 #import "SLKRoomManager.h"
 #import "SLKAccount.h"
 #import "SLKSnippet.h"
 #import "SLKRoom.h"
-#import "SLKAPIConstants.h"
-#import "XCSMacros.h"
 
 #import "NSTextView+Placeholder.h"
 #import "ACEModeNames+Extension.h"
@@ -50,7 +51,6 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 {
     self = [super initWithWindowNibName:windowNibName];
     if (self) {
-        self.window.title = kTitleShareSlack;
         [self.window setStyleMask:[self.window styleMask] & ~NSResizableWindowMask];
         
         self.snippet = [[SLKSnippet alloc] init];
@@ -65,7 +65,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [super awakeFromNib];
     
     // Only for debug, when the data model has changed or for log out all accounts.
-    // [SLKAccount clearAll];
+//     [SLKAccount clearAll];
 }
 
 - (void)windowDidLoad
@@ -109,6 +109,11 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     return _font;
 }
 
+- (NSString *)addNewTitle
+{
+    return self.service == XCSServiceSlack ? kAddTeamButtonTitle : kAddUserButtonTitle;
+}
+
 - (NSInteger)indexOfCurrentAccount
 {
     NSInteger idx = [[SLKAccount allAccounts] indexOfObject:[SLKAccount currentAccount]];
@@ -131,9 +136,6 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self.snippet setFilename:fileName];
     [self.snippet setTitle:[fileName stringByDeletingPathExtension]];
     [self.snippet setFiletype:ACEModeForFileName(fileName)];
-    
-    [self.titleTextField setStringValue:self.snippet.title];
-    [self.syntaxButton selectItemAtIndex:self.snippet.filetype];
 }
 
 - (void)setFileContent:(NSString *)fileContent
@@ -186,13 +188,16 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)configureContent
 {
+    self.window.title = (self.service == XCSServiceSlack) ? kTitleShareSlack : kTitleShareGist;
+    
     // Data Source
     self.snippet.teamId = [SLKAccount currentAccount].teamId;
-    self.snippet.uploadAsFile = self.shareCheckBox.state;
+    self.snippet.uploadAsPrivate = self.privacyCheckBox.state;
     
     // Title View
     [self.titleTextField setPlaceholderString:kMainTitlePlaceholder];
-    
+    [self.titleTextField setStringValue:self.snippet.title];
+
     // Comment View
     [self.commentTextView setString:@""];
     [self.commentTextView setPlaceholderString:kMainCommentPlaceholder];
@@ -213,14 +218,22 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     // Buttons
     [self.syntaxButton addItemsWithTitles:[ACEModeNames humanModeNames]];
-    
+    [self.syntaxButton selectItemAtIndex:self.snippet.filetype];
+
     [self configureTeamButton];
     [self configureRoomButton];
     
     self.cancelButton.title = kCancelButtonTitle;
     self.cancelButton.hidden = !isSLKPlugin();
     self.acceptButton.title = kUploadButtonTitle;
-    self.shareCheckBox.title = kMainCheckBoxTitle;
+    
+    self.privacyCheckBox.title = kMainUploadAsPrivateTitle;
+    self.uploadTypeCheckBox.title = kMainUploadAsSnippetTitle;
+    
+    if (self.service != XCSServiceSlack) {
+        self.roomButton.hidden = YES;
+        self.uploadTypeCheckBox.hidden = YES;
+    }
 }
 
 - (void)configureTeamButton
@@ -232,7 +245,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     }
     
     [self.teamButton insertItemWithTitle:@"" atIndex:0]; // First element is empty, to enable to clean states.
-    [self.teamButton insertItemWithTitle:kAddTeamButtonTitle atIndex:self.teamButton.numberOfItems];
+    [self.teamButton insertItemWithTitle:[self addNewTitle] atIndex:self.teamButton.numberOfItems];
     
     if (![SLKAccount currentAccount]) {
         [self.teamButton selectItemAtIndex:0];
@@ -251,10 +264,6 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         self.roomButton.enabled = NO;
         return;
     }
-    
-    // Always has the option to share privately
-    [self.roomButton addItemWithTitle:kSharePrivateButtonTitle];
-    self.roomButton.enabled = YES;
     
     if ([SLKRoomManager hasRooms])
     {
@@ -320,8 +329,8 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 {
     if (self.isUploading ||
         self.sourceTextView.string.length == 0 ||
-        !self.snippet.teamId ||
-        (!self.snippet.uploadAsFile && !self.snippet.channelId)) {
+        (self.service == XCSServiceSlack &&
+        (!self.snippet.teamId || (!self.snippet.uploadAsSnippet && !self.snippet.channelId)))) {
         self.acceptButton.enabled = NO;
     }
     else {
@@ -338,6 +347,8 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     NSBundle *bundle = SLKBundle();
     
     self.loginViewController = [[XCSLoginViewController alloc] initWithNibName:nibName bundle:bundle];
+    self.loginViewController.service = self.service;
+    
     NSWindow *window = [[NSWindow alloc] init];
     window.contentViewController = self.loginViewController;
     
@@ -418,7 +429,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         
         [self configureRoomButton];
     }
-    else if ([title isEqualToString:kAddTeamButtonTitle]) {
+    else if ([title isEqualToString:[self addNewTitle]]) {
         [self performSelector:@selector(presentLoginForm) withObject:nil afterDelay:0.3];
     }
     else {
@@ -446,7 +457,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     NSString *channelId = nil;
     
-    if (!selectedItem.isSeparatorItem && title.length > 0 && ![title isEqualToString:kSharePrivateButtonTitle]) {
+    if (!selectedItem.isSeparatorItem && title.length > 0) {
         SLKRoom *room = [SLKRoomManager roomForName:title];
         channelId = room.tsid;
     }
@@ -457,10 +468,18 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self updateAcceptButton];
 }
 
-- (IBAction)uploadAsFileChanged:(NSButton *)sender
+- (IBAction)uploadPrivacyChanged:(NSButton *)sender
 {
-    self.snippet.uploadAsFile = sender.state;
-    self.titleTextField.enabled = sender.state;
+    self.snippet.uploadAsPrivate = sender.state;
+}
+
+- (IBAction)uploadTypeChanged:(NSButton *)sender
+{
+    self.snippet.uploadAsSnippet = sender.state;
+    
+    if (self.service == XCSServiceSlack) {
+        self.titleTextField.enabled = sender.state;
+    }
     
     [self updateAcceptButton];
 }
