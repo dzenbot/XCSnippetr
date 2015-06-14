@@ -10,16 +10,13 @@
 #import "XCSLoginViewController.h"
 #import "XCSStrings.h"
 
-#import "SLKAPIClient.h"
-#import "GHBAPIClient.h"
-
-#import "SLKAccount.h"
+#import "XCSAccount.h"
 #import "XCSMacros.h"
 
 #import "NSWindow+Shake.h"
 
 @interface XCSLoginViewController ()
-@property (nonatomic, strong) SLKAccount *account;
+@property (nonatomic, strong) XCSAccount *account;
 @property (nonatomic, getter=isLoading) BOOL loading;
 @end
 
@@ -64,23 +61,12 @@
     }
 }
 
-- (NSString *)serviceTokenSourceUrl
-{
-    if (self.service == XCSServiceSlack) {
-        return kSlackWebAPIUrl;
-    }
-    else if (self.service == XCSServiceGist) {
-        return [NSString stringWithFormat:@"%@?%@=%@&%@=%@", kGistWebAPIUrl, kGithubAPIParamDescription, SLKBundleName(), kGithubAPIParamScopes, kGithubAPIParamGist];
-    }
-    
-    return nil;
-}
 
 #pragma mark - Configuration
 
 - (void)configureContent
 {
-    NSString *webApiUrl = [self serviceTokenSourceUrl];
+    NSString *webApiUrl = [XCSServiceAPIFactory tokenSourceUrlForService:self.service];
     NSString *descriptionText = (self.service == XCSServiceSlack) ? kLoginDescriptionTextSlack : kLoginDescriptionTextGithub;
     NSString *serviceImageName = (self.service == XCSServiceSlack) ? @"slack_logo" : @"github_logo";
     NSImage *serviceImage = [SLKBundle() imageForResource:serviceImageName];
@@ -96,7 +82,7 @@
     self.acceptButton.title = kLoginButtonTitle;
     self.acceptButton.keyEquivalent = kReturnKeyEquivalent;
     
-    if ([SLKAccount allAccounts].count == 0) {
+    if ([XCSAccount allAccounts].count == 0) {
         [self.cancelButton setEnabled:isSLKPlugin()];
     }
 }
@@ -107,7 +93,7 @@
 - (IBAction)cancelForm:(id)sender
 {
     // Cancels any pending requests
-    [[SLKAPIClient sharedClient] cancelRequestsIfNeeded];
+    [[XCSServiceAPIFactory APIClientForService:self.service] cancelRequestsIfNeeded];
     
     // Removes the incomplete account
     [self.account clear];
@@ -125,21 +111,21 @@
     
     NSString *token = self.tokenTextField.stringValue;
     
-    [[SLKAPIClient sharedClient] authWithToken:token completion:^(SLKAccount *account, NSError *error) {
+    [[XCSServiceAPIFactory APIClientForService:self.service] authWithToken:token completion:^(XCSAccount *account, NSError *error) {
         
-        if (account) {
-            self.account = account;
-            [self.account setAsCurrent];
-            
-            if (self.completionHandler) {
-                self.completionHandler(YES);
-            }
-        }
-        else {
-            [self handleError:error];
-        }
-        
-        self.loading = NO;
+//        if (account) {
+//            self.account = account;
+//            [self.account setAsCurrent];
+//            
+//            if (self.completionHandler) {
+//                self.completionHandler(YES);
+//            }
+//        }
+//        else {
+//            [self handleError:error];
+//        }
+//        
+//        self.loading = NO;
     }];
 }
 

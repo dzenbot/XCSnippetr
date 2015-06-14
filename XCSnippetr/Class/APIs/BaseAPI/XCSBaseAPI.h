@@ -8,10 +8,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XCSServiceAPIProtocol.h"
 
-#import "XCSService.h"
-
-@interface XCSBaseAPI : NSObject
+@interface XCSBaseAPI : NSObject <XCSServiceAPIProtocol>
 
 /**
  A client singleton object.
@@ -26,10 +25,5 @@
  @returns The shared client.
  */
 - (void)post:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion;
-
-/**
- Cancels all HTTP requests, if any.
- */
-- (void)cancelRequestsIfNeeded;
 
 @end

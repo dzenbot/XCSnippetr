@@ -9,9 +9,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "XCSService.h"
+#import "XCSServiceAPIFactory.h"
 
-@class SLKAccount;
+@class XCSAccount;
 
 typedef void (^XCSLoginViewControllerCompletionHandler)(BOOL didLogin);
 

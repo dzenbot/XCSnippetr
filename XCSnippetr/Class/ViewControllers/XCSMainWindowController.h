@@ -10,7 +10,7 @@
 #import <Cocoa/Cocoa.h>
 #import <ACEView/ACEView.h>
 
-#import "XCSService.h"
+#import "XCSServiceAPIFactory.h"
 
 typedef void (^XCSMainWindowControllerCompletionHandler)(NSModalResponse returnCode);
 

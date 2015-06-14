@@ -8,13 +8,12 @@
 //
 
 #import "XCSBaseAPI.h"
-#import "XCSBaseAPIProtocol.h"
 
 #import "GHBAPIConstants.h"
 
 @class SLKSnippet;
 
-@interface GHBAPIClient : XCSBaseAPI <XCSBaseAPIProtocol>
+@interface GHBAPIClient : XCSBaseAPI
 
 /**
  Uploads a code snippet in GitHub Gist.

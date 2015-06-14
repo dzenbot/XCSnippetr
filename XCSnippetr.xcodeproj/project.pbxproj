@@ -13,9 +13,7 @@
 		4F09263F1AF7FC9D00A64AAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0926381AF7FC9D00A64AAF /* main.m */; };
 		4F0926401AF7FC9D00A64AAF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0926391AF7FC9D00A64AAF /* MainMenu.xib */; };
 		4F0926411AF7FC9D00A64AAF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F0926391AF7FC9D00A64AAF /* MainMenu.xib */; };
-		4F1855991AEE03E400AAF896 /* SLKSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1855981AEE03E400AAF896 /* SLKSnippet.m */; };
 		4F1855A51AEE13C800AAF896 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F1855A41AEE13C800AAF896 /* Images.xcassets */; };
-		4F1855A81AEE155D00AAF896 /* SLKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1855A71AEE155D00AAF896 /* SLKAccount.m */; };
 		4F1AF6B71B004CAF006E8D1F /* NSObject+SmartDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1AF6B61B004CAF006E8D1F /* NSObject+SmartDescription.m */; };
 		4F1AF6B81B004CAF006E8D1F /* NSObject+SmartDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1AF6B61B004CAF006E8D1F /* NSObject+SmartDescription.m */; };
 		4F25D9A71AEEB49200E57436 /* NSWindow+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F25D9A11AEEB49200E57436 /* NSWindow+Shake.m */; };
@@ -627,29 +625,43 @@
 		4F3C55F31B0146E900669B5C /* xquery.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C53981B0146E800669B5C /* xquery.js */; };
 		4F3C55F41B0146E900669B5C /* yaml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C53991B0146E800669B5C /* yaml.js */; };
 		4F3C55F51B0146E900669B5C /* yaml.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F3C53991B0146E800669B5C /* yaml.js */; };
+		4F40CBB21B2DD7DD0070E0D4 /* XCSAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CB9E1B2DD7DD0070E0D4 /* XCSAccount.m */; };
+		4F40CBB31B2DD7DD0070E0D4 /* XCSAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CB9E1B2DD7DD0070E0D4 /* XCSAccount.m */; };
+		4F40CBB41B2DD7DD0070E0D4 /* XCSAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CB9E1B2DD7DD0070E0D4 /* XCSAccount.m */; };
+		4F40CBB51B2DD7DD0070E0D4 /* XCSBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA01B2DD7DD0070E0D4 /* XCSBaseAPI.m */; };
+		4F40CBB61B2DD7DD0070E0D4 /* XCSBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA01B2DD7DD0070E0D4 /* XCSBaseAPI.m */; };
+		4F40CBB71B2DD7DD0070E0D4 /* XCSBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA01B2DD7DD0070E0D4 /* XCSBaseAPI.m */; };
+		4F40CBB81B2DD7DD0070E0D4 /* XCSSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA21B2DD7DD0070E0D4 /* XCSSnippet.m */; };
+		4F40CBB91B2DD7DD0070E0D4 /* XCSSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA21B2DD7DD0070E0D4 /* XCSSnippet.m */; };
+		4F40CBBA1B2DD7DD0070E0D4 /* XCSSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA21B2DD7DD0070E0D4 /* XCSSnippet.m */; };
+		4F40CBBB1B2DD7DD0070E0D4 /* GHBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA51B2DD7DD0070E0D4 /* GHBAPIClient.m */; };
+		4F40CBBC1B2DD7DD0070E0D4 /* GHBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA51B2DD7DD0070E0D4 /* GHBAPIClient.m */; };
+		4F40CBBD1B2DD7DD0070E0D4 /* GHBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA51B2DD7DD0070E0D4 /* GHBAPIClient.m */; };
+		4F40CBBE1B2DD7DD0070E0D4 /* SLKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA91B2DD7DD0070E0D4 /* SLKAPIClient.m */; };
+		4F40CBBF1B2DD7DD0070E0D4 /* SLKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA91B2DD7DD0070E0D4 /* SLKAPIClient.m */; };
+		4F40CBC01B2DD7DD0070E0D4 /* SLKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBA91B2DD7DD0070E0D4 /* SLKAPIClient.m */; };
+		4F40CBC11B2DD7DD0070E0D4 /* SLKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBAC1B2DD7DD0070E0D4 /* SLKRoom.m */; };
+		4F40CBC21B2DD7DD0070E0D4 /* SLKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBAC1B2DD7DD0070E0D4 /* SLKRoom.m */; };
+		4F40CBC31B2DD7DD0070E0D4 /* SLKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBAC1B2DD7DD0070E0D4 /* SLKRoom.m */; };
+		4F40CBC41B2DD7DD0070E0D4 /* SLKRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBAE1B2DD7DD0070E0D4 /* SLKRoomManager.m */; };
+		4F40CBC51B2DD7DD0070E0D4 /* SLKRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBAE1B2DD7DD0070E0D4 /* SLKRoomManager.m */; };
+		4F40CBC61B2DD7DD0070E0D4 /* SLKRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBAE1B2DD7DD0070E0D4 /* SLKRoomManager.m */; };
+		4F40CBC71B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBB01B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m */; };
+		4F40CBC81B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBB01B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m */; };
+		4F40CBC91B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F40CBB01B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m */; };
 		4F4238681B2CAE5500D2CA79 /* auth.test.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F4238661B2CAE5500D2CA79 /* auth.test.json */; };
 		4F4238691B2CAE5500D2CA79 /* rtm.start.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F4238671B2CAE5500D2CA79 /* rtm.start.json */; };
 		4F42386B1B2CAE7300D2CA79 /* gist.test.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F42386A1B2CAE7300D2CA79 /* gist.test.json */; };
 		4F42386F1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42386E1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.m */; };
-		4F4282261AED92FA00133F7D /* SLKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42821D1AED92F900133F7D /* SLKAPIClient.m */; };
 		4F4282271AED92FA00133F7D /* XCSnippetrPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42821F1AED92F900133F7D /* XCSnippetrPlugin.m */; };
 		4F48D0251AF69AF30017717D /* XCSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F48D0211AF69AF30017717D /* XCSLoginViewController.xib */; };
 		4F48D0281AF69BD90017717D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F48D0261AF69BD90017717D /* InfoPlist.strings */; };
 		4F48D0291AF69BD90017717D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F48D0261AF69BD90017717D /* InfoPlist.strings */; };
-		4F5407DB1B2C8E9B00A7EE19 /* GHBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5407DA1B2C8E9B00A7EE19 /* GHBAPIClient.m */; };
-		4F5407DC1B2C8E9B00A7EE19 /* GHBAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5407DA1B2C8E9B00A7EE19 /* GHBAPIClient.m */; };
-		4F5407E11B2C8F4500A7EE19 /* XCSBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5407E01B2C8F4500A7EE19 /* XCSBaseAPI.m */; };
-		4F5407E21B2C8F4500A7EE19 /* XCSBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5407E01B2C8F4500A7EE19 /* XCSBaseAPI.m */; };
 		4F562CBE1AED95AB00A865CB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F562CBD1AED95AB00A865CB /* Cocoa.framework */; };
-		4F968FC21AF1DFA90003169A /* SLKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F968FC11AF1DFA90003169A /* SLKRoom.m */; };
 		4FA17DE61AF494FB0049D26F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA17DE51AF494FB0049D26F /* AppDelegate.m */; };
 		4FA17E011AF4981D0049D26F /* XCSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F25D9A61AEEB49200E57436 /* XCSLoginViewController.m */; };
 		4FA17E021AF4981D0049D26F /* NSWindow+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F25D9A11AEEB49200E57436 /* NSWindow+Shake.m */; };
 		4FA17E031AF4981D0049D26F /* NSTextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A8D601AF41DF500DDE855 /* NSTextView+Placeholder.m */; };
-		4FA17E041AF4981D0049D26F /* SLKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42821D1AED92F900133F7D /* SLKAPIClient.m */; };
-		4FA17E051AF4981D0049D26F /* SLKSnippet.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1855981AEE03E400AAF896 /* SLKSnippet.m */; };
-		4FA17E061AF4981D0049D26F /* SLKAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1855A71AEE155D00AAF896 /* SLKAccount.m */; };
-		4FA17E071AF4981D0049D26F /* SLKRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F968FC11AF1DFA90003169A /* SLKRoom.m */; };
 		4FA17E081AF498200049D26F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F1855A41AEE13C800AAF896 /* Images.xcassets */; };
 		4FA17E0D1AF552390049D26F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F562CBD1AED95AB00A865CB /* Cocoa.framework */; };
 		4FA17E0E1AF5523E0049D26F /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186519A7B46F00B814F8 /* AppKit.framework */; };
@@ -659,7 +671,6 @@
 		4FC8BA431AFE998F00388D13 /* XCSMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FC8BA401AFE998F00388D13 /* XCSMainWindowController.xib */; };
 		4FC8BA441AFE998F00388D13 /* XCSMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FC8BA401AFE998F00388D13 /* XCSMainWindowController.xib */; };
 		4FCD1E091AF9D6800039908A /* XCSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F48D0211AF69AF30017717D /* XCSLoginViewController.xib */; };
-		4FD931251B03AE9600E82E08 /* SLKRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD931241B03AE9600E82E08 /* SLKRoomManager.m */; };
 		4FF217D51AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */; };
 		4FF217D61AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */; };
 		7CD9186619A7B46F00B814F8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186519A7B46F00B814F8 /* AppKit.framework */; };
@@ -686,12 +697,7 @@
 		4F0926371AF7FC9D00A64AAF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F0926381AF7FC9D00A64AAF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F0926391AF7FC9D00A64AAF /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		4F1855971AEE03E400AAF896 /* SLKSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKSnippet.h; path = Models/SLKSnippet.h; sourceTree = "<group>"; };
-		4F1855981AEE03E400AAF896 /* SLKSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKSnippet.m; path = Models/SLKSnippet.m; sourceTree = "<group>"; };
 		4F1855A41AEE13C800AAF896 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
-		4F1855A61AEE155D00AAF896 /* SLKAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKAccount.h; path = Models/SLKAccount.h; sourceTree = "<group>"; };
-		4F1855A71AEE155D00AAF896 /* SLKAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKAccount.m; path = Models/SLKAccount.m; sourceTree = "<group>"; };
-		4F1AF6B41AFFDA9B006E8D1F /* SLKAPIConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLKAPIConstants.h; sourceTree = "<group>"; };
 		4F1AF6B51B004CAF006E8D1F /* NSObject+SmartDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SmartDescription.h"; sourceTree = "<group>"; };
 		4F1AF6B61B004CAF006E8D1F /* NSObject+SmartDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SmartDescription.m"; sourceTree = "<group>"; };
 		4F25D9A01AEEB49200E57436 /* NSWindow+Shake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+Shake.h"; sourceTree = "<group>"; };
@@ -1003,30 +1009,37 @@
 		4F3C53971B0146E800669B5C /* xml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = xml.js; sourceTree = "<group>"; };
 		4F3C53981B0146E800669B5C /* xquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = xquery.js; sourceTree = "<group>"; };
 		4F3C53991B0146E800669B5C /* yaml.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = yaml.js; sourceTree = "<group>"; };
-		4F4238631B2CA7F500D2CA79 /* GHBAPIConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GHBAPIConstants.h; path = GitHubAPI/GHBAPIConstants.h; sourceTree = "<group>"; };
+		4F40CB9D1B2DD7DD0070E0D4 /* XCSAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSAccount.h; sourceTree = "<group>"; };
+		4F40CB9E1B2DD7DD0070E0D4 /* XCSAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSAccount.m; sourceTree = "<group>"; };
+		4F40CB9F1B2DD7DD0070E0D4 /* XCSBaseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSBaseAPI.h; sourceTree = "<group>"; };
+		4F40CBA01B2DD7DD0070E0D4 /* XCSBaseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSBaseAPI.m; sourceTree = "<group>"; };
+		4F40CBA11B2DD7DD0070E0D4 /* XCSSnippet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSSnippet.h; sourceTree = "<group>"; };
+		4F40CBA21B2DD7DD0070E0D4 /* XCSSnippet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSSnippet.m; sourceTree = "<group>"; };
+		4F40CBA41B2DD7DD0070E0D4 /* GHBAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHBAPIClient.h; sourceTree = "<group>"; };
+		4F40CBA51B2DD7DD0070E0D4 /* GHBAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHBAPIClient.m; sourceTree = "<group>"; };
+		4F40CBA61B2DD7DD0070E0D4 /* GHBAPIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHBAPIConstants.h; sourceTree = "<group>"; };
+		4F40CBA81B2DD7DD0070E0D4 /* SLKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKAPIClient.h; sourceTree = "<group>"; };
+		4F40CBA91B2DD7DD0070E0D4 /* SLKAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKAPIClient.m; sourceTree = "<group>"; };
+		4F40CBAA1B2DD7DD0070E0D4 /* SLKAPIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKAPIConstants.h; sourceTree = "<group>"; };
+		4F40CBAB1B2DD7DD0070E0D4 /* SLKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKRoom.h; sourceTree = "<group>"; };
+		4F40CBAC1B2DD7DD0070E0D4 /* SLKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKRoom.m; sourceTree = "<group>"; };
+		4F40CBAD1B2DD7DD0070E0D4 /* SLKRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKRoomManager.h; sourceTree = "<group>"; };
+		4F40CBAE1B2DD7DD0070E0D4 /* SLKRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKRoomManager.m; sourceTree = "<group>"; };
+		4F40CBAF1B2DD7DD0070E0D4 /* XCSServiceAPIFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSServiceAPIFactory.h; sourceTree = "<group>"; };
+		4F40CBB01B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSServiceAPIFactory.m; sourceTree = "<group>"; };
+		4F40CBB11B2DD7DD0070E0D4 /* XCSServiceAPIProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSServiceAPIProtocol.h; sourceTree = "<group>"; };
 		4F4238661B2CAE5500D2CA79 /* auth.test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = auth.test.json; sourceTree = "<group>"; };
 		4F4238671B2CAE5500D2CA79 /* rtm.start.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rtm.start.json; sourceTree = "<group>"; };
 		4F42386A1B2CAE7300D2CA79 /* gist.test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gist.test.json; sourceTree = "<group>"; };
 		4F42386D1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+FileContent.h"; sourceTree = "<group>"; };
 		4F42386E1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+FileContent.m"; sourceTree = "<group>"; };
-		4F4238701B2CB91600D2CA79 /* XCSBaseAPIProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XCSBaseAPIProtocol.h; path = APIs/XCSBaseAPIProtocol.h; sourceTree = "<group>"; };
-		4F4238711B2CBAB100D2CA79 /* XCSSnippetProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XCSSnippetProtocol.h; path = APIs/XCSSnippetProtocol.h; sourceTree = "<group>"; };
 		4F4282061AED92EC00133F7D /* XCSnippetr-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "XCSnippetr-Info.plist"; sourceTree = "<group>"; };
 		4F4282071AED92EC00133F7D /* XCSnippetr-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCSnippetr-Prefix.pch"; sourceTree = "<group>"; };
-		4F42821C1AED92F900133F7D /* SLKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKAPIClient.h; sourceTree = "<group>"; };
-		4F42821D1AED92F900133F7D /* SLKAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKAPIClient.m; sourceTree = "<group>"; };
 		4F42821E1AED92F900133F7D /* XCSnippetrPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSnippetrPlugin.h; sourceTree = "<group>"; };
 		4F42821F1AED92F900133F7D /* XCSnippetrPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSnippetrPlugin.m; sourceTree = "<group>"; };
 		4F48D0211AF69AF30017717D /* XCSLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XCSLoginViewController.xib; sourceTree = "<group>"; };
 		4F48D0271AF69BD90017717D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4F5407D91B2C8E9B00A7EE19 /* GHBAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHBAPIClient.h; path = GitHubAPI/GHBAPIClient.h; sourceTree = "<group>"; };
-		4F5407DA1B2C8E9B00A7EE19 /* GHBAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHBAPIClient.m; path = GitHubAPI/GHBAPIClient.m; sourceTree = "<group>"; };
-		4F5407DF1B2C8F4500A7EE19 /* XCSBaseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XCSBaseAPI.h; path = APIs/XCSBaseAPI.h; sourceTree = "<group>"; };
-		4F5407E01B2C8F4500A7EE19 /* XCSBaseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XCSBaseAPI.m; path = APIs/XCSBaseAPI.m; sourceTree = "<group>"; };
 		4F562CBD1AED95AB00A865CB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		4F903B171B2CD265009A0AB3 /* XCSService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCSService.h; sourceTree = "<group>"; };
-		4F968FC01AF1DFA90003169A /* SLKRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLKRoom.h; path = Models/SLKRoom.h; sourceTree = "<group>"; };
-		4F968FC11AF1DFA90003169A /* SLKRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLKRoom.m; path = Models/SLKRoom.m; sourceTree = "<group>"; };
 		4FA17DE01AF494FB0049D26F /* XCSnippetrApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XCSnippetrApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA17DE41AF494FB0049D26F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FA17DE51AF494FB0049D26F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -1037,8 +1050,7 @@
 		4FC8BA3E1AFE998F00388D13 /* XCSMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSMainWindowController.h; sourceTree = "<group>"; };
 		4FC8BA3F1AFE998F00388D13 /* XCSMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSMainWindowController.m; sourceTree = "<group>"; };
 		4FC8BA401AFE998F00388D13 /* XCSMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XCSMainWindowController.xib; sourceTree = "<group>"; };
-		4FD931231B03AE9600E82E08 /* SLKRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKRoomManager.h; sourceTree = "<group>"; };
-		4FD931241B03AE9600E82E08 /* SLKRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKRoomManager.m; sourceTree = "<group>"; };
+		4FE7C23F1B2DD87800706F53 /* XCSService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCSService.h; sourceTree = "<group>"; };
 		4FF217D31AF5EA4100A6AEF3 /* ACEModeNames+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ACEModeNames+Extension.h"; sourceTree = "<group>"; };
 		4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ACEModeNames+Extension.m"; sourceTree = "<group>"; };
 		4FF2672F1AFFCDC000BCBC2D /* XCSStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCSStrings.h; sourceTree = "<group>"; };
@@ -1131,19 +1143,6 @@
 				4F4238651B2CAE5500D2CA79 /* Slack */,
 			);
 			name = Fixtures;
-			sourceTree = "<group>";
-		};
-		4F18559A1AEE03E800AAF896 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4F1855971AEE03E400AAF896 /* SLKSnippet.h */,
-				4F1855981AEE03E400AAF896 /* SLKSnippet.m */,
-				4F1855A61AEE155D00AAF896 /* SLKAccount.h */,
-				4F1855A71AEE155D00AAF896 /* SLKAccount.m */,
-				4F968FC01AF1DFA90003169A /* SLKRoom.h */,
-				4F968FC11AF1DFA90003169A /* SLKRoom.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		4F1855A31AEE13B000AAF896 /* Resources */ = {
@@ -1503,6 +1502,57 @@
 			path = Resources/ace;
 			sourceTree = "<group>";
 		};
+		4F40CB9B1B2DD7DD0070E0D4 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4F40CB9C1B2DD7DD0070E0D4 /* BaseAPI */,
+				4F40CBA31B2DD7DD0070E0D4 /* GitHubAPI */,
+				4F40CBA71B2DD7DD0070E0D4 /* SlackAPI */,
+				4F40CBAF1B2DD7DD0070E0D4 /* XCSServiceAPIFactory.h */,
+				4F40CBB01B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m */,
+				4FE7C23F1B2DD87800706F53 /* XCSService.h */,
+				4F40CBB11B2DD7DD0070E0D4 /* XCSServiceAPIProtocol.h */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		4F40CB9C1B2DD7DD0070E0D4 /* BaseAPI */ = {
+			isa = PBXGroup;
+			children = (
+				4F40CB9F1B2DD7DD0070E0D4 /* XCSBaseAPI.h */,
+				4F40CBA01B2DD7DD0070E0D4 /* XCSBaseAPI.m */,
+				4F40CB9D1B2DD7DD0070E0D4 /* XCSAccount.h */,
+				4F40CB9E1B2DD7DD0070E0D4 /* XCSAccount.m */,
+				4F40CBA11B2DD7DD0070E0D4 /* XCSSnippet.h */,
+				4F40CBA21B2DD7DD0070E0D4 /* XCSSnippet.m */,
+			);
+			path = BaseAPI;
+			sourceTree = "<group>";
+		};
+		4F40CBA31B2DD7DD0070E0D4 /* GitHubAPI */ = {
+			isa = PBXGroup;
+			children = (
+				4F40CBA41B2DD7DD0070E0D4 /* GHBAPIClient.h */,
+				4F40CBA51B2DD7DD0070E0D4 /* GHBAPIClient.m */,
+				4F40CBA61B2DD7DD0070E0D4 /* GHBAPIConstants.h */,
+			);
+			path = GitHubAPI;
+			sourceTree = "<group>";
+		};
+		4F40CBA71B2DD7DD0070E0D4 /* SlackAPI */ = {
+			isa = PBXGroup;
+			children = (
+				4F40CBA81B2DD7DD0070E0D4 /* SLKAPIClient.h */,
+				4F40CBA91B2DD7DD0070E0D4 /* SLKAPIClient.m */,
+				4F40CBAA1B2DD7DD0070E0D4 /* SLKAPIConstants.h */,
+				4F40CBAB1B2DD7DD0070E0D4 /* SLKRoom.h */,
+				4F40CBAC1B2DD7DD0070E0D4 /* SLKRoom.m */,
+				4F40CBAD1B2DD7DD0070E0D4 /* SLKRoomManager.h */,
+				4F40CBAE1B2DD7DD0070E0D4 /* SLKRoomManager.m */,
+			);
+			path = SlackAPI;
+			sourceTree = "<group>";
+		};
 		4F4238641B2CAE5500D2CA79 /* Github */ = {
 			isa = PBXGroup;
 			children = (
@@ -1550,29 +1600,9 @@
 				4FC1815F1B2C84F900FFBC72 /* XCSMacros.h */,
 				4F25D9A21AEEB49200E57436 /* ViewControllers */,
 				4F25D99F1AEEB49200E57436 /* Categories */,
-				4FC181601B2C854D00FFBC72 /* APIs */,
+				4F40CB9B1B2DD7DD0070E0D4 /* API */,
 			);
 			path = Class;
-			sourceTree = "<group>";
-		};
-		4F42821B1AED92F900133F7D /* SlackAPI */ = {
-			isa = PBXGroup;
-			children = (
-				4F42821C1AED92F900133F7D /* SLKAPIClient.h */,
-				4F42821D1AED92F900133F7D /* SLKAPIClient.m */,
-				4FD931231B03AE9600E82E08 /* SLKRoomManager.h */,
-				4FD931241B03AE9600E82E08 /* SLKRoomManager.m */,
-				4F1AF6B41AFFDA9B006E8D1F /* SLKAPIConstants.h */,
-				4F18559A1AEE03E800AAF896 /* Models */,
-			);
-			path = SlackAPI;
-			sourceTree = "<group>";
-		};
-		4F5407DD1B2C8EEC00A7EE19 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		4FA17DE11AF494FB0049D26F /* XCSnippetrApp */ = {
@@ -1583,31 +1613,6 @@
 				4F0926361AF7FC9D00A64AAF /* Supporting Files */,
 			);
 			path = XCSnippetrApp;
-			sourceTree = "<group>";
-		};
-		4FC181601B2C854D00FFBC72 /* APIs */ = {
-			isa = PBXGroup;
-			children = (
-				4F5407DF1B2C8F4500A7EE19 /* XCSBaseAPI.h */,
-				4F5407E01B2C8F4500A7EE19 /* XCSBaseAPI.m */,
-				4F4238701B2CB91600D2CA79 /* XCSBaseAPIProtocol.h */,
-				4F4238711B2CBAB100D2CA79 /* XCSSnippetProtocol.h */,
-				4F903B171B2CD265009A0AB3 /* XCSService.h */,
-				4FC181611B2C855700FFBC72 /* GistAPI */,
-				4F42821B1AED92F900133F7D /* SlackAPI */,
-			);
-			name = APIs;
-			sourceTree = "<group>";
-		};
-		4FC181611B2C855700FFBC72 /* GistAPI */ = {
-			isa = PBXGroup;
-			children = (
-				4F5407D91B2C8E9B00A7EE19 /* GHBAPIClient.h */,
-				4F5407DA1B2C8E9B00A7EE19 /* GHBAPIClient.m */,
-				4F4238631B2CA7F500D2CA79 /* GHBAPIConstants.h */,
-				4F5407DD1B2C8EEC00A7EE19 /* Models */,
-			);
-			name = GistAPI;
 			sourceTree = "<group>";
 		};
 		7CD9185919A7B46F00B814F8 = {
@@ -2435,8 +2440,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F40CBBA1B2DD7DD0070E0D4 /* XCSSnippet.m in Sources */,
+				4F40CBB71B2DD7DD0070E0D4 /* XCSBaseAPI.m in Sources */,
 				4F09263F1AF7FC9D00A64AAF /* main.m in Sources */,
+				4F40CBBD1B2DD7DD0070E0D4 /* GHBAPIClient.m in Sources */,
+				4F40CBC01B2DD7DD0070E0D4 /* SLKAPIClient.m in Sources */,
+				4F40CBC61B2DD7DD0070E0D4 /* SLKRoomManager.m in Sources */,
 				4F42386F1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.m in Sources */,
+				4F40CBC31B2DD7DD0070E0D4 /* SLKRoom.m in Sources */,
+				4F40CBC91B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */,
+				4F40CBB41B2DD7DD0070E0D4 /* XCSAccount.m in Sources */,
 				4F09262E1AF7FB1300A64AAF /* XCSnippetrTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2445,20 +2458,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F5407E21B2C8F4500A7EE19 /* XCSBaseAPI.m in Sources */,
+				4F40CBB61B2DD7DD0070E0D4 /* XCSBaseAPI.m in Sources */,
+				4F40CBBF1B2DD7DD0070E0D4 /* SLKAPIClient.m in Sources */,
+				4F40CBC81B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */,
 				4F09263E1AF7FC9D00A64AAF /* main.m in Sources */,
 				4FC8BA421AFE998F00388D13 /* XCSMainWindowController.m in Sources */,
-				4F5407DC1B2C8E9B00A7EE19 /* GHBAPIClient.m in Sources */,
+				4F40CBBC1B2DD7DD0070E0D4 /* GHBAPIClient.m in Sources */,
 				4FA17E021AF4981D0049D26F /* NSWindow+Shake.m in Sources */,
 				4F1AF6B81B004CAF006E8D1F /* NSObject+SmartDescription.m in Sources */,
 				4FA17E031AF4981D0049D26F /* NSTextView+Placeholder.m in Sources */,
-				4FA17E071AF4981D0049D26F /* SLKRoom.m in Sources */,
 				4FF217D61AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */,
-				4FA17E061AF4981D0049D26F /* SLKAccount.m in Sources */,
+				4F40CBB31B2DD7DD0070E0D4 /* XCSAccount.m in Sources */,
+				4F40CBC51B2DD7DD0070E0D4 /* SLKRoomManager.m in Sources */,
 				4FA17E011AF4981D0049D26F /* XCSLoginViewController.m in Sources */,
-				4FA17E051AF4981D0049D26F /* SLKSnippet.m in Sources */,
-				4FA17E041AF4981D0049D26F /* SLKAPIClient.m in Sources */,
+				4F40CBB91B2DD7DD0070E0D4 /* XCSSnippet.m in Sources */,
 				4FA17DE61AF494FB0049D26F /* AppDelegate.m in Sources */,
+				4F40CBC21B2DD7DD0070E0D4 /* SLKRoom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2466,19 +2481,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F5407E11B2C8F4500A7EE19 /* XCSBaseAPI.m in Sources */,
+				4F40CBBE1B2DD7DD0070E0D4 /* SLKAPIClient.m in Sources */,
+				4F40CBC41B2DD7DD0070E0D4 /* SLKRoomManager.m in Sources */,
+				4F40CBB81B2DD7DD0070E0D4 /* XCSSnippet.m in Sources */,
+				4F40CBC11B2DD7DD0070E0D4 /* SLKRoom.m in Sources */,
+				4F40CBBB1B2DD7DD0070E0D4 /* GHBAPIClient.m in Sources */,
 				4F1AF6B71B004CAF006E8D1F /* NSObject+SmartDescription.m in Sources */,
-				4F1855A81AEE155D00AAF896 /* SLKAccount.m in Sources */,
-				4F5407DB1B2C8E9B00A7EE19 /* GHBAPIClient.m in Sources */,
-				4FD931251B03AE9600E82E08 /* SLKRoomManager.m in Sources */,
-				4F1855991AEE03E400AAF896 /* SLKSnippet.m in Sources */,
+				4F40CBC71B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */,
 				4FF217D51AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */,
+				4F40CBB21B2DD7DD0070E0D4 /* XCSAccount.m in Sources */,
 				4F3A8D611AF41DF500DDE855 /* NSTextView+Placeholder.m in Sources */,
 				4FC8BA411AFE998F00388D13 /* XCSMainWindowController.m in Sources */,
 				4F25D9A91AEEB49200E57436 /* XCSLoginViewController.m in Sources */,
-				4F968FC21AF1DFA90003169A /* SLKRoom.m in Sources */,
+				4F40CBB51B2DD7DD0070E0D4 /* XCSBaseAPI.m in Sources */,
 				4F25D9A71AEEB49200E57436 /* NSWindow+Shake.m in Sources */,
-				4F4282261AED92FA00133F7D /* SLKAPIClient.m in Sources */,
 				4F4282271AED92FA00133F7D /* XCSnippetrPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

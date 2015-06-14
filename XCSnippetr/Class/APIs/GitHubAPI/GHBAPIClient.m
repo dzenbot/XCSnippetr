@@ -15,7 +15,7 @@
 
 @implementation GHBAPIClient
 
-#pragma mark - XCSBaseAPIProtocol
+#pragma mark - XCSServiceAPIProtocol
 
 - (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params
 {
@@ -24,8 +24,13 @@
     
     NSString *accessToken = [SLKAccount currentAccount].accessToken;
     
-    if (accessToken && ![path isEqualToString:kGithubAPIBaseUrl]) {
-        [parameters setObject:accessToken forKey:kGithubAPIParamAccessToken];
+    [parameters setObject:accessToken forKey:kGithubAPIParamAccessToken];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    
+    if ([path isEqualToString:kGithubAPIMethodGists]) {
+        // Add HTTPBody
+        request.HTTPBody = nil;
     }
     
 //    {
@@ -38,14 +43,8 @@
 //        }
 //    }
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-    request.HTTPBody = nil;
-    
     return request;
 }
-
-
-#pragma mark - GHBAPIClient
 
 - (void)createGist:(SLKSnippet *)snippet completion:(void (^)(NSDictionary *JSON, NSError *error))completion;
 {

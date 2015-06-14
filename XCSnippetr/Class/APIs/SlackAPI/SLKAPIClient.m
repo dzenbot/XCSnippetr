@@ -72,7 +72,7 @@
 }
 
 
-#pragma mark - XCSBaseAPIProtocol
+#pragma mark - XCSServiceAPIProtocol
 
 - (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params
 {

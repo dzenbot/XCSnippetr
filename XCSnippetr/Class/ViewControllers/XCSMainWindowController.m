@@ -16,8 +16,8 @@
 #import "GHBAPIClient.h"
 
 #import "SLKRoomManager.h"
-#import "SLKAccount.h"
-#import "SLKSnippet.h"
+#import "XCSAccount.h"
+#import "XCSSnippet.h"
 #import "SLKRoom.h"
 
 #import "NSTextView+Placeholder.h"
@@ -32,7 +32,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 @interface XCSMainWindowController ()
 
-@property (nonatomic, strong) SLKSnippet *snippet;
+@property (nonatomic, strong) XCSSnippet *snippet;
 @property (nonatomic, strong) XCSLoginViewController *loginViewController;
 
 @property (nonatomic, getter=isLoading) BOOL loading;
@@ -53,7 +53,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     if (self) {
         [self.window setStyleMask:[self.window styleMask] & ~NSResizableWindowMask];
         
-        self.snippet = [[SLKSnippet alloc] init];
+        self.snippet = [[XCSSnippet alloc] init];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidAppear) name:NSWindowDidBecomeKeyNotification object:nil];
     }
@@ -65,7 +65,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [super awakeFromNib];
     
     // Only for debug, when the data model has changed or for log out all accounts.
-//     [SLKAccount clearAll];
+//     [XCSAccount clearAll];
 }
 
 - (void)windowDidLoad
@@ -81,7 +81,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     [self configureContent];
     
-    if ([SLKAccount forceLogin]) {
+    if ([XCSAccount forceLogin]) {
         [self performSelector:@selector(presentLoginForm) withObject:nil afterDelay:0.3];
     }
     
@@ -116,7 +116,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (NSInteger)indexOfCurrentAccount
 {
-    NSInteger idx = [[SLKAccount allAccounts] indexOfObject:[SLKAccount currentAccount]];
+    NSInteger idx = [[XCSAccount allAccounts] indexOfObject:[XCSAccount currentAccount]];
     idx++; // Increments to consider the empty space at first position
     
     return idx;
@@ -191,7 +191,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     self.window.title = (self.service == XCSServiceSlack) ? kTitleShareSlack : kTitleShareGist;
     
     // Data Source
-    self.snippet.teamId = [SLKAccount currentAccount].teamId;
+    self.snippet.teamId = [XCSAccount currentAccount].teamId;
     self.snippet.uploadAsPrivate = self.privacyCheckBox.state;
     
     // Title View
@@ -240,14 +240,14 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 {
     [self.teamButton removeAllItems];
     
-    if ([SLKAccount allAccounts].count > 0) {
-        [self.teamButton addItemsWithTitles:[SLKAccount teamNames]];
+    if ([XCSAccount allAccounts].count > 0) {
+        [self.teamButton addItemsWithTitles:[XCSAccount teamNames]];
     }
     
     [self.teamButton insertItemWithTitle:@"" atIndex:0]; // First element is empty, to enable to clean states.
     [self.teamButton insertItemWithTitle:[self addNewTitle] atIndex:self.teamButton.numberOfItems];
     
-    if (![SLKAccount currentAccount]) {
+    if (![XCSAccount currentAccount]) {
         [self.teamButton selectItemAtIndex:0];
     }
     else {
@@ -312,7 +312,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         return;
     }
     
-    NSString *channelId = [SLKAccount currentAccount].channelId;
+    NSString *channelId = [XCSAccount currentAccount].channelId;
     
     if (isNonEmptyString(channelId)) {
         SLKRoom *room = [SLKRoomManager roomForId:channelId];
@@ -359,7 +359,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self.loginViewController setCompletionHandler:^(BOOL didLogin){
         
         // Close the plugin if no account has been registered.
-        if ([SLKAccount forceLogin]) {
+        if ([XCSAccount forceLogin]) {
             [weakSelf dismiss:nil returnCode:NSModalResponseCancel];
         }
         else {
@@ -436,7 +436,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         NSInteger idx = [self.teamButton indexOfItemWithTitle:title];
         idx--; // Decrements to consider the space at first position
         
-        SLKAccount *account = [SLKAccount allAccounts][idx];
+        XCSAccount *account = [XCSAccount allAccounts][idx];
         
         // Set as the current account
         [account setAsCurrent];
@@ -463,7 +463,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     }
     
     self.snippet.channelId = channelId;
-    [[SLKAccount currentAccount] setChannelId:channelId];
+    [[XCSAccount currentAccount] setChannelId:channelId];
     
     [self updateAcceptButton];
 }
@@ -486,7 +486,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (IBAction)cancelForm:(NSButton *)sender
 {
-    [[SLKAPIClient sharedClient] cancelRequestsIfNeeded];
+    [[XCSServiceAPIFactory APIClientForService:self.service] cancelRequestsIfNeeded];
     
     [self dismiss:sender returnCode:NSModalResponseCancel];
 }

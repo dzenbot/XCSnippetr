@@ -12,7 +12,6 @@
 #import "XCSStrings.h"
 
 #import "XCSMacros.h"
-#import "XCSService.h"
 
 #import <DTXcodeUtils/DTXcodeUtils.h>
 #import <DTXcodeUtils/DTXcodeHeaders.h>
@@ -180,7 +179,7 @@ NSString *activeDocumentName()
         // Configure Gist Item
         if (!gistItem) {
             gistItem = [[NSMenuItem alloc] initWithTitle:kTitleShareGist action:@selector(shareCodeSnippet:) keyEquivalent:@""];
-            gistItem.tag = XCSServiceGist;
+            gistItem.tag = XCSServiceGithub;
             gistItem.target = target;
             
             NSMenuItem *separator = [NSMenuItem separatorItem];

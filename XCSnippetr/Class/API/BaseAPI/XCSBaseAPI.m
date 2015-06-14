@@ -48,12 +48,6 @@ static NSString * const kBaseAPIParamError =    @"error";
     return _URLSession;
 }
 
-- (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params
-{
-    NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
-    return nil;
-}
-
 - (void)post:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion
 {
     NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
@@ -85,6 +79,25 @@ static NSString * const kBaseAPIParamError =    @"error";
     });
 }
 
+
+#pragma mark - XCSServiceAPIProtocol
+
+- (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params
+{
+    NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
+    return nil;
+}
+
+- (void)authWithToken:(NSString *)token completion:(void (^)(XCSAccount *account, NSError *error))completion
+{
+    NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
+}
+
+- (void)uploadSnippet:(XCSSnippet *)snippet completion:(void (^)(NSDictionary *JSON, NSError *error))completion
+{
+    NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
+}
+
 - (void)cancelRequestsIfNeeded
 {
     NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
@@ -93,6 +106,15 @@ static NSString * const kBaseAPIParamError =    @"error";
         [_URLSessionTask cancel];
         _URLSessionTask = nil;
     }
+}
+
+
+#pragma mark - Helpers
+
+NSString *NSStringEscapedFrom(NSString *v) {
+    static CFStringRef charactersToBeEscaped = CFSTR("￼=,!$&'()*+;@?\r\n\"<>#\t :/");
+    static CFStringEncoding encoding = kCFStringEncodingUTF8;
+    return ((__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)[v mutableCopy], NULL, charactersToBeEscaped, encoding));
 }
 
 @end

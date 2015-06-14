@@ -7,8 +7,9 @@
 //  Licence: MIT-Licence
 //
 
-#import <Foundation/Foundation.h>
+#import "XCSBaseAPI.h"
+#import "GHBAPIConstants.h"
 
-@protocol XCSSnippetProtocol <NSObject>
+@interface GHBAPIClient : XCSBaseAPI
 
 @end

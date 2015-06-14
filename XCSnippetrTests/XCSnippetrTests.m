@@ -10,7 +10,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
-#import "SLKAccount.h"
+#import "XCSAccount.h"
 #import "SLKRoom.h"
 #import "SLKAPIConstants.h"
 #import "XCSMacros.h"
@@ -48,7 +48,7 @@
 {
     id response = [NSJSONSerialization JSONObjectFromBundleResource:kSlackAPIMethodAuthTest];
         
-    SLKAccount *account = [[SLKAccount alloc] initWithResponse:response];
+    XCSAccount *account = [[XCSAccount alloc] initWithResponse:response];
     
     XCTAssertNotNil(account);
     
