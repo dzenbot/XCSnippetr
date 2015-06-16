@@ -12,12 +12,10 @@
 #import "XCSStrings.h"
 #import "XCSMacros.h"
 
-#import "SLKAPIClient.h"
-#import "GHBAPIClient.h"
-
-#import "SLKRoomManager.h"
 #import "XCSAccount.h"
 #import "XCSSnippet.h"
+
+#import "SLKRoomManager.h"
 #import "SLKRoom.h"
 
 #import "NSTextView+Placeholder.h"
@@ -65,7 +63,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [super awakeFromNib];
     
     // Only for debug, when the data model has changed or for log out all accounts.
-//     [XCSAccount clearAll];
+    [XCSAccount clearAll];
 }
 
 - (void)windowDidLoad
@@ -81,7 +79,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     [self configureContent];
     
-    if ([XCSAccount forceLogin]) {
+    if ([XCSAccount forceLoginForService:self.service]) {
         [self performSelector:@selector(presentLoginForm) withObject:nil afterDelay:0.3];
     }
     
@@ -116,10 +114,33 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (NSInteger)indexOfCurrentAccount
 {
-    NSInteger idx = [[XCSAccount allAccounts] indexOfObject:[XCSAccount currentAccount]];
+    NSArray *accounts = [XCSAccount allAccountsForService:self.service];
+    XCSAccount *currentAccount = [XCSAccount currentAccountForService:self.service];
+    
+    NSInteger idx = [accounts indexOfObject:currentAccount];
     idx++; // Increments to consider the empty space at first position
     
     return idx;
+}
+
+- (BOOL)canAccept
+{
+    if (self.service == XCSServiceSlack) {
+        if (!self.snippet.teamId || (!self.snippet.uploadAsSnippet && !self.snippet.channelId)) {
+            return NO;
+        }
+    }
+    else if (self.service == XCSServiceGithub) {
+        if ([self.titleTextField stringValue].length == 0) {
+            return NO;
+        }
+    }
+    
+    if (self.isUploading || self.sourceTextView.string.length == 0) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 
@@ -188,19 +209,30 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)configureContent
 {
-    self.window.title = (self.service == XCSServiceSlack) ? kTitleShareSlack : kTitleShareGist;
+    BOOL isSlack = (self.service == XCSServiceSlack);
+    
+    NSString *titlePlaceholder = isSlack ? kMainTitlePlaceholderSlack : kMainTitlePlaceholderGist;
+    NSString *commentPlaceholder = isSlack ? kMainCommentPlaceholderSlack : kMainCommentPlaceholderGist;
+
+    self.window.title = isSlack ? kTitleShareSlack : kTitleShareGist;
+    
+    XCSAccount *currentAccount = [XCSAccount currentAccountForService:self.service];
+    NSLog(@"currentAccount : %@", currentAccount);
+    
+    id<XCSServiceAPIProtocol>APIClient = [XCSServiceAPIFactory APIClientForService:self.service];
+    NSLog(@"APIClientForService %ld : %@", self.service, NSStringFromClass([APIClient class]));
     
     // Data Source
-    self.snippet.teamId = [XCSAccount currentAccount].teamId;
+    self.snippet.teamId = currentAccount.teamId;
     self.snippet.uploadAsPrivate = self.privacyCheckBox.state;
     
     // Title View
-    [self.titleTextField setPlaceholderString:kMainTitlePlaceholder];
+    [self.titleTextField setPlaceholderString:titlePlaceholder];
     [self.titleTextField setStringValue:self.snippet.title];
 
     // Comment View
     [self.commentTextView setString:@""];
-    [self.commentTextView setPlaceholderString:kMainCommentPlaceholder];
+    [self.commentTextView setPlaceholderString:commentPlaceholder];
     
     // Source Text View
     [self.sourceTextView setDelegate:self];
@@ -220,8 +252,8 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self.syntaxButton addItemsWithTitles:[ACEModeNames humanModeNames]];
     [self.syntaxButton selectItemAtIndex:self.snippet.filetype];
 
-    [self configureTeamButton];
-    [self configureRoomButton];
+    [self configureAccountButton];
+    [self configureDirectoryButton];
     
     self.cancelButton.title = kCancelButtonTitle;
     self.cancelButton.hidden = !isSLKPlugin();
@@ -231,38 +263,43 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     self.uploadTypeCheckBox.title = kMainUploadAsSnippetTitle;
     
     if (self.service != XCSServiceSlack) {
-        self.roomButton.hidden = YES;
+        
         self.uploadTypeCheckBox.hidden = YES;
+        self.directoryButton.hidden = YES;
+        self.directoryButtononstraint.constant = 0.0;
     }
 }
 
-- (void)configureTeamButton
+- (void)configureAccountButton
 {
-    [self.teamButton removeAllItems];
+    [self.accountButton removeAllItems];
     
-    if ([XCSAccount allAccounts].count > 0) {
-        [self.teamButton addItemsWithTitles:[XCSAccount teamNames]];
+    if ([XCSAccount allAccountsForService:self.service].count > 0) {
+        [self.accountButton addItemsWithTitles:[XCSAccount accountNamesForService:self.service]];
     }
     
-    [self.teamButton insertItemWithTitle:@"" atIndex:0]; // First element is empty, to enable to clean states.
-    [self.teamButton insertItemWithTitle:[self addNewTitle] atIndex:self.teamButton.numberOfItems];
+    [self.accountButton insertItemWithTitle:@"" atIndex:0]; // First element is empty, to enable to clean states.
+    [self.accountButton insertItemWithTitle:[self addNewTitle] atIndex:self.accountButton.numberOfItems];
     
-    if (![XCSAccount currentAccount]) {
-        [self.teamButton selectItemAtIndex:0];
+    if (![XCSAccount currentAccountForService:self.service]) {
+        [self.accountButton selectItemAtIndex:0];
     }
     else {
-        [self.teamButton selectItemAtIndex:[self indexOfCurrentAccount]];
+        [self.accountButton selectItemAtIndex:[self indexOfCurrentAccount]];
     }
 }
 
-- (void)configureRoomButton
+- (void)configureDirectoryButton
 {
-    [self.roomButton removeAllItems];
+    [self.directoryButton removeAllItems];
     
     // Doesn't configure the button and disables it, when the team id isn't available
     if (!isNonEmptyString(self.snippet.teamId)) {
-        self.roomButton.enabled = NO;
+        self.directoryButton.enabled = NO;
         return;
+    }
+    else {
+        self.directoryButton.enabled = YES;
     }
     
     if ([SLKRoomManager hasRooms])
@@ -274,68 +311,60 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         if (channels.count > 0) {
             NSMenuItem *separator = [NSMenuItem separatorItem];
             separator.tag = SLKRoomTypeChannel;
-            [[self.roomButton menu] addItem:separator];
+            [[self.directoryButton menu] addItem:separator];
             
-            [self.roomButton addItemsWithTitles:channels];
+            [self.directoryButton addItemsWithTitles:channels];
         }
         
         if (groups.count > 0) {
             if (channels.count > 0) {
                 NSMenuItem *separator = [NSMenuItem separatorItem];
                 separator.tag = SLKRoomTypeGroup;
-                [[self.roomButton menu] addItem:separator];
+                [[self.directoryButton menu] addItem:separator];
             }
             
-            [self.roomButton addItemsWithTitles:groups];
+            [self.directoryButton addItemsWithTitles:groups];
         }
         
         if (ims.count > 0) {
             if (groups.count > 0 || channels.count > 0) {
                 NSMenuItem *separator = [NSMenuItem separatorItem];
                 separator.tag = SLKRoomTypeIM;
-                [[self.roomButton menu] addItem:separator];
+                [[self.directoryButton menu] addItem:separator];
             }
             
-            [self.roomButton addItemsWithTitles:ims];
+            [self.directoryButton addItemsWithTitles:ims];
         }
         
-        [self selectAppropriateRoom];
+        [self selectAppropriateDirectory];
     }
     else {
         [self reloadRoomsIfNeeded];
     }
 }
 
-- (void)selectAppropriateRoom
+- (void)selectAppropriateDirectory
 {
-    if (self.roomButton.itemTitles.count < 3) {
+    if (self.directoryButton.itemTitles.count < 3) {
         return;
     }
     
-    NSString *channelId = [XCSAccount currentAccount].channelId;
+    NSString *channelId = [XCSAccount currentAccountForService:self.service].channelId;
     
     if (isNonEmptyString(channelId)) {
         SLKRoom *room = [SLKRoomManager roomForId:channelId];
-        [self.roomButton selectItemWithTitle:room.name];
+        [self.directoryButton selectItemWithTitle:room.name];
     }
     else {
-        [self.roomButton selectItemAtIndex:2];
+        [self.directoryButton selectItemAtIndex:2];
     }
     
-    [self roomChanged:self.roomButton];
+    [self directoryChanged:self.directoryButton];
 }
 
 - (void)updateAcceptButton
 {
-    if (self.isUploading ||
-        self.sourceTextView.string.length == 0 ||
-        (self.service == XCSServiceSlack &&
-        (!self.snippet.teamId || (!self.snippet.uploadAsSnippet && !self.snippet.channelId)))) {
-        self.acceptButton.enabled = NO;
-    }
-    else {
-        self.acceptButton.enabled = YES;
-    }
+    self.acceptButton.enabled = [self canAccept];
 }
 
 
@@ -359,13 +388,13 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self.loginViewController setCompletionHandler:^(BOOL didLogin){
         
         // Close the plugin if no account has been registered.
-        if ([XCSAccount forceLogin]) {
+        if ([XCSAccount forceLoginForService:weakSelf.service]) {
             [weakSelf dismiss:nil returnCode:NSModalResponseCancel];
         }
         else {
             [weakSelf.window endSheet:window];
-            [weakSelf configureTeamButton];
-            [weakSelf teamChanged:weakSelf.teamButton];
+            [weakSelf configureAccountButton];
+            [weakSelf accountChanged:weakSelf.accountButton];
         }
     }];
 }
@@ -376,7 +405,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     [SLKRoomManager getAvailableRooms:^(NSError *error) {
         if (!error) {
-            [self configureRoomButton];
+            [self configureDirectoryButton];
         }
         else {
             [self handleError:error];
@@ -388,6 +417,9 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)didSubmitSnippetWithError:(NSError *)error
 {
+    NSLog(@"%s",__FUNCTION__);
+    NSLog(@"error : %@", error);
+    
     if (!error) {
         [[NSSound soundNamed:kSystemSoundSuccess] play];
         [self dismiss:nil returnCode:NSModalResponseOK];
@@ -419,7 +451,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self.sourceTextView setMode:mode];
 }
 
-- (IBAction)teamChanged:(NSPopUpButton *)sender
+- (IBAction)accountChanged:(NSPopUpButton *)sender
 {
     NSString *title = sender.titleOfSelectedItem;
     
@@ -427,32 +459,32 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         self.snippet.teamId = nil;
         self.snippet.channelId = nil;
         
-        [self configureRoomButton];
+        [self configureDirectoryButton];
     }
     else if ([title isEqualToString:[self addNewTitle]]) {
         [self performSelector:@selector(presentLoginForm) withObject:nil afterDelay:0.3];
     }
     else {
-        NSInteger idx = [self.teamButton indexOfItemWithTitle:title];
+        NSInteger idx = [self.accountButton indexOfItemWithTitle:title];
         idx--; // Decrements to consider the space at first position
         
-        XCSAccount *account = [XCSAccount allAccounts][idx];
+        XCSAccount *account = [XCSAccount allAccountsForService:self.service][idx];
         
         // Set as the current account
-        [account setAsCurrent];
+        [account setAsCurrentForService:self.service];
         
         // Updates the target team of the snippet
         self.snippet.teamId = account.teamId;
         
-        [self configureRoomButton];
+        [self configureDirectoryButton];
     }
     
     [self updateAcceptButton];
 }
 
-- (IBAction)roomChanged:(NSPopUpButton *)sender
+- (IBAction)directoryChanged:(NSPopUpButton *)sender
 {
-    NSMenuItem *selectedItem = self.roomButton.selectedItem;
+    NSMenuItem *selectedItem = self.directoryButton.selectedItem;
     NSString *title = selectedItem.title;
     
     NSString *channelId = nil;
@@ -463,7 +495,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     }
     
     self.snippet.channelId = channelId;
-    [[XCSAccount currentAccount] setChannelId:channelId];
+    [[XCSAccount currentAccountForService:self.service] setChannelId:channelId];
     
     [self updateAcceptButton];
 }
@@ -471,6 +503,10 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 - (IBAction)uploadPrivacyChanged:(NSButton *)sender
 {
     self.snippet.uploadAsPrivate = sender.state;
+    
+    if (self.service == XCSServiceSlack) {
+        self.directoryButton.enabled = sender.state;
+    }
 }
 
 - (IBAction)uploadTypeChanged:(NSButton *)sender
@@ -506,7 +542,8 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     self.loading = YES;
     [self updateAcceptButton];
     
-    [[SLKAPIClient sharedClient] uploadSnippet:self.snippet completion:^(NSDictionary *JSON, NSError *error) {
+    [[XCSServiceAPIFactory APIClientForService:self.service] uploadSnippet:self.snippet completion:^(NSDictionary *JSON, NSError *error) {
+        
         self.uploading = NO;
         [self didSubmitSnippetWithError:error];
     }];
@@ -514,6 +551,8 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)dismiss:(id)sender returnCode:(NSModalResponse)returnCode
 {
+    [XCSServiceAPIFactory reset];
+    
     [[self window] close];
     
     if (self.completionHandler) {
@@ -525,6 +564,14 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 #pragma mark - ACEViewDelegate methods
 
 - (void)textDidChange:(NSNotification *)notification
+{
+    [self updateAcceptButton];
+}
+
+
+#pragma mark - NSTextFieldDelegate methods
+
+- (void)controlTextDidChange:(NSNotification *)notification
 {
     [self updateAcceptButton];
 }

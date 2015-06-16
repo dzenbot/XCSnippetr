@@ -18,6 +18,8 @@
 @property (nonatomic, copy) NSString *accessToken;
 /** */
 @property (nonatomic) XCSService service;
+/** */
+@property (nonatomic, readonly) NSString *serviceName;
 
 /** The team unique id. */
 @property (nonatomic, copy) NSString *teamId;
@@ -42,16 +44,16 @@
  Returns the currently selected account.
  Returns nil if no account is yet registered.
  */
-+ (instancetype)currentAccount;
++ (instancetype)currentAccountForService:(XCSService)service;
 
 /**  Returns YES if no account is yet registered. */
-+ (BOOL)forceLogin;
++ (BOOL)forceLoginForService:(XCSService)service;
 
 /** Returns all available accounts. */
-+ (NSArray *)allAccounts;
++ (NSArray *)allAccountsForService:(XCSService)service;
 
 /** Convinience method to get all account's team names ordered alphabetically. */
-+ (NSArray *)teamNames;
++ (NSArray *)accountNamesForService:(XCSService)service;
 
 /** Removes the account and clears the system Keychain. */
 - (BOOL)clear;
@@ -60,12 +62,12 @@
 + (BOOL)clearAll;
 
 /** Sets the account as current. */
-- (void)setAsCurrent;
+- (void)setAsCurrentForService:(XCSService)service;
 
 /** Sets the latest selected channel id. */
 - (void)setChannelId:(NSString *)channelId;
 
 /** Returns YES if the account is the current. */
-- (BOOL)isCurrent;
+- (BOOL)isCurrentForService:(XCSService)service;
 
 @end

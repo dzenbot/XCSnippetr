@@ -14,7 +14,7 @@
 
 typedef void (^XCSMainWindowControllerCompletionHandler)(NSModalResponse returnCode);
 
-@interface XCSMainWindowController : NSWindowController <ACEViewDelegate>
+@interface XCSMainWindowController : NSWindowController <ACEViewDelegate, NSTextFieldDelegate>
 
 @property (nonatomic, copy) NSString *fileName;
 @property (nonatomic, copy) NSString *fileContent;
@@ -26,8 +26,8 @@ typedef void (^XCSMainWindowControllerCompletionHandler)(NSModalResponse returnC
 @property (nonatomic, assign) IBOutlet NSTextView *commentTextView;
 
 @property (nonatomic, assign) IBOutlet NSPopUpButton *syntaxButton;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *teamButton;
-@property (nonatomic, assign) IBOutlet NSPopUpButton *roomButton;
+@property (nonatomic, assign) IBOutlet NSPopUpButton *accountButton;
+@property (nonatomic, assign) IBOutlet NSPopUpButton *directoryButton;
 @property (nonatomic, assign) IBOutlet NSButton *privacyCheckBox;
 @property (nonatomic, assign) IBOutlet NSButton *uploadTypeCheckBox;
 
@@ -36,12 +36,14 @@ typedef void (^XCSMainWindowControllerCompletionHandler)(NSModalResponse returnC
 @property (nonatomic, assign) IBOutlet NSButton *cancelButton;
 @property (nonatomic, assign) IBOutlet NSButton *acceptButton;
 
+@property (nonatomic, assign) IBOutlet NSLayoutConstraint *directoryButtononstraint;
+
 @property (nonatomic, strong) XCSMainWindowControllerCompletionHandler completionHandler;
 
 /* IB Fucking Actions*/
 - (IBAction)syntaxModeChanged:(id)sender;
-- (IBAction)teamChanged:(id)sender;
-- (IBAction)roomChanged:(id)sender;
+- (IBAction)accountChanged:(id)sender;
+- (IBAction)directoryChanged:(id)sender;
 
 - (IBAction)uploadPrivacyChanged:(id)sender;
 - (IBAction)uploadTypeChanged:(id)sender;

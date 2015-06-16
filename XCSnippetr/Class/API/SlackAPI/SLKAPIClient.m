@@ -14,9 +14,31 @@
 #import "SLKRoom.h"
 #import "XCSMacros.h"
 
+#import "NSString+RequestSerialization.h"
+
 @implementation SLKAPIClient
 
-#pragma mark - SLKAPIClient
+#pragma mark - XCSServiceAPIProtocol
+
+- (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params
+{
+    NSMutableDictionary *parameters = [params mutableCopy];
+    
+    NSString *accessToken = [XCSAccount currentAccountForService:XCSServiceSlack].accessToken;
+    
+    if (accessToken && ![path isEqualToString:kSlackAPIMethodAuthTest]) {
+        [parameters setObject:accessToken forKey:kSlackAPIParamToken];
+    }
+    
+    NSString *url = [[NSString stringWithFormat:@"%@%@", kSlackAPIBaseUrl, path] stringByAppendingRequestParameters:parameters];
+    
+    return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+}
+
+- (NSString *)errorResponseKey
+{
+    return kSlackAPIParamError;
+}
 
 - (void)authWithToken:(NSString *)token completion:(void (^)(XCSAccount *account, NSError *error))completion
 {
@@ -26,7 +48,7 @@
     
     NSDictionary *params = @{kSlackAPIParamToken: token};
     
-    [self post:kSlackAPIMethodAuthTest params:params completion:^(id response, NSError *error) {
+    [self POST:kSlackAPIMethodAuthTest params:params completion:^(id response, NSError *error) {
         
         XCSAccount *account = nil;
         
@@ -41,9 +63,24 @@
     }];
 }
 
+- (void)uploadSnippet:(XCSSnippet *)snippet completion:(void (^)(NSDictionary *JSON, NSError *error))completion
+{
+    if (!snippet) {
+        return;
+    }
+    
+    NSDictionary *params = [snippet paramsForService:XCSServiceSlack];
+    NSString *path = snippet.uploadAsSnippet ? kSlackAPIMethodFilesUpload : kSlackAPIMethodChatPostMessage;
+    
+    [self POST:path params:params completion:completion];
+}
+
+
+#pragma mark - SLKAPIClient
+
 - (void)getAvailableRooms:(void (^)(NSDictionary *rooms, NSError *error))completion
 {
-    NSString *teamId = [XCSAccount currentAccount].teamId;
+    NSString *teamId = [XCSAccount currentAccountForService:XCSServiceSlack].teamId;
     
     if (!isNonEmptyString(teamId)) {
         return;
@@ -51,7 +88,7 @@
     
     NSDictionary *params = @{kSlackAPIParamTeam: teamId};
     
-    [self post:kSlackAPIMethodRTMStart params:params completion:^(id response, NSError *error) {
+    [self POST:kSlackAPIMethodRTMStart params:params completion:^(id response, NSError *error) {
         
         if (completion) {
             completion([SLKRoom roomsFromResponse:response], error);
@@ -59,46 +96,5 @@
     }];
 }
 
-- (void)uploadSnippet:(XCSSnippet *)snippet completion:(void (^)(NSDictionary *JSON, NSError *error))completion
-{
-    if (!snippet) {
-        return;
-    }
-    
-    NSDictionary *params = [snippet params];
-    NSString *path = snippet.uploadAsSnippet ? kSlackAPIMethodFilesUpload : kSlackAPIMethodChatPostMessage;
-    
-    [self post:path params:params completion:completion];
-}
-
-
-#pragma mark - XCSServiceAPIProtocol
-
-- (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params
-{
-    NSMutableDictionary *parameters = [params mutableCopy];
-    NSMutableString *url = [NSMutableString stringWithFormat:@"%@%@", kSlackAPIBaseUrl, path];
-    
-    NSString *accessToken = [XCSAccount currentAccount].accessToken;
-    
-    if (accessToken && ![path isEqualToString:kSlackAPIMethodAuthTest]) {
-        [parameters setObject:accessToken forKey:kSlackAPIParamToken];
-    }
-    
-    for (int i = 0; i < [parameters allKeys].count; i++) {
-        
-        if (i == 0) {
-            [url appendString:@"?"];
-        }
-        else {
-            [url appendString:@"&"];
-        }
-        
-        NSString *key = [parameters allKeys][i];
-        [url appendFormat:@"%@=%@", key, NSStringEscapedFrom(parameters[key])];
-    }
-    
-    return [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
-}
 
 @end

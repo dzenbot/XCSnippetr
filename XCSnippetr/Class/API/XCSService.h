@@ -12,3 +12,11 @@ typedef NS_ENUM(NSUInteger, XCSService) {
     XCSServiceSlack,
     XCSServiceGithub
 };
+
+static inline NSString *NSStringFromXCSService(XCSService service) {
+    switch (service) {
+        case XCSServiceSlack:       return @"Slack";
+        case XCSServiceGithub:      return @"Github";
+        default:                    return nil;
+    }
+}

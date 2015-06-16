@@ -8,32 +8,19 @@
 //
 
 #import "XCSSnippet.h"
-#import "SLKAPIConstants.h"
 #import "XCSMacros.h"
+
+#import "SLKAPIConstants.h"
+#import "GHBAPIConstants.h"
 
 #import "ACEModeNames+Extension.h"
 #import "NSObject+SmartDescription.h"
 
 @implementation XCSSnippet
 
-/**
- @method 'files.upload'
- 
- @param channels The channel ids where to upload
- @param content The snippet string
- @param initial_comment The snippet comment
- @param title The class file name (ie: 'SLKBoardPlugin.h')
- @param filetype 'snippet'
- */
+#pragma mark - Data Payload Converter
 
-/**
- @method 'chat.postMessage'
- 
- @param channel The channel id
- @param text The message string
- @param as_user True if posted as the user. If not, as Slackbot
- */
-- (NSDictionary *)params
+- (NSDictionary *)paramsForService:(XCSService)service
 {
     // Checks for requiered fields
     if (!isNonEmptyString(self.content)) {
@@ -42,32 +29,48 @@
     
     NSMutableDictionary *params = [NSMutableDictionary new];
     
-    if (self.uploadAsSnippet) {
-        [params setObject:self.content forKey:kSlackAPIParamContent];
-        [params setObject:StringOrEmpty(self.channelId) forKey:kSlackAPIParamChannels];
-        [params setObject:StringOrEmpty(self.filename) forKey:kSlackAPIParamFilename];
-        [params setObject:StringOrEmpty(self.title) forKey:kSlackAPIParamTitle];
-        [params setObject:StringOrEmpty(self.comment) forKey:kSlackAPIParamInitialComment];
-        [params setObject:SLKStringFromACEMode(self.filetype) forKey:kSlackAPIParamFiletype];
-    }
-    else {
-        if (!isNonEmptyString(self.channelId)) {
-            return nil;
+    if (service == XCSServiceSlack) {
+        if (self.uploadAsSnippet) {
+            [params setObject:self.content forKey:kSlackAPIParamContent];
+            [params setObject:StringOrEmpty(self.channelId) forKey:kSlackAPIParamChannels];
+            [params setObject:StringOrEmpty(self.filename) forKey:kSlackAPIParamFilename];
+            [params setObject:StringOrEmpty(self.title) forKey:kSlackAPIParamTitle];
+            [params setObject:StringOrEmpty(self.comment) forKey:kSlackAPIParamInitialComment];
+            [params setObject:SLKStringFromACEMode(self.filetype) forKey:kSlackAPIParamFiletype];
         }
-        
-        NSMutableString *text = [NSMutableString stringWithFormat:@"```\n%@\n```", self.content];
-        
-        if (isNonEmptyString(self.comment)) {
-            [text appendFormat:@"\n\n%@", self.comment];
+        else {
+            if (!isNonEmptyString(self.channelId)) {
+                return nil;
+            }
+            
+            NSString *encedCode = @"```";
+            NSMutableString *text = [NSMutableString stringWithFormat:@"%@\n%@\n%@", encedCode, self.content, encedCode];
+            
+            if (isNonEmptyString(self.comment)) {
+                [text appendFormat:@"\n\n%@", self.comment];
+            }
+            
+            [params setObject:text forKey:kSlackAPIParamText];
+            [params setObject:self.channelId forKey:kSlackAPIParamChannel];
+            [params setObject:@YES forKey:kSlackAPIParamAsUser];
         }
-        
-        [params setObject:text forKey:kSlackAPIParamText];
-        [params setObject:self.channelId forKey:kSlackAPIParamChannel];
-        [params setObject:@YES forKey:kSlackAPIParamAsUser];
     }
+    else if (service == XCSServiceGithub) {
         
+        [params setObject:StringOrEmpty(self.comment) forKey:kGithubAPIParamDescription];
+        [params setObject:@(!self.uploadAsPrivate) forKey:kGithubAPIParamPublic];
+        
+        NSDictionary *gist = @{self.filename: @{kGithubAPIParamContent: self.content}};
+        [params setObject:gist forKey:kGithubAPIParamFiles];
+    }
+    
+    NSLog(@"params : %@", params);
+    
     return params;
 }
+
+
+#pragma mark - NSObject
 
 - (NSString *)description
 {

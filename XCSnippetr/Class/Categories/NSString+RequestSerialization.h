@@ -7,10 +7,10 @@
 //  Licence: MIT-Licence
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-@interface NSTextView (Placeholder)
+@interface NSString (RequestSerialization)
 
-@property (nonatomic, retain) NSString *placeholderString;
+- (NSString *)stringByAppendingRequestParameters:(NSDictionary *)params;
 
 @end

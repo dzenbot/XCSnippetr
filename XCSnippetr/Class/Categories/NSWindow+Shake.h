@@ -7,10 +7,14 @@
 //  Licence: MIT-Licence
 //
 
-#import <Cocoa/Cocoa.h>
+#import <AppKit/AppKit.h>
 
 @interface NSWindow (Shake)
 
+/**
+ Makes a window shake horizontally, useful for error feedback,
+ usually present in built-in apps on Mac OS X.
+ */
 - (void)shake;
 
 @end

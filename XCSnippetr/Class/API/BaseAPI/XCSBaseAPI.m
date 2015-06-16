@@ -15,27 +15,12 @@ static NSString * const kHTTPMethodGET =        @"GET";
 static NSString * const kHTTPMethodPOST =       @"POST";
 static NSString * const kHTTPMethodPUT =        @"PUT";
 
-static NSString * const kBaseAPIParamError =    @"error";
-
 @interface XCSBaseAPI () <NSURLSessionTaskDelegate>
 @property (nonatomic, strong) NSURLSession *URLSession;
 @property (nonatomic, strong) NSURLSessionDataTask *URLSessionTask;
 @end
 
 @implementation XCSBaseAPI
-
-#pragma mark - Initialization
-
-+ (instancetype)sharedClient
-{
-    static id _sharedClient;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedClient = [[[self class] alloc] init];
-    });
-    return _sharedClient;
-}
-
 
 #pragma mark - Request Methods
 
@@ -48,22 +33,43 @@ static NSString * const kBaseAPIParamError =    @"error";
     return _URLSession;
 }
 
-- (void)post:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion
+- (void)GET:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion
+{
+    [self performHTTPMethod:kHTTPMethodGET path:path params:params completion:completion];
+}
+
+- (void)POST:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion
+{
+    [self performHTTPMethod:kHTTPMethodPOST path:path params:params completion:completion];
+}
+
+- (void)performHTTPMethod:(NSString *)HTTPMethod path:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion
 {
     NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
-
+    
     [self cancelRequestsIfNeeded];
     
     NSMutableURLRequest *request = [self requestfForPath:path andParams:params];
-    request.HTTPMethod = kHTTPMethodPOST;
+    request.HTTPMethod = HTTPMethod;
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0ul), ^{
+    if (!request) {
+        return;
+    }
+    
+    NSLog(@"Client : %@", NSStringFromClass([self class]));
+    NSLog(@"HTTPMethod : %@", HTTPMethod);
+    NSLog(@"path : %@", path);
+    NSLog(@"request url : %@", request.URL.absoluteString);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul), ^{
         
         id completionHandler = ^void(NSData *data, NSURLResponse *response, NSError *error) {
             id json = [NSJSONSerialization JSONObjectWithData:data options:NSUTF8StringEncoding error:nil];
             
-            if (!error && json[kBaseAPIParamError]) {
-                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: json[kBaseAPIParamError]};
+            NSLog(@"response : %@", json);
+                        
+            if (!error && json[[self errorResponseKey]]) {
+                NSDictionary *userInfo = @{NSLocalizedDescriptionKey: json[[self errorResponseKey]]};
                 error = [NSError errorWithDomain:SLKBundleIdentifier() code:400 userInfo:userInfo];
             }
             
@@ -88,6 +94,12 @@ static NSString * const kBaseAPIParamError =    @"error";
     return nil;
 }
 
+- (NSString *)errorResponseKey
+{
+    NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
+    return nil;
+}
+
 - (void)authWithToken:(NSString *)token completion:(void (^)(XCSAccount *account, NSError *error))completion
 {
     NSAssert([self class] != [XCSBaseAPI class], @"Oops! You must subclass XCSBaseAPI to use this method.");
@@ -106,15 +118,6 @@ static NSString * const kBaseAPIParamError =    @"error";
         [_URLSessionTask cancel];
         _URLSessionTask = nil;
     }
-}
-
-
-#pragma mark - Helpers
-
-NSString *NSStringEscapedFrom(NSString *v) {
-    static CFStringRef charactersToBeEscaped = CFSTR("￼=,!$&'()*+;@?\r\n\"<>#\t :/");
-    static CFStringEncoding encoding = kCFStringEncodingUTF8;
-    return ((__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (__bridge CFStringRef)[v mutableCopy], NULL, charactersToBeEscaped, encoding));
 }
 
 @end

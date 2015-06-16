@@ -13,13 +13,27 @@
 #import "SLKAPIClient.h"
 #import "GHBAPIClient.h"
 
+static XCSBaseAPI *_client;
+
+@interface XCSServiceAPIFactory ()
+@end
+
 @implementation XCSServiceAPIFactory
 
 + (id<XCSServiceAPIProtocol>)APIClientForService:(XCSService)service
 {
+    if (_client) return _client;
+    
+    _client = [[self APIClientClassForService:service] new];
+    
+    return _client;
+}
+
++ (Class)APIClientClassForService:(XCSService)service
+{
     switch (service) {
-        case XCSServiceSlack:       return [SLKAPIClient sharedClient];
-        case XCSServiceGithub:      return [GHBAPIClient sharedClient];
+        case XCSServiceSlack:       return [SLKAPIClient class];
+        case XCSServiceGithub:      return [GHBAPIClient class];
         default:                    return nil;
     }
 }
@@ -33,6 +47,11 @@
         }
         default:                    return nil;
     }
+}
+
++ (void)reset
+{
+    _client = nil;
 }
 
 @end

@@ -7,7 +7,7 @@
 //  Licence: MIT-Licence
 //
 
-#import "GHBAPIClient.h"
+ #import "GHBAPIClient.h"
 #import "GHBAPIConstants.h"
 
 #import "XCSMacros.h"
@@ -15,62 +15,38 @@
 #import "XCSSnippet.h"
 #import "XCSAccount.h"
 
+#import "NSString+RequestSerialization.h"
+
 @implementation GHBAPIClient
 
 #pragma mark - XCSServiceAPIProtocol
 
 - (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params
 {
-    NSLog(@"%s",__FUNCTION__);
-    
     NSMutableDictionary *parameters = [params mutableCopy];
-    NSMutableString *url = [NSMutableString stringWithFormat:@"%@%@", kGithubAPIBaseUrl, path];
     
-    NSLog(@"url : %@", url);
-    
-    NSString *accessToken = [XCSAccount currentAccount].accessToken;
-    
-    NSLog(@"accessToken : %@", accessToken);
+    XCSAccount *currentAccount = [XCSAccount currentAccountForService:XCSServiceGithub];
+    NSString *accessToken = currentAccount.accessToken;
     
     if (accessToken) {
         [parameters setObject:accessToken forKey:kGithubAPIParamAccessToken];
     }
     
-    for (int i = 0; i < [parameters allKeys].count; i++) {
-        
-        if (i == 0) {
-            [url appendString:@"?"];
-        }
-        else {
-            [url appendString:@"&"];
-        }
-        
-        NSString *key = [parameters allKeys][i];
-        [url appendFormat:@"%@=%@", key, NSStringEscapedFrom(parameters[key])];
-    }
+    NSString *url = [[NSString stringWithFormat:@"%@%@", kGithubAPIBaseUrl, path] stringByAppendingRequestParameters:parameters];
     
-    NSLog(@"url : %@", url);
-
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
 
     if ([path isEqualToString:kGithubAPIMethodGists]) {
-        // Add HTTPBody
-        request.HTTPBody = nil;
+        NSDictionary *JSON = @{kGithubAPIParamFiles: parameters[kGithubAPIParamFiles]};
+        request.HTTPBody = [NSJSONSerialization dataWithJSONObject:JSON options:0 error:nil];
     }
     
-    NSLog(@"request : %@", request);
-    
-//    {
-//        "description":"Test",
-//        "public":false,
-//        "files": {
-//            "file1.txt": {
-//                "content":"Demo"
-//            }
-//        }
-//    }
-    
     return request;
+}
+
+- (NSString *)errorResponseKey
+{
+    return kGithubAPIParamErrorMessage;
 }
 
 - (void)authWithToken:(NSString *)token completion:(void (^)(XCSAccount *account, NSError *error))completion
@@ -81,21 +57,17 @@
     
     NSDictionary *params = @{kGithubAPIParamAccessToken: token};
     
-    
-    
-    [self post:kGithubAPIMethodUser params:params completion:^(id response, NSError *error) {
+    [self GET:kGithubAPIMethodUser params:params completion:^(id response, NSError *error) {
         
         XCSAccount *account = nil;
         
-        NSLog(@"response : %@", response);
+        if (!error) {
+            account = [[XCSAccount alloc] initWithResponse:response service:XCSServiceGithub];
+            account.accessToken = token;
+        }
         
-//        if (!error) {
-//            account = [[XCSAccount alloc] initWithResponse:response service:XCSServiceGithub];
-//            account.accessToken = token;
-//        }
-//        
         if (completion) {
-            completion(nil, error);
+            completion(account, error);
         }
     }];
 }
@@ -106,10 +78,10 @@
         return;
     }
     
-    NSDictionary *params = [snippet params];
+    NSDictionary *params = [snippet paramsForService:XCSServiceGithub];
     NSString *path = kGithubAPIMethodGists;
     
-    [self post:path params:params completion:completion];
+    [self POST:path params:params completion:completion];
 }
 
 @end

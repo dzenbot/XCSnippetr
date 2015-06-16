@@ -25,6 +25,11 @@
 - (NSMutableURLRequest *)requestfForPath:(NSString *)path andParams:(NSDictionary *)params;
 
 /**
+ An optional response key, to be used for fetching any response's error message.
+ */
+- (NSString *)errorResponseKey;
+
+/**
  Authenticates using an accepted access token.
  If a previous request was pending, it is first cancelled before performing a new request.
  NOTE: Your XCSBaseAPI subclass must override this method.

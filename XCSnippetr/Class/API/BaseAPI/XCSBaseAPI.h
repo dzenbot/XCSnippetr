@@ -13,23 +13,13 @@
 @interface XCSBaseAPI : NSObject <XCSServiceAPIProtocol>
 
 /**
- A client singleton object.
- 
- @returns The shared client.
+ Performs a GET HTTP request with specific resource path and params.
  */
-+ (instancetype)sharedClient;
+- (void)GET:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion;
 
 /**
- Creates a POST request with path and params.
- 
- @returns The shared client.
+ Performs a POST HTTP request with specific resource path and params.
  */
-- (void)post:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion;
-
-
-#pragma mark - Helpers
-
-// Base on Holtwick's answer in http://stackoverflow.com/a/1192589/590010
-NSString *NSStringEscapedFrom(NSString *v);
+- (void)POST:(NSString *)path params:(NSDictionary *)params completion:(void (^)(id response, NSError *error))completion;
 
 @end

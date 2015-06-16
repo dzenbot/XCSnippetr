@@ -23,8 +23,12 @@ static NSString * const kCancelButtonTitle =                @"Cancel";
 static NSString * const kUploadButtonTitle =                @"Upload";
 static NSString * const kLoginButtonTitle =                 @"Login";
 
-static NSString * const kMainTitlePlaceholder =             @"Title (optional)";
-static NSString * const kMainCommentPlaceholder =           @"Add Comment (optional)";
+static NSString * const kMainTitlePlaceholderSlack =        @"Title (optional)";
+static NSString * const kMainTitlePlaceholderGist =         @"Name this file...";
+
+static NSString * const kMainCommentPlaceholderSlack =      @"Add Comment (optional)";
+static NSString * const kMainCommentPlaceholderGist =       @"Gist description...";
+
 static NSString * const kMainUploadAsSnippetTitle =         @"Upload as snippet";
 static NSString * const kMainUploadAsPrivateTitle =         @"Upload as private";
 

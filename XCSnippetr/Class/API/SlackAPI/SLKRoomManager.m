@@ -9,13 +9,14 @@
 
 #import "SLKRoomManager.h"
 #import "SLKRoom.h"
-
 #import "SLKAPIClient.h"
+
+#import "XCSServiceAPIFactory.h"
 #import "XCSAccount.h"
 #import "XCSMacros.h"
 
 #define kSharedManager [SLKRoomManager sharedManager]
-#define kCurrentAccount [XCSAccount currentAccount]
+#define kCurrentAccount [XCSAccount currentAccountForService:XCSServiceSlack]
 
 @interface SLKRoomManager ()
 @property (nonatomic, strong) NSMutableDictionary *rooms;
@@ -67,7 +68,9 @@
 
 + (void)getAvailableRooms:(void (^)(NSError *error))completion
 {
-    [[SLKAPIClient sharedClient] getAvailableRooms:^(NSDictionary *rooms, NSError *error) {
+    SLKAPIClient *APIClient = [XCSServiceAPIFactory APIClientForService:XCSServiceSlack];
+    
+    [APIClient getAvailableRooms:^(NSDictionary *rooms, NSError *error) {
         
         if (!error) {
             [[SLKRoomManager sharedManager] setRooms:rooms forAccount:kCurrentAccount];

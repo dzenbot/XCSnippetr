@@ -64,14 +64,9 @@ static NSString * const kIDEWorkspaceWindow =               @"IDEWorkspaceWindow
 - (XCSMainWindowController *)mainWindowController
 {
     if (!_mainWindowController) {
-        __weak __typeof(self)weakSelf = self;
-        
         NSString *nibName = NSStringFromClass([XCSMainWindowController class]);
         _mainWindowController = [[XCSMainWindowController alloc] initWithWindowNibName:nibName];
         _mainWindowController.font = [DTXcodeUtils currentSourceTextView].font;
-        _mainWindowController.completionHandler = ^(NSModalResponse returnCode) {
-            weakSelf.mainWindowController = nil;
-        };
     }
     return _mainWindowController;
 }
@@ -257,6 +252,12 @@ NSString *activeDocumentName()
     self.mainWindowController.font = sourceTextView.font;
     self.mainWindowController.service = menuItem.tag;
     
+    __weak __typeof(self)weakSelf = self;
+    
+    _mainWindowController.completionHandler = ^(NSModalResponse returnCode) {
+        weakSelf.mainWindowController = nil;
+    };
+        
     // Deselects the text in Xcode
     sourceTextView.selectedRange = NSMakeRange(selectedRange.location, 0);
     

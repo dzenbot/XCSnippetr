@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import <ACEView/ACEModes.h>
 
+#import "XCSService.h"
+
 @interface XCSSnippet : NSObject
 
 #pragma mark - Generic Values
@@ -41,8 +43,11 @@
 #pragma mark - Data Payload Converter
 
 /** 
- Returns a set of parameters to be used when uploading the snippet to Slack's API.
+ Returns a set of parameters to when uploading a snippet to a specific service.
+ 
+ @param service The API service type (Slack or Github)
+ @return A JSON structure containing required data for interacting with the service's API.
  */
-- (NSDictionary *)params;
+- (NSDictionary *)paramsForService:(XCSService)service;
 
 @end

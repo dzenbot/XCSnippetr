@@ -45,6 +45,7 @@ static NSString * const kSlackAPIParamTitle =                @"title";
 static NSString * const kSlackAPIParamInitialComment =       @"initial_comment";
 static NSString * const kSlackAPIParamFiletype =             @"filetype";
 static NSString * const kSlackAPIParamText =                 @"text";
+static NSString * const kSlackAPIParamError =               @"error";
 
 // API values
 static NSString * const kSlackAPISlackbotId =                @"USLACKBOT";

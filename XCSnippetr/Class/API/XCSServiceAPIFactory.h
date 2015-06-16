@@ -13,8 +13,19 @@
 
 @interface XCSServiceAPIFactory : NSObject
 
+/**
+ 
+ */
 + (id<XCSServiceAPIProtocol>)APIClientForService:(XCSService)service;
 
+/**
+ 
+ */
 + (NSString *)tokenSourceUrlForService:(XCSService)service;
+
+/**
+ 
+ */
++ (void)reset;
 
 @end

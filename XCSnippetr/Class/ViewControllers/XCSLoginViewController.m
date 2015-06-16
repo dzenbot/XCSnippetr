@@ -82,7 +82,7 @@
     self.acceptButton.title = kLoginButtonTitle;
     self.acceptButton.keyEquivalent = kReturnKeyEquivalent;
     
-    if ([XCSAccount allAccounts].count == 0) {
+    if ([XCSAccount allAccountsForService:self.service].count == 0) {
         [self.cancelButton setEnabled:isSLKPlugin()];
     }
 }
@@ -113,19 +113,21 @@
     
     [[XCSServiceAPIFactory APIClientForService:self.service] authWithToken:token completion:^(XCSAccount *account, NSError *error) {
         
-//        if (account) {
-//            self.account = account;
-//            [self.account setAsCurrent];
-//            
-//            if (self.completionHandler) {
-//                self.completionHandler(YES);
-//            }
-//        }
-//        else {
-//            [self handleError:error];
-//        }
-//        
-//        self.loading = NO;
+        NSLog(@"account : %@", account);
+        
+        if (account) {
+            self.account = account;
+            [self.account setAsCurrentForService:self.service];
+            
+            if (self.completionHandler) {
+                self.completionHandler(YES);
+            }
+        }
+        else {
+            [self handleError:error];
+        }
+        
+        self.loading = NO;
     }];
 }
 
