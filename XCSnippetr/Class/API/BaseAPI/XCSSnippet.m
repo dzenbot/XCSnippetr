@@ -64,8 +64,6 @@
         [params setObject:gist forKey:kGithubAPIParamFiles];
     }
     
-    NSLog(@"params : %@", params);
-    
     return params;
 }
 

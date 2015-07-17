@@ -46,8 +46,8 @@
  */
 + (instancetype)currentAccountForService:(XCSService)service;
 
-/**  Returns YES if no account is yet registered. */
-+ (BOOL)forceLoginForService:(XCSService)service;
+/** Returns YES if no account is yet registered. */
++ (BOOL)needsForcedLoginForService:(XCSService)service;
 
 /** Returns all available accounts. */
 + (NSArray *)allAccountsForService:(XCSService)service;

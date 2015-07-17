@@ -63,7 +63,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [super awakeFromNib];
     
     // Only for debug, when the data model has changed or for log out all accounts.
-    [XCSAccount clearAll];
+//    [XCSAccount clearAll];
 }
 
 - (void)windowDidLoad
@@ -79,7 +79,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     [self configureContent];
     
-    if ([XCSAccount forceLoginForService:self.service]) {
+    if ([XCSAccount needsForcedLoginForService:self.service]) {
         [self performSelector:@selector(presentLoginForm) withObject:nil afterDelay:0.3];
     }
     
@@ -217,10 +217,6 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     self.window.title = isSlack ? kTitleShareSlack : kTitleShareGist;
     
     XCSAccount *currentAccount = [XCSAccount currentAccountForService:self.service];
-    NSLog(@"currentAccount : %@", currentAccount);
-    
-    id<XCSServiceAPIProtocol>APIClient = [XCSServiceAPIFactory APIClientForService:self.service];
-    NSLog(@"APIClientForService %ld : %@", self.service, NSStringFromClass([APIClient class]));
     
     // Data Source
     self.snippet.teamId = currentAccount.teamId;
@@ -281,7 +277,9 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self.accountButton insertItemWithTitle:@"" atIndex:0]; // First element is empty, to enable to clean states.
     [self.accountButton insertItemWithTitle:[self addNewTitle] atIndex:self.accountButton.numberOfItems];
     
-    if (![XCSAccount currentAccountForService:self.service]) {
+    XCSAccount *currentAccount = [XCSAccount currentAccountForService:self.service];
+    
+    if (!currentAccount) {
         [self.accountButton selectItemAtIndex:0];
     }
     else {
@@ -383,12 +381,12 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     [self.window beginSheet:window completionHandler:NULL];
     
-    __weak __typeof(self)weakSelf = self;
+    __block __typeof(self)weakSelf = self;
     
     [self.loginViewController setCompletionHandler:^(BOOL didLogin){
         
         // Close the plugin if no account has been registered.
-        if ([XCSAccount forceLoginForService:weakSelf.service]) {
+        if ([XCSAccount needsForcedLoginForService:weakSelf.service]) {
             [weakSelf dismiss:nil returnCode:NSModalResponseCancel];
         }
         else {
@@ -417,9 +415,6 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)didSubmitSnippetWithError:(NSError *)error
 {
-    NSLog(@"%s",__FUNCTION__);
-    NSLog(@"error : %@", error);
-    
     if (!error) {
         [[NSSound soundNamed:kSystemSoundSuccess] play];
         [self dismiss:nil returnCode:NSModalResponseOK];
@@ -522,7 +517,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (IBAction)cancelForm:(NSButton *)sender
 {
-    [[XCSServiceAPIFactory APIClientForService:self.service] cancelRequestsIfNeeded];
+    [XCSServiceAPIFactory reset];
     
     [self dismiss:sender returnCode:NSModalResponseCancel];
 }

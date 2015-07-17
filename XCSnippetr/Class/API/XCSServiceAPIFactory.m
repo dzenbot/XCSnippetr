@@ -51,6 +51,8 @@ static XCSBaseAPI *_client;
 
 + (void)reset
 {
+    [_client cancelRequestsIfNeeded];
+
     _client = nil;
 }
 

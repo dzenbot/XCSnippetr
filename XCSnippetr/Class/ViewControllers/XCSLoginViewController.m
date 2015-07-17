@@ -113,8 +113,6 @@
     
     [[XCSServiceAPIFactory APIClientForService:self.service] authWithToken:token completion:^(XCSAccount *account, NSError *error) {
         
-        NSLog(@"account : %@", account);
-        
         if (account) {
             self.account = account;
             [self.account setAsCurrentForService:self.service];

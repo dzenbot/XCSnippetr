@@ -252,7 +252,7 @@ NSString *activeDocumentName()
     self.mainWindowController.font = sourceTextView.font;
     self.mainWindowController.service = menuItem.tag;
     
-    __weak __typeof(self)weakSelf = self;
+    __block __typeof(self)weakSelf = self;
     
     _mainWindowController.completionHandler = ^(NSModalResponse returnCode) {
         weakSelf.mainWindowController = nil;

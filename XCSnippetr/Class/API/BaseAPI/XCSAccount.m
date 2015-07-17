@@ -60,11 +60,13 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
     if (!_currentAccountIds) {
         id unarchiveObjects = [self unarchiveObjectsWithKey:kUserDefaultsAccountIds];
         
-        _currentAccountIds = [[NSMutableDictionary alloc] initWithDictionary:unarchiveObjects];
+        if (unarchiveObjects) {
+            _currentAccountIds = [[NSMutableDictionary alloc] initWithDictionary:unarchiveObjects];
+        }
     }
     
     if (!_currentAccountIds) {
-        _currentAccountIds = [NSMutableDictionary new];;
+        _currentAccountIds = [NSMutableDictionary new];
     }
     
     return _currentAccountIds;
@@ -73,7 +75,13 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
 - (id)unarchiveObjectsWithKey:(NSString *)key
 {
     NSData *encodedObject = [kUserDefaults objectForKey:kUserDefaultsAccounts];
-    return [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    
+    if (encodedObject) {
+        return [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    }
+    else {
+        return nil;
+    }
 }
 
 - (NSString *)currentAccountIdForService:(XCSService)service
@@ -174,7 +182,7 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
 
 #pragma mark - Getters
 
-+ (BOOL)forceLoginForService:(XCSService)service
++ (BOOL)needsForcedLoginForService:(XCSService)service
 {
     return ([XCSAccount allAccountsForService:service].count == 0) ? YES : NO;
 }
