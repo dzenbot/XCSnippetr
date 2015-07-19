@@ -74,7 +74,7 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
 
 - (id)unarchiveObjectsWithKey:(NSString *)key
 {
-    NSData *encodedObject = [kUserDefaults objectForKey:kUserDefaultsAccounts];
+    NSData *encodedObject = [kUserDefaults objectForKey:key];
     
     if (encodedObject) {
         return [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
@@ -89,7 +89,7 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
     NSString *serviceName = NSStringFromXCSService(service);
     NSString *currentAccountId = self.currentAccountIds[serviceName];
     
-    if (!isNonEmptyString(currentAccountId)) {
+    if (isNonEmptyString(currentAccountId)) {
         return currentAccountId;
     }
     
@@ -164,14 +164,14 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
     XCSAccountManager *manager = [XCSAccountManager defaultManager];
     
     NSArray *accounts = [self allAccountsForService:service];
-
+    
     if (accounts.count == 0) {
         return nil;
     }
     
     NSString *currentAccountId = [manager currentAccountIdForService:service];
-    
-    if (currentAccountId) {
+
+    if (isNonEmptyString(currentAccountId)) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(accountId)), currentAccountId];
         return [[accounts filteredArrayUsingPredicate:predicate] firstObject];
     }

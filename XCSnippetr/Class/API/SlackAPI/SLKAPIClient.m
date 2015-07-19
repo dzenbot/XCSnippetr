@@ -80,7 +80,8 @@
 
 - (void)getAvailableRooms:(void (^)(NSDictionary *rooms, NSError *error))completion
 {
-    NSString *teamId = [XCSAccount currentAccountForService:XCSServiceSlack].teamId;
+    XCSAccount *account = [XCSAccount currentAccountForService:XCSServiceSlack];
+    NSString *teamId = account.teamId;
     
     if (!isNonEmptyString(teamId)) {
         return;
