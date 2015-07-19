@@ -326,6 +326,26 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
     return [manager save];
 }
 
++ (BOOL)clearForService:(XCSService)service
+{
+    NSArray *accounts = [self allAccountsForService:service];
+    
+    XCSAccountManager *manager = [XCSAccountManager defaultManager];
+    
+    if (manager.accounts.count == 0) {
+        return NO;
+    }
+    
+    // Removes all tokens from the keychain
+    for (XCSAccount *account in accounts) {
+        [SSKeychain deletePasswordForService:SLKBundleIdentifier() account:account.accountId];
+        
+        [account clear];
+    }
+    
+    return YES;
+}
+
 + (BOOL)clearAll
 {
     XCSAccountManager *manager = [XCSAccountManager defaultManager];

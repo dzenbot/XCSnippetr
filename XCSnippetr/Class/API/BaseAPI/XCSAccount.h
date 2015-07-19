@@ -46,6 +46,17 @@
  */
 + (instancetype)currentAccountForService:(XCSService)service;
 
+
+/** Sets the account as current. */
+- (void)setAsCurrentForService:(XCSService)service;
+
+/** Sets the latest selected channel id. */
+- (void)setChannelId:(NSString *)channelId;
+
+/** Returns YES if the account is the current. */
+- (BOOL)isCurrentForService:(XCSService)service;
+
+
 /** Returns YES if no account is yet registered. */
 + (BOOL)needsForcedLoginForService:(XCSService)service;
 
@@ -58,16 +69,10 @@
 /** Removes the account and clears the system Keychain. */
 - (BOOL)clear;
 
+/** Removes any accounts of the same service and clears the system Keychain */
++ (BOOL)clearForService:(XCSService)service;
+
 /** Removes all accounts and clears the system Keychain. */
 + (BOOL)clearAll;
-
-/** Sets the account as current. */
-- (void)setAsCurrentForService:(XCSService)service;
-
-/** Sets the latest selected channel id. */
-- (void)setChannelId:(NSString *)channelId;
-
-/** Returns YES if the account is the current. */
-- (BOOL)isCurrentForService:(XCSService)service;
 
 @end

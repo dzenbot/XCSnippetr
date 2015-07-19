@@ -60,6 +60,7 @@ static NSString * const kHTTPMethodPUT =        @"PUT";
     NSLog(@"HTTPMethod : %@", HTTPMethod);
     NSLog(@"path : %@", path);
     NSLog(@"request url : %@", request.URL.absoluteString);
+    NSLog(@"request HTTPBody : %@", request.HTTPBody);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul), ^{
         

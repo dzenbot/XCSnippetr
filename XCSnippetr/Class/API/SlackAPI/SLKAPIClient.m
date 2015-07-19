@@ -26,7 +26,7 @@
     
     NSString *accessToken = [XCSAccount currentAccountForService:XCSServiceSlack].accessToken;
     
-    if (accessToken && ![path isEqualToString:kSlackAPIMethodAuthTest]) {
+    if (accessToken && ![parameters.allKeys containsObject:kSlackAPIParamToken]) {
         [parameters setObject:accessToken forKey:kSlackAPIParamToken];
     }
     

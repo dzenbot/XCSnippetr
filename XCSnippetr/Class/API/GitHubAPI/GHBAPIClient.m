@@ -28,7 +28,7 @@
     XCSAccount *currentAccount = [XCSAccount currentAccountForService:XCSServiceGithub];
     NSString *accessToken = currentAccount.accessToken;
     
-    if (accessToken) {
+    if (accessToken && ![parameters.allKeys containsObject:kGithubAPIParamAccessToken]) {
         [parameters setObject:accessToken forKey:kGithubAPIParamAccessToken];
     }
     
