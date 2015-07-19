@@ -29,19 +29,19 @@ Gist only:
 ## Configuration
 
 Select any code snippet you would like to share and right click on it.
-![contextual menu](Documentation/Screenshots/screenshot_contextual_menu.png)
+![contextual menu](https://raw.githubusercontent.com/dzenbot/XCSnippetr/master/Documentation/Screenshots/screenshot_contextual_menu.png)
 
 The first time, you will be prompt to authenticate.
 
 For Slack, use your API tokens available at https://api.slack.com/web
-![login view](Documentation/Screenshots/screenshot_login_slack.png)
+![login view](https://raw.githubusercontent.com/dzenbot/XCSnippetr/master/Documentation/Screenshots/screenshot_login_slack.png)
 
 For Gist, generate API tokens at [https://github.com/settings/tokens/](https://github.com/settings/tokens/new?description=xcsnippetr&scopes=gist)
-![login view](Documentation/Screenshots/screenshot_login_github.png)
+![login view](https://raw.githubusercontent.com/dzenbot/XCSnippetr/master/Documentation/Screenshots/screenshot_login_github.png)
 
 You should be ready to go now.
 Simply pick the team and channel to share to. Add a comment. Share! 💥
-![main view](Documentation/Screenshots/screenshot_main.png)
+![main view](https://raw.githubusercontent.com/dzenbot/XCSnippetr/master/Documentation/Screenshots/screenshot_main.png)
 
 
 ## Install
