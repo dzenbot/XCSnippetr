@@ -12,6 +12,7 @@
 
 #import "SLKAPIConstants.h"
 #import "GHBAPIConstants.h"
+#import "SLKRoomManager.h"
 
 #import "ACEModeNames+Extension.h"
 #import "NSObject+SmartDescription.h"
@@ -29,14 +30,19 @@
     
     NSMutableDictionary *params = [NSMutableDictionary new];
     
-    if (service == XCSServiceSlack) {
-        if (self.uploadAsSnippet) {
+    if (service == XCSServiceSlack)
+    {
+        if (self.uploadAsSnippet)
+        {
             [params setObject:self.content forKey:kSlackAPIParamContent];
-            [params setObject:StringOrEmpty(self.channelId) forKey:kSlackAPIParamChannels];
             [params setObject:StringOrEmpty(self.filename) forKey:kSlackAPIParamFilename];
             [params setObject:StringOrEmpty(self.title) forKey:kSlackAPIParamTitle];
             [params setObject:StringOrEmpty(self.comment) forKey:kSlackAPIParamInitialComment];
             [params setObject:SLKStringFromACEMode(self.filetype) forKey:kSlackAPIParamFiletype];
+            
+            if (!self.uploadAsPrivate) {
+                [params setObject:StringOrEmpty(self.channelId) forKey:kSlackAPIParamChannels];
+            }
         }
         else {
             if (!isNonEmptyString(self.channelId)) {
@@ -51,12 +57,21 @@
             }
             
             [params setObject:text forKey:kSlackAPIParamText];
-            [params setObject:self.channelId forKey:kSlackAPIParamChannel];
             [params setObject:@YES forKey:kSlackAPIParamAsUser];
+            
+            if (!self.uploadAsPrivate) {
+                [params setObject:self.channelId forKey:kSlackAPIParamChannel];
+            }
+            else {
+                SLKRoom *room = [SLKRoomManager roomForName:kSlackAPISlackbotName];
+
+                // Uploads to Slackbot DM
+                [params setObject:room.tsid forKey:kSlackAPIParamChannel];
+            }
         }
     }
-    else if (service == XCSServiceGithub) {
-        
+    else if (service == XCSServiceGithub)
+    {
         [params setObject:StringOrEmpty(self.comment) forKey:kGithubAPIParamDescription];
         [params setObject:@(!self.uploadAsPrivate) forKey:kGithubAPIParamPublic];
         

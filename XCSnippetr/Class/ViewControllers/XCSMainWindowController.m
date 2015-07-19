@@ -221,6 +221,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     // Data Source
     self.snippet.teamId = currentAccount.teamId;
     self.snippet.uploadAsPrivate = self.privacyCheckBox.state;
+    self.snippet.uploadAsSnippet = self.uploadTypeCheckBox.state;
     
     // Title View
     [self.titleTextField setPlaceholderString:titlePlaceholder];
@@ -500,7 +501,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     self.snippet.uploadAsPrivate = sender.state;
     
     if (self.service == XCSServiceSlack) {
-        self.directoryButton.enabled = sender.state;
+        self.directoryButton.enabled = !sender.state;
     }
 }
 
