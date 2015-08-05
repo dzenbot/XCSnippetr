@@ -7,7 +7,7 @@
 //  Licence: MIT-Licence
 //
 
- #import "GHBAPIClient.h"
+#import "GHBAPIClient.h"
 #import "GHBAPIConstants.h"
 
 #import "XCSMacros.h"
@@ -81,7 +81,15 @@
     NSDictionary *params = [snippet paramsForService:XCSServiceGithub];
     NSString *path = kGithubAPIMethodGists;
     
-    [self POST:path params:params completion:completion];
+    [self POST:path params:params completion:^(NSDictionary *JSON, NSError *error) {
+        if (!error) {
+            snippet.url = [NSURL URLWithString:[JSON objectForKey:@"html_url"]];
+        }
+        
+        if (completion) {
+            completion(JSON, error);
+        }
+    }];
 }
 
 @end
