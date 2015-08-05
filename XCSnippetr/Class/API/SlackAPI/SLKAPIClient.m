@@ -73,11 +73,11 @@
     NSString *path = snippet.uploadAsSnippet ? kSlackAPIMethodFilesUpload : kSlackAPIMethodChatPostMessage;
     
     [self POST:path params:params completion:^(NSDictionary *JSON, NSError *error) {
-        if(!error) {
+        if (!error) {
             snippet.url = [NSURL URLWithString:[JSON valueForKeyPath:@"file.url"]];
         }
         
-        if(completion) {
+        if (completion) {
             completion(JSON, error);
         }
     }];

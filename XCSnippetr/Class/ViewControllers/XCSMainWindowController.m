@@ -419,12 +419,11 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     if (!error) {
         [[NSSound soundNamed:kSystemSoundSuccess] play];
         
-        NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-        
-        [pasteboard declareTypes:@[ NSStringPboardType] owner:nil];
-        
-        [pasteboard clearContents];
-        [pasteboard setString:self.snippet.url.absoluteString forType:NSStringPboardType];
+        if (self.snippet.url) {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            [pasteboard clearContents];
+            [pasteboard writeObjects:@[ self.snippet.url ]];
+        }
         
         [self dismiss:nil returnCode:NSModalResponseOK];
     }
