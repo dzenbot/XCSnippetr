@@ -10,6 +10,6 @@
 
 @interface XCSBezelAlert : NSObject
 
-+ (void)showWithIcon:(NSImage *)icon message:(NSString *)message parentWindow:(NSWindow *)window duration:(NSTimeInterval)duration;
++ (void)showWithIcon:(NSImage *)icon message:(NSString *)message parentWindow:(NSWindow *)parentWindow duration:(NSTimeInterval)duration;
 
 @end
