@@ -252,9 +252,9 @@ NSString *activeDocumentName()
     self.mainWindowController.font = sourceTextView.font;
     self.mainWindowController.service = menuItem.tag;
     
-    __block __typeof(self)weakSelf = self;
+    __weak __typeof(self) weakSelf = self;
     
-    _mainWindowController.completionHandler = ^(NSModalResponse returnCode) {
+    self.mainWindowController.completionHandler = ^(NSModalResponse returnCode) {
         weakSelf.mainWindowController = nil;
     };
         
@@ -271,8 +271,7 @@ NSString *activeDocumentName()
     windowFrame.origin.y = mainFrame.origin.y+(mainFrame.size.height-windowFrame.size.height);
     [window setFrameOrigin:windowFrame.origin];
     
-    [window makeKeyAndOrderFront:self];
-    [mainWindow makeFirstResponder:window];
+    [self.mainWindowController showWindow:self];
 }
 
 
