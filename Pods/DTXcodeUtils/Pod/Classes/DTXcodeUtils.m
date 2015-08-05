@@ -21,6 +21,7 @@
 }
 
 + (IDEWorkspaceWindowController *)currentWorkspaceWindowController {
+  NSLog(@"getting window controller");
   NSWindowController *result = [self currentWindow].windowController;
   if ([result isKindOfClass:NSClassFromString(@"IDEWorkspaceWindowController")]) {
     return (IDEWorkspaceWindowController *)result;

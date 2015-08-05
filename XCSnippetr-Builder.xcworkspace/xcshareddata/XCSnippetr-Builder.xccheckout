@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>213E65A9-BE25-4A02-B7E3-56D5FA56BD7C</string>
+	<string>2589A16A-5717-4167-AE41-BAB2B52D0D7F</string>
 	<key>IDESourceControlProjectName</key>
-	<string>XCSnippetr</string>
+	<string>XCSnippetr-Builder</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>72F92B9EB08A36A07ECDB57B337178811D63EA9F</key>
 		<string>https://github.com/dzenbot/XCSnippetr.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>XCSnippetr.xcworkspace</string>
+	<string>XCSnippetr-Builder.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>72F92B9EB08A36A07ECDB57B337178811D63EA9F</key>
