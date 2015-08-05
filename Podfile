@@ -1,5 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
+workspace 'XCSnippetr-Builder.xcworkspace'
+xcodeproj 'XCSnippetr-Builder.xcodeproj'
+
 platform :osx
 
 link_with 'XCSnippetr', 'XCSnippetrApp'
