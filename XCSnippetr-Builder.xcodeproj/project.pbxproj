@@ -674,6 +674,7 @@
 		4FCD1E091AF9D6800039908A /* XCSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F48D0211AF69AF30017717D /* XCSLoginViewController.xib */; };
 		4FF217D51AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */; };
 		4FF217D61AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */; };
+		5828D46B1B72C07F002AC475 /* XCSBezelAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 5828D46A1B72C07F002AC475 /* XCSBezelAlert.m */; };
 		7CD9186619A7B46F00B814F8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186519A7B46F00B814F8 /* AppKit.framework */; };
 		7CD9186819A7B46F00B814F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186719A7B46F00B814F8 /* Foundation.framework */; };
 		A93B7999A95604F71B565D93 /* libPods-XCSnippetr.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4F4A188DE438BF46C0C680F /* libPods-XCSnippetr.a */; };
@@ -1057,6 +1058,8 @@
 		4FF217D31AF5EA4100A6AEF3 /* ACEModeNames+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ACEModeNames+Extension.h"; sourceTree = "<group>"; };
 		4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ACEModeNames+Extension.m"; sourceTree = "<group>"; };
 		4FF2672F1AFFCDC000BCBC2D /* XCSStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCSStrings.h; sourceTree = "<group>"; };
+		5828D4691B72C07F002AC475 /* XCSBezelAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSBezelAlert.h; sourceTree = "<group>"; };
+		5828D46A1B72C07F002AC475 /* XCSBezelAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSBezelAlert.m; sourceTree = "<group>"; };
 		706A6A7D855987AB084C69A0 /* Pods-XCSnippetr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetr.release.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetr/Pods-XCSnippetr.release.xcconfig"; sourceTree = "<group>"; };
 		7CD9186219A7B46F00B814F8 /* XCSnippetr.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCSnippetr.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD9186519A7B46F00B814F8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -1603,6 +1606,8 @@
 				4F42821F1AED92F900133F7D /* XCSnippetrPlugin.m */,
 				4FF2672F1AFFCDC000BCBC2D /* XCSStrings.h */,
 				4FC1815F1B2C84F900FFBC72 /* XCSMacros.h */,
+				5828D4691B72C07F002AC475 /* XCSBezelAlert.h */,
+				5828D46A1B72C07F002AC475 /* XCSBezelAlert.m */,
 				4F25D9A21AEEB49200E57436 /* ViewControllers */,
 				4F25D99F1AEEB49200E57436 /* Categories */,
 				4F40CB9B1B2DD7DD0070E0D4 /* API */,
@@ -1744,7 +1749,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7CD9185D19A7B46F00B814F8 /* Build configuration list for PBXProject "XCSnippetr" */;
+			buildConfigurationList = 7CD9185D19A7B46F00B814F8 /* Build configuration list for PBXProject "XCSnippetr-Builder" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2495,6 +2500,7 @@
 				4F1AF6B71B004CAF006E8D1F /* NSObject+SmartDescription.m in Sources */,
 				4F40CBC71B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */,
 				4FF217D51AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */,
+				5828D46B1B72C07F002AC475 /* XCSBezelAlert.m in Sources */,
 				4F40CBB21B2DD7DD0070E0D4 /* XCSAccount.m in Sources */,
 				4F3A8D611AF41DF500DDE855 /* NSTextView+Placeholder.m in Sources */,
 				4FC8BA411AFE998F00388D13 /* XCSMainWindowController.m in Sources */,
@@ -2746,7 +2752,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CD9185D19A7B46F00B814F8 /* Build configuration list for PBXProject "XCSnippetr" */ = {
+		7CD9185D19A7B46F00B814F8 /* Build configuration list for PBXProject "XCSnippetr-Builder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CD9187319A7B46F00B814F8 /* Debug */,
