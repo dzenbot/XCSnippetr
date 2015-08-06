@@ -28,6 +28,8 @@
 @property (nonatomic) ACEMode filetype;
 /** Upload as a non-public snippet. */
 @property (nonatomic) BOOL uploadAsPrivate;
+/** Snippet URL assigned after successful upload. */
+@property (nonatomic, copy) NSURL *URL;
 
 
 #pragma mark - Slack Specific Values

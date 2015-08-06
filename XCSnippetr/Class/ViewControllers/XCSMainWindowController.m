@@ -418,10 +418,18 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 {
     if (!error) {
         [[NSSound soundNamed:kSystemSoundSuccess] play];
+        
+        if (self.snippet.URL) {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            [pasteboard clearContents];
+            [pasteboard writeObjects:@[self.snippet.URL]];
+        }
+        
         [self dismiss:nil returnCode:NSModalResponseOK];
     }
     else {
         [[NSSound soundNamed:kSystemSoundFailure] play];
+        
         [self handleError:error];
     }
 }
