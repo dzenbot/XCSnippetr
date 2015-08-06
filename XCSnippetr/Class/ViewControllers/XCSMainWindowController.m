@@ -11,6 +11,7 @@
 #import "XCSLoginViewController.h"
 #import "XCSStrings.h"
 #import "XCSMacros.h"
+#import "XCSBezelAlert.h"
 
 #import "XCSAccount.h"
 #import "XCSSnippet.h"
@@ -422,7 +423,13 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         if (self.snippet.URL) {
             NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
             [pasteboard clearContents];
-            [pasteboard writeObjects:@[self.snippet.URL]];
+
+            // If successfully copied the url to the pasteboard, present the system toast alert
+            if ([pasteboard writeObjects:@[self.snippet.URL]]) {
+                
+                NSImage *icon = [SLKBundle() imageForResource:@"icon_pasteboard"];
+                [XCSBezelAlert showWithIcon:icon message:kSnippetLinkCopiedTitle];
+            }
         }
         
         [self dismiss:nil returnCode:NSModalResponseOK];

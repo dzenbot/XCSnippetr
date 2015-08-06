@@ -3,12 +3,12 @@
     {
       "idiom" : "mac",
       "scale" : "1x",
-      "filename" : "logo_placeholder.png"
+      "filename" : "icon_pasteboard.png"
     },
     {
       "idiom" : "mac",
       "scale" : "2x",
-      "filename" : "logo_placeholder@2x.png"
+      "filename" : "icon_pasteboard@2x.png"
     }
   ],
   "info" : {

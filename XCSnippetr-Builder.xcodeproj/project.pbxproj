@@ -672,6 +672,8 @@
 		4FC8BA431AFE998F00388D13 /* XCSMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FC8BA401AFE998F00388D13 /* XCSMainWindowController.xib */; };
 		4FC8BA441AFE998F00388D13 /* XCSMainWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FC8BA401AFE998F00388D13 /* XCSMainWindowController.xib */; };
 		4FCD1E091AF9D6800039908A /* XCSLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F48D0211AF69AF30017717D /* XCSLoginViewController.xib */; };
+		4FDDB6211B73E2DF0007A465 /* XCSBezelAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDB6201B73E2DF0007A465 /* XCSBezelAlert.m */; };
+		4FDDB6221B73E2DF0007A465 /* XCSBezelAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDB6201B73E2DF0007A465 /* XCSBezelAlert.m */; };
 		4FF217D51AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */; };
 		4FF217D61AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */; };
 		7CD9186619A7B46F00B814F8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186519A7B46F00B814F8 /* AppKit.framework */; };
@@ -1053,6 +1055,8 @@
 		4FC8BA3E1AFE998F00388D13 /* XCSMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSMainWindowController.h; sourceTree = "<group>"; };
 		4FC8BA3F1AFE998F00388D13 /* XCSMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSMainWindowController.m; sourceTree = "<group>"; };
 		4FC8BA401AFE998F00388D13 /* XCSMainWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XCSMainWindowController.xib; sourceTree = "<group>"; };
+		4FDDB61F1B73E2DF0007A465 /* XCSBezelAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSBezelAlert.h; sourceTree = "<group>"; };
+		4FDDB6201B73E2DF0007A465 /* XCSBezelAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSBezelAlert.m; sourceTree = "<group>"; };
 		4FE7C23F1B2DD87800706F53 /* XCSService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCSService.h; sourceTree = "<group>"; };
 		4FF217D31AF5EA4100A6AEF3 /* ACEModeNames+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ACEModeNames+Extension.h"; sourceTree = "<group>"; };
 		4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ACEModeNames+Extension.m"; sourceTree = "<group>"; };
@@ -1600,6 +1604,7 @@
 				4FF2672F1AFFCDC000BCBC2D /* XCSStrings.h */,
 				4FC1815F1B2C84F900FFBC72 /* XCSMacros.h */,
 				4F25D9A21AEEB49200E57436 /* ViewControllers */,
+				4FDDB61E1B73E2DF0007A465 /* Views */,
 				4F25D99F1AEEB49200E57436 /* Categories */,
 				4F40CB9B1B2DD7DD0070E0D4 /* API */,
 			);
@@ -1614,6 +1619,15 @@
 				4F0926361AF7FC9D00A64AAF /* Supporting Files */,
 			);
 			path = XCSnippetrApp;
+			sourceTree = "<group>";
+		};
+		4FDDB61E1B73E2DF0007A465 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4FDDB61F1B73E2DF0007A465 /* XCSBezelAlert.h */,
+				4FDDB6201B73E2DF0007A465 /* XCSBezelAlert.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		7CD9185919A7B46F00B814F8 = {
@@ -2468,6 +2482,7 @@
 				4FA17E021AF4981D0049D26F /* NSWindow+Shake.m in Sources */,
 				4F1AF6B81B004CAF006E8D1F /* NSObject+SmartDescription.m in Sources */,
 				4FA17E031AF4981D0049D26F /* NSTextView+Placeholder.m in Sources */,
+				4FDDB6221B73E2DF0007A465 /* XCSBezelAlert.m in Sources */,
 				4FF217D61AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */,
 				4F40CBB31B2DD7DD0070E0D4 /* XCSAccount.m in Sources */,
 				4F40CBC51B2DD7DD0070E0D4 /* SLKRoomManager.m in Sources */,
@@ -2491,6 +2506,7 @@
 				4F1AF6B71B004CAF006E8D1F /* NSObject+SmartDescription.m in Sources */,
 				4F40CBC71B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */,
 				4FF217D51AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */,
+				4FDDB6211B73E2DF0007A465 /* XCSBezelAlert.m in Sources */,
 				4F40CBB21B2DD7DD0070E0D4 /* XCSAccount.m in Sources */,
 				4F3A8D611AF41DF500DDE855 /* NSTextView+Placeholder.m in Sources */,
 				4FC8BA411AFE998F00388D13 /* XCSMainWindowController.m in Sources */,
