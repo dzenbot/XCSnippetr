@@ -83,7 +83,7 @@
     
     [self POST:path params:params completion:^(NSDictionary *JSON, NSError *error) {
         if (!error) {
-            snippet.url = [NSURL URLWithString:[JSON objectForKey:@"html_url"]];
+            snippet.URL = [NSURL URLWithString:[JSON objectForKey:@"html_url"]];
         }
         
         if (completion) {

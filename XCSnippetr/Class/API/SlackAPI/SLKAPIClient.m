@@ -74,7 +74,7 @@
     
     [self POST:path params:params completion:^(NSDictionary *JSON, NSError *error) {
         if (!error) {
-            snippet.url = [NSURL URLWithString:[JSON valueForKeyPath:@"file.url"]];
+            snippet.URL = [NSURL URLWithString:[JSON valueForKeyPath:@"file.url"]];
         }
         
         if (completion) {
