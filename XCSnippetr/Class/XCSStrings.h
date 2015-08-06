@@ -32,6 +32,8 @@ static NSString * const kMainCommentPlaceholderGist =       @"Gist description..
 static NSString * const kMainUploadAsSnippetTitle =         @"Upload as snippet";
 static NSString * const kMainUploadAsPrivateTitle =         @"Upload as private";
 
+static NSString * const kSnippetLinkCopiedTitle =           @"Snippet Link Copied";
+
 static NSString * const kLoginPlaceholder =                 @"API Token";
 static NSString * const kLoginDescriptionTextSlack =        @"Please provide a Slack team's auth token available at";
 static NSString * const kLoginDescriptionTextGithub =       @"Please provide a Github user's auth token available at";

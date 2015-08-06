@@ -68,7 +68,7 @@
 {
     NSString *webApiUrl = [XCSServiceAPIFactory tokenSourceUrlForService:self.service];
     NSString *descriptionText = (self.service == XCSServiceSlack) ? kLoginDescriptionTextSlack : kLoginDescriptionTextGithub;
-    NSString *serviceImageName = (self.service == XCSServiceSlack) ? @"slack_logo" : @"github_logo";
+    NSString *serviceImageName = (self.service == XCSServiceSlack) ? @"logo_slack" : @"logo_github";
     NSImage *serviceImage = [SLKBundle() imageForResource:serviceImageName];
     
     self.tokenTextField.placeholderString = kLoginPlaceholder;
