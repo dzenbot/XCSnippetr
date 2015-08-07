@@ -81,6 +81,11 @@
     NSDictionary *params = [snippet paramsForService:XCSServiceGithub];
     NSString *path = kGithubAPIMethodGists;
     
+    // Skip if non valid parameters are available
+    if (!params) {
+        return;
+    }
+    
     [self POST:path params:params completion:^(NSDictionary *JSON, NSError *error) {
         if (!error) {
             snippet.URL = [NSURL URLWithString:[JSON objectForKey:@"html_url"]];

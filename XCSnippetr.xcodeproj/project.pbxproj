@@ -68,7 +68,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild -workspace XCSnippetr-Builder.xcworkspace -scheme XCSnippetr";
+			shellScript = "xcodebuild -workspace XCSnippetr-Builder.xcworkspace -scheme XCSnippetrPlugin";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -119,6 +119,7 @@
 				4F71F82F1B726DE100D1D0BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -388,7 +388,7 @@
 		7CD9185919A7B46F00B814F8 = {
 			isa = PBXGroup;
 			children = (
-				7CD9186919A7B46F00B814F8 /* XCSnippetr */,
+				7CD9186919A7B46F00B814F8 /* XCSnippetrPlugin */,
 				4FA17DE11AF494FB0049D26F /* XCSnippetrApp */,
 				4F09262A1AF7FB1300A64AAF /* XCSnippetrTests */,
 				7CD9186419A7B46F00B814F8 /* Frameworks */,
@@ -418,14 +418,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7CD9186919A7B46F00B814F8 /* XCSnippetr */ = {
+		7CD9186919A7B46F00B814F8 /* XCSnippetrPlugin */ = {
 			isa = PBXGroup;
 			children = (
 				4F4282091AED92F900133F7D /* Class */,
 				4F1855A31AEE13B000AAF896 /* Resources */,
 				4F4282051AED92EC00133F7D /* Supporting Files */,
 			);
-			path = XCSnippetr;
+			path = XCSnippetrPlugin;
 			sourceTree = "<group>";
 		};
 		FD04757D89833CF4255BAEA9 /* Pods */ = {
@@ -477,9 +477,9 @@
 			productReference = 4FA17DE01AF494FB0049D26F /* XCSnippetrApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7CD9186119A7B46F00B814F8 /* XCSnippetr */ = {
+		7CD9186119A7B46F00B814F8 /* XCSnippetrPlugin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7CD9187519A7B46F00B814F8 /* Build configuration list for PBXNativeTarget "XCSnippetr" */;
+			buildConfigurationList = 7CD9187519A7B46F00B814F8 /* Build configuration list for PBXNativeTarget "XCSnippetrPlugin" */;
 			buildPhases = (
 				733A225B69822BE7EC0CE930 /* Check Pods Manifest.lock */,
 				7CD9185E19A7B46F00B814F8 /* Sources */,
@@ -491,7 +491,7 @@
 			);
 			dependencies = (
 			);
-			name = XCSnippetr;
+			name = XCSnippetrPlugin;
 			productName = Example;
 			productReference = 7CD9186219A7B46F00B814F8 /* XCSnippetr.xcplugin */;
 			productType = "com.apple.product-type.bundle";
@@ -527,7 +527,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7CD9186119A7B46F00B814F8 /* XCSnippetr */,
+				7CD9186119A7B46F00B814F8 /* XCSnippetrPlugin */,
 				4FA17DDF1AF494FB0049D26F /* XCSnippetrApp */,
 				4F0926281AF7FB1300A64AAF /* XCSnippetrTests */,
 			);
@@ -887,8 +887,8 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "XCSnippetr/Supporting Files/XCSnippetr-Prefix.pch";
-				INFOPLIST_FILE = "XCSnippetr/Supporting Files/XCSnippetr-Info.plist";
+				GCC_PREFIX_HEADER = "XCSnippetrPlugin/Supporting Files/XCSnippetr-Prefix.pch";
+				INFOPLIST_FILE = "XCSnippetrPlugin/Supporting Files/XCSnippetr-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = XCSnippetr;
@@ -906,8 +906,8 @@
 				DSTROOT = "$(HOME)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "XCSnippetr/Supporting Files/XCSnippetr-Prefix.pch";
-				INFOPLIST_FILE = "XCSnippetr/Supporting Files/XCSnippetr-Info.plist";
+				GCC_PREFIX_HEADER = "XCSnippetrPlugin/Supporting Files/XCSnippetr-Prefix.pch";
+				INFOPLIST_FILE = "XCSnippetrPlugin/Supporting Files/XCSnippetr-Info.plist";
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = XCSnippetr;
@@ -945,7 +945,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7CD9187519A7B46F00B814F8 /* Build configuration list for PBXNativeTarget "XCSnippetr" */ = {
+		7CD9187519A7B46F00B814F8 /* Build configuration list for PBXNativeTarget "XCSnippetrPlugin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7CD9187619A7B46F00B814F8 /* Debug */,

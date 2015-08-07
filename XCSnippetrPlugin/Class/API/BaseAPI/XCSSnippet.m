@@ -75,8 +75,15 @@
         [params setObject:StringOrEmpty(self.comment) forKey:kGithubAPIParamDescription];
         [params setObject:@(!self.uploadAsPrivate) forKey:kGithubAPIParamPublic];
         
-        NSDictionary *gist = @{self.filename: @{kGithubAPIParamContent: self.content}};
-        [params setObject:gist forKey:kGithubAPIParamFiles];
+        NSString *key = self.filename ? : self.title;
+        
+        if (isNonEmptyString(key) && isNonEmptyString(self.content)) {
+            NSDictionary *gist = @{key: @{kGithubAPIParamContent: self.content}};
+            [params setObject:gist forKey:kGithubAPIParamFiles];
+        }
+        else {
+            return nil;
+        }
     }
     
     return params;

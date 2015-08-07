@@ -20,7 +20,7 @@
 {
     NSString *nibName = NSStringFromClass([XCSMainWindowController class]);
     self.mainWindowController = [[XCSMainWindowController alloc] initWithWindowNibName:nibName];
-    self.mainWindowController.service = XCSServiceSlack;
+    self.mainWindowController.service = XCSServiceGithub;
     
     [[self.mainWindowController window] makeKeyAndOrderFront:self];
 }
