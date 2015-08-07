@@ -72,6 +72,11 @@
     NSDictionary *params = [snippet paramsForService:XCSServiceSlack];
     NSString *path = snippet.uploadAsSnippet ? kSlackAPIMethodFilesUpload : kSlackAPIMethodChatPostMessage;
     
+    // Skip if non valid parameters are available
+    if (!params) {
+        return;
+    }
+    
     [self POST:path params:params completion:^(NSDictionary *JSON, NSError *error) {
         if (!error) {
             snippet.URL = [NSURL URLWithString:[JSON valueForKeyPath:@"file.url"]];
