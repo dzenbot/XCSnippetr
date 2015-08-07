@@ -3,7 +3,7 @@
 [![Alcatraz compatible](https://img.shields.io/badge/Alcatraz-compatible-4BC51D.svg?style=flat)](http://alcatraz.io/)
 [![License](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 
-Share code snippets to Slack and Gist without leaving XCode ever again! 😱
+Share code snippets to Slack and Gist without leaving Xcode ever again! 😱
 
 ## Features
 
@@ -20,7 +20,7 @@ Slack only:
 - Share to any of your teams, channels, groups and users.
 - Upload as a file snippet or as a message with fenced code block.
 - Upload as a private file or private message to Slackbot.
-- Team's channels are cached during your XCode session.
+- Team's channels are cached during your Xcode session.
 - Add as many teams as you want.
 
 Gist only:
