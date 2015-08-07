@@ -14,6 +14,7 @@ Share code snippets to Slack and Gist without leaving XCode ever again! 😱
 - Code syntax highlight, thanks to [ACEView](https://github.com/faceleg/ACEView) 👏.
 - Auto-detection of the source file name, used as the snippet title by default.
 - Auto-detection of the source code type. No Swift support for now 😔.
+- After upload, copies snippet's url to pasteboard.
 
 Slack only:
 - Share to any of your teams, channels, groups and users.
