@@ -74,7 +74,7 @@
     self.tokenTextField.placeholderString = kLoginPlaceholder;
     self.detailTextView.string = [NSString stringWithFormat:@"%@ %@", descriptionText, webApiUrl];
     self.serviceImageView.image = serviceImage;
-    
+   
     NSRange range = [self.detailTextView.string rangeOfString:webApiUrl];
     [[self.detailTextView textStorage] addAttribute:NSLinkAttributeName value:[NSURL URLWithString:webApiUrl] range:range];
     

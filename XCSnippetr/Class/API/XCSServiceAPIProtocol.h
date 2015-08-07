@@ -8,9 +8,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XCSAccount.h"
-#import "XCSSnippet.h"
 
+@class XCSAccount, XCSSnippet;
+
+/**
+ An abstract interface shared between generic API clients.
+ */
 @protocol XCSServiceAPIProtocol <NSObject>
 @required
 

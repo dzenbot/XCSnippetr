@@ -11,15 +11,24 @@
 #import "XCSServiceAPIProtocol.h"
 #import "XCSService.h"
 
+/**
+ An abstract factory manager of XCSServiceAPIProtocol objects.
+ */
 @interface XCSServiceAPIFactory : NSObject
 
 /**
+ Returns a generic object conforming to XCSServiceAPIProtocol.
  
+ @param service The service target.
+ @return A generic object conforming to XCSServiceAPIProtocol.
  */
 + (id<XCSServiceAPIProtocol>)APIClientForService:(XCSService)service;
 
 /**
+ Returns an API token source URL for a specific service.
  
+ @param service The service target.
+ @return A string URL.
  */
 + (NSString *)tokenSourceUrlForService:(XCSService)service;
 

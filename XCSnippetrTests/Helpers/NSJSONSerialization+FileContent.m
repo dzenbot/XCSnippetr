@@ -21,6 +21,8 @@ static NSString * const kJSONType = @"json";
 
 + (id)JSONObjectFromFileAtPath:(NSString *)path
 {
+    NSLog(@"path : %@", path);
+    
     NSData *data = [NSData dataWithContentsOfFile:path];
     return [NSJSONSerialization JSONObjectWithData:data options:NSUTF8StringEncoding error:nil];
 }

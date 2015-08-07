@@ -225,12 +225,12 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     self.snippet.uploadAsSnippet = self.uploadTypeCheckBox.state;
     
     // Title View
-    [self.titleTextField setPlaceholderString:titlePlaceholder];
-    [self.titleTextField setStringValue:self.snippet.title];
+    self.titleTextField.stringValue = StringOrEmpty(self.snippet.title);
+    self.titleTextField.placeholderString = titlePlaceholder;
 
     // Comment View
-    [self.commentTextView setString:@""];
-    [self.commentTextView setPlaceholderString:commentPlaceholder];
+    self.commentTextView.string = @"";
+    self.commentTextView.placeholderString = commentPlaceholder;
     
     // Source Text View
     [self.sourceTextView setDelegate:self];

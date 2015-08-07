@@ -11,9 +11,10 @@
 #import <XCTest/XCTest.h>
 
 #import "XCSAccount.h"
+#import "XCSMacros.h"
+
 #import "SLKRoom.h"
 #import "SLKAPIConstants.h"
-#import "XCSMacros.h"
 
 #import "NSJSONSerialization+FileContent.h"
 
@@ -39,7 +40,7 @@
     XCTAssertNotNil(SLKBundle());
     
     XCTAssertEqualObjects(SLKBundleName(), @"XCSnippetr");
-    XCTAssertEqualObjects(SLKBundleIdentifier(), @"com.dzn.XCSnippetrdApp");
+    XCTAssertEqualObjects(SLKBundleIdentifier(), @"com.dzn.XCSnippetrApp");
 
     XCTAssertFalse(isSLKPlugin());
 }
@@ -48,7 +49,7 @@
 {
     id response = [NSJSONSerialization JSONObjectFromBundleResource:kSlackAPIMethodAuthTest];
         
-    XCSAccount *account = [[XCSAccount alloc] initWithResponse:response];
+    XCSAccount *account = [[XCSAccount alloc] initWithResponse:response service:XCSServiceSlack];
     
     XCTAssertNotNil(account);
     

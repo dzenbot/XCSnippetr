@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>871713B1-7592-48F0-894E-BD81D1747D06</string>
+	<string>AECFCDCA-248D-4A40-979B-97DF34B9C714</string>
 	<key>IDESourceControlProjectName</key>
 	<string>XCSnippetr-Builder</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/dzenbot/XCSnippetr.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>XCSnippetr-Builder.xcworkspace</string>
+	<string>XCSnippetr-Builder.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>72F92B9EB08A36A07ECDB57B337178811D63EA9F</key>
-		<string>..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/dzenbot/XCSnippetr.git</string>

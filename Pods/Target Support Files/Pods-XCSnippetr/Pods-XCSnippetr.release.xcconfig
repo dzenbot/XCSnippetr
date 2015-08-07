@@ -1,6 +1,0 @@
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/ACEView" "${PODS_ROOT}/Headers/Public/DTXcodeUtils" "${PODS_ROOT}/Headers/Public/SSKeychain"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/ACEView" -isystem "${PODS_ROOT}/Headers/Public/DTXcodeUtils" -isystem "${PODS_ROOT}/Headers/Public/SSKeychain"
-OTHER_LDFLAGS = -ObjC -l"Pods-XCSnippetr-ACEView" -l"Pods-XCSnippetr-DTXcodeUtils" -l"Pods-XCSnippetr-SSKeychain" -framework "Foundation" -framework "Security" -framework "WebKit"
-OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
-PODS_ROOT = ${SRCROOT}/Pods
