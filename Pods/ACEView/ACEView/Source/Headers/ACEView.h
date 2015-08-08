@@ -52,6 +52,7 @@ extern NSString *const ACETextDidEndEditingNotification;
     CGColorRef _borderColor;
 	WebView *webView;
 
+    int padding;
     id delegate;
 
     NSRange firstSelectedRange;
@@ -78,6 +79,10 @@ extern NSString *const ACETextDidEndEditingNotification;
  * @name Instance Methods
  *  ---------------------------------------------------------------------------------------
  */
+
+/** Sets the cursor to the editor view.
+ */
+- (void) focus;
 
 /** Retrieve the content of the underlying ACE Editor.
 
@@ -305,4 +310,72 @@ extern NSString *const ACETextDidEndEditingNotification;
  @param show YES if gutter should be enabled, NO otherwise.
  */
 - (void) setShowGutter:(BOOL)show;
+
+/** Returns the number of rows in the document.
+ 
+ Uses [editor.getSession().getLength()]
+ 
+ */
+- (NSUInteger) getLength;
+
+/** Returns a verbatim copy of the given line as it is in the document.
+ 
+ Uses [editor.getSession(Number row)]
+ 
+ */
+- (NSString*) getLine:(NSInteger)line;
+
+/** Searches for all occurances options.needle. 
+ 
+ If found, this method returns an array of Ranges where the text first occurs. If options.backwards is true, the search goes backwards in the session.
+ 
+ Uses [Search.findAll(EditSession session)](http://ace.c9.io/api/search.html).
+
+ @param A dictionary of search options.
+ */
+- (NSArray*) findAll:(NSDictionary*) options;
+
+/** Replaces all occurances of options.needle with the value in replacement.
+ 
+ Uses [Editor.replaceAll(String replacement, Object options)](http://ace.c9.io/api/editor.html#Editor.replaceAll).
+ 
+ @param replacement The replacement value
+ @param options A dictionary of search options
+ */
+- (void) replaceAll:(NSString*) replacement options:(NSDictionary*)options;
+
+/** Returns the current new line mode.
+ 
+ Uses [EditSession.getNewLineMode()](http://ace.c9.io/api/edit_session.html#EditSession.getNewLineMode).
+
+ */
+- (NSString*) getNewLineMode;
+
+/** Sets the new line mode.
+ 
+ Uses [EditSession.setNewLineMode(String newLineMode)](http://ace.c9.io/api/edit_session.html#EditSession.setNewLineMode).
+ 
+ @param mode The newline mode to use
+ */
+- (void) setNewLineMode:(NSString*)mode;
+
+/** Pass true to enable the use of soft tabs. 
+ 
+ Soft tabs means you're using spaces instead of the tab character ('\t').
+ 
+ Uses [EditSession.setUseSoftTabs(Boolean useSoftTabs)](http://ace.c9.io/api/edit_session.html#EditSession.setUseSoftTabs).
+ 
+ @param tabs True if soft tabs should be used
+ */
+- (void) setUseSoftTabs:(BOOL)tabs;
+
+/** Set the number of spaces that define a soft tab.
+ 
+ For example, passing in 4 transforms the soft tabs to be equivalent to four spaces. This function also emits the changeTabSize event.
+ 
+ Uses [EditSession.setTabSize(Number tabSize)](http://ace.c9.io/api/edit_session.html#EditSession.setTabSize).
+ 
+ @param size The amount of spaces to be used instead of tabs
+ */
+- (void) setTabSize:(NSInteger)size;
 @end

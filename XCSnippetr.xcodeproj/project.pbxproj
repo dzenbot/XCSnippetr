@@ -11,7 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 4F71F8301B726DE100D1D0BB /* Build configuration list for PBXAggregateTarget "XCSnippetr" */;
 			buildPhases = (
-				4F71F8311B726DEA00D1D0BB /* ShellScript */,
+				4F71F8311B726DEA00D1D0BB /* Workspace Build */,
 			);
 			dependencies = (
 			);
@@ -57,18 +57,19 @@
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4F71F8311B726DEA00D1D0BB /* ShellScript */ = {
+		4F71F8311B726DEA00D1D0BB /* Workspace Build */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Workspace Build";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "xcodebuild clean build -workspace XCSnippetr-Builder.xcworkspace -scheme XCSnippetrPlugin";
+			shellScript = "xcodebuild -workspace XCSnippetr-Builder.xcworkspace -scheme XCSnippetrPlugin";
 		};
 /* End PBXShellScriptBuildPhase section */
 

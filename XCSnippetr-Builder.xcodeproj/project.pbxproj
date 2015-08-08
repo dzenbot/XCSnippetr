@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CBCAE604D034A3D507853F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F211E45AE40AFBC16B8532 /* libPods.a */; };
+		285146531908C6D2FADD645F /* libPods-XCSnippetrTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 511D52DF60BF9609154D20CF /* libPods-XCSnippetrTests.a */; };
+		2BB5DEA06973691CB8BF8B97 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 934E1560B5C20ED594CFD8C3 /* libPods.a */; };
+		4073694FA4AB36FA632DC178 /* libPods-XCSnippetrApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9522A09FE7BF82ECB2045D0 /* libPods-XCSnippetrApp.a */; };
 		4F09262E1AF7FB1300A64AAF /* XCSnippetrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F09262D1AF7FB1300A64AAF /* XCSnippetrTests.m */; };
 		4F09263D1AF7FC9D00A64AAF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F0926371AF7FC9D00A64AAF /* Info.plist */; };
 		4F09263E1AF7FC9D00A64AAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0926381AF7FC9D00A64AAF /* main.m */; };
@@ -67,10 +69,9 @@
 		4FFBC26A1B74646C00D0D6B8 /* gist.test.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F42386A1B2CAE7300D2CA79 /* gist.test.json */; };
 		4FFBC26B1B74647000D0D6B8 /* rtm.start.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F4238671B2CAE5500D2CA79 /* rtm.start.json */; };
 		4FFBC26C1B74647200D0D6B8 /* auth.test.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F4238661B2CAE5500D2CA79 /* auth.test.json */; };
-		4FFBC26D1B74688500D0D6B8 /* XCSnippetrPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42821F1AED92F900133F7D /* XCSnippetrPlugin.m */; };
-		5C6FB0BEACAE03B93F573EE7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 33F211E45AE40AFBC16B8532 /* libPods.a */; };
 		7CD9186619A7B46F00B814F8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186519A7B46F00B814F8 /* AppKit.framework */; };
 		7CD9186819A7B46F00B814F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186719A7B46F00B814F8 /* Foundation.framework */; };
+		AD35F30EC0BBA7F7B8C7625F /* libPods-XCSnippetrPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CF839EB9D963D422C876BD /* libPods-XCSnippetrPlugin.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,9 +85,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13C57EC050B27A68CCDA7479 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		1E2031E9767AAD42CC3D2D95 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		33F211E45AE40AFBC16B8532 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		094C0656309D1FD1C09ACC30 /* Pods-XCSnippetrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetrTests/Pods-XCSnippetrTests.release.xcconfig"; sourceTree = "<group>"; };
+		46BF28FC457C70987920AAFD /* Pods-XCSnippetrApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetrApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetrApp/Pods-XCSnippetrApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4F0926291AF7FB1300A64AAF /* XCSnippetrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCSnippetrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F09262C1AF7FB1300A64AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F09262D1AF7FB1300A64AAF /* XCSnippetrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCSnippetrTests.m; sourceTree = "<group>"; };
@@ -148,9 +148,17 @@
 		4FF217D31AF5EA4100A6AEF3 /* ACEModeNames+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ACEModeNames+Extension.h"; sourceTree = "<group>"; };
 		4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ACEModeNames+Extension.m"; sourceTree = "<group>"; };
 		4FF2672F1AFFCDC000BCBC2D /* XCSStrings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XCSStrings.h; sourceTree = "<group>"; };
+		511D52DF60BF9609154D20CF /* libPods-XCSnippetrTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCSnippetrTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD9186219A7B46F00B814F8 /* XCSnippetr.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XCSnippetr.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD9186519A7B46F00B814F8 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		7CD9186719A7B46F00B814F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		91A091C846199E92737D0825 /* Pods-XCSnippetrPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetrPlugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetrPlugin/Pods-XCSnippetrPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		934E1560B5C20ED594CFD8C3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		94CAB6E5A30389A615C88266 /* Pods-XCSnippetrPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetrPlugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetrPlugin/Pods-XCSnippetrPlugin.debug.xcconfig"; sourceTree = "<group>"; };
+		9FD40137E8D18AECB84D0763 /* Pods-XCSnippetrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetrTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetrTests/Pods-XCSnippetrTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D9522A09FE7BF82ECB2045D0 /* libPods-XCSnippetrApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCSnippetrApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E613728424A0843A56EC0B30 /* Pods-XCSnippetrApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetrApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetrApp/Pods-XCSnippetrApp.release.xcconfig"; sourceTree = "<group>"; };
+		E6CF839EB9D963D422C876BD /* libPods-XCSnippetrPlugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCSnippetrPlugin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				285146531908C6D2FADD645F /* libPods-XCSnippetrTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +177,8 @@
 				4FA17E0F1AF552430049D26F /* Foundation.framework in Frameworks */,
 				4FA17E0E1AF5523E0049D26F /* AppKit.framework in Frameworks */,
 				4FA17E0D1AF552390049D26F /* Cocoa.framework in Frameworks */,
-				5C6FB0BEACAE03B93F573EE7 /* libPods.a in Frameworks */,
+				4073694FA4AB36FA632DC178 /* libPods-XCSnippetrApp.a in Frameworks */,
+				2BB5DEA06973691CB8BF8B97 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +189,7 @@
 				4F562CBE1AED95AB00A865CB /* Cocoa.framework in Frameworks */,
 				7CD9186619A7B46F00B814F8 /* AppKit.framework in Frameworks */,
 				7CD9186819A7B46F00B814F8 /* Foundation.framework in Frameworks */,
-				1CBCAE604D034A3D507853F5 /* libPods.a in Frameworks */,
+				AD35F30EC0BBA7F7B8C7625F /* libPods-XCSnippetrPlugin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,7 +403,7 @@
 				4F09262A1AF7FB1300A64AAF /* XCSnippetrTests */,
 				7CD9186419A7B46F00B814F8 /* Frameworks */,
 				7CD9186319A7B46F00B814F8 /* Products */,
-				FD04757D89833CF4255BAEA9 /* Pods */,
+				DE75D12ADE4ECFF4B0395284 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -413,7 +423,10 @@
 				4F562CBD1AED95AB00A865CB /* Cocoa.framework */,
 				7CD9186519A7B46F00B814F8 /* AppKit.framework */,
 				7CD9186719A7B46F00B814F8 /* Foundation.framework */,
-				33F211E45AE40AFBC16B8532 /* libPods.a */,
+				D9522A09FE7BF82ECB2045D0 /* libPods-XCSnippetrApp.a */,
+				E6CF839EB9D963D422C876BD /* libPods-XCSnippetrPlugin.a */,
+				511D52DF60BF9609154D20CF /* libPods-XCSnippetrTests.a */,
+				934E1560B5C20ED594CFD8C3 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -428,11 +441,15 @@
 			path = XCSnippetrPlugin;
 			sourceTree = "<group>";
 		};
-		FD04757D89833CF4255BAEA9 /* Pods */ = {
+		DE75D12ADE4ECFF4B0395284 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				13C57EC050B27A68CCDA7479 /* Pods.debug.xcconfig */,
-				1E2031E9767AAD42CC3D2D95 /* Pods.release.xcconfig */,
+				46BF28FC457C70987920AAFD /* Pods-XCSnippetrApp.debug.xcconfig */,
+				E613728424A0843A56EC0B30 /* Pods-XCSnippetrApp.release.xcconfig */,
+				94CAB6E5A30389A615C88266 /* Pods-XCSnippetrPlugin.debug.xcconfig */,
+				91A091C846199E92737D0825 /* Pods-XCSnippetrPlugin.release.xcconfig */,
+				9FD40137E8D18AECB84D0763 /* Pods-XCSnippetrTests.debug.xcconfig */,
+				094C0656309D1FD1C09ACC30 /* Pods-XCSnippetrTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -444,9 +461,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F0926311AF7FB1300A64AAF /* Build configuration list for PBXNativeTarget "XCSnippetrTests" */;
 			buildPhases = (
+				7E109930A79D06E7A5D252B9 /* Check Pods Manifest.lock */,
 				4F0926251AF7FB1300A64AAF /* Sources */,
 				4F0926261AF7FB1300A64AAF /* Frameworks */,
 				4F0926271AF7FB1300A64AAF /* Resources */,
+				A75055BDB74B34CD1C0655E6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -588,7 +607,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XCSnippetrPlugin/Pods-XCSnippetrPlugin-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		50E1B92AAACA38486ED333C0 /* Check Pods Manifest.lock */ = {
@@ -621,6 +640,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		7E109930A79D06E7A5D252B9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A75055BDB74B34CD1C0655E6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XCSnippetrTests/Pods-XCSnippetrTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B30866654DEB225BA71A65E2 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -633,7 +682,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XCSnippetrApp/Pods-XCSnippetrApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -652,7 +701,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FFBC26D1B74688500D0D6B8 /* XCSnippetrPlugin.m in Sources */,
 				4F40CBB61B2DD7DD0070E0D4 /* XCSBaseAPI.m in Sources */,
 				4F40CBBF1B2DD7DD0070E0D4 /* SLKAPIClient.m in Sources */,
 				4F40CBC81B2DD7DD0070E0D4 /* XCSServiceAPIFactory.m in Sources */,
@@ -723,6 +771,7 @@
 /* Begin XCBuildConfiguration section */
 		4F0926321AF7FB1300A64AAF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FD40137E8D18AECB84D0763 /* Pods-XCSnippetrTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -748,6 +797,7 @@
 		};
 		4F0926331AF7FB1300A64AAF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 094C0656309D1FD1C09ACC30 /* Pods-XCSnippetrTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -770,7 +820,7 @@
 		};
 		4FA17DFA1AF494FB0049D26F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13C57EC050B27A68CCDA7479 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 46BF28FC457C70987920AAFD /* Pods-XCSnippetrApp.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -793,7 +843,7 @@
 		};
 		4FA17DFB1AF494FB0049D26F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E2031E9767AAD42CC3D2D95 /* Pods.release.xcconfig */;
+			baseConfigurationReference = E613728424A0843A56EC0B30 /* Pods-XCSnippetrApp.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -884,13 +934,19 @@
 		};
 		7CD9187619A7B46F00B814F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13C57EC050B27A68CCDA7479 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 94CAB6E5A30389A615C88266 /* Pods-XCSnippetrPlugin.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DEVELOPER_LIBRARY_DIR)/../../Frameworks",
+					"$(PLATFORM_DEVELOPER_LIBRARY_DIR)/../../SharedFrameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XCSnippetrPlugin/Supporting Files/XCSnippetr-Prefix.pch";
 				INFOPLIST_FILE = "XCSnippetrPlugin/Supporting Files/XCSnippetr-Info.plist";
@@ -904,13 +960,19 @@
 		};
 		7CD9187719A7B46F00B814F8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E2031E9767AAD42CC3D2D95 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 91A091C846199E92737D0825 /* Pods-XCSnippetrPlugin.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DEVELOPER_LIBRARY_DIR)/../../Frameworks",
+					"$(PLATFORM_DEVELOPER_LIBRARY_DIR)/../../SharedFrameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Frameworks",
+					"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/SharedFrameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XCSnippetrPlugin/Supporting Files/XCSnippetr-Prefix.pch";
 				INFOPLIST_FILE = "XCSnippetrPlugin/Supporting Files/XCSnippetr-Info.plist";

@@ -12,6 +12,7 @@
 #import <ACEView/ACEKeyboardHandlerNames.h>
 #import <ACEView/ACERange.h>
 #import <ACEView/ACEStringFromBool.h>
+#import <ACEView/ACESearchItem.h>
 
 #import <ACEView/NSString+EscapeForJavaScript.h>
 #import <ACEView/NSInvocation+MainThread.h>
@@ -103,6 +104,12 @@ static NSArray *allowedSelectorNamesForJavaScript;
     html = [html stringByReplacingOccurrencesOfString:ACE_JAVASCRIPT_DIRECTORY withString:javascriptDirectory];
     
     [[webView mainFrame] loadHTMLString:html baseURL:[bundle bundleURL]];
+}
+
+- (void) setBorderType:(NSBorderType)borderType {
+    [super setBorderType:borderType];
+    padding = (borderType == NSNoBorder) ? 0 : 1;
+    [self resizeWebView];
 }
 
 - (NSString *) aceJavascriptDirectoryPath {
@@ -221,8 +228,8 @@ static NSArray *allowedSelectorNamesForJavaScript;
         bounds.size.height -= findBarHeight;
     }
     
-    [webView setFrame:NSMakeRect(bounds.origin.x + 1, bounds.origin.y + 1,
-                                 bounds.size.width - 2, bounds.size.height - 2)];
+    [webView setFrame:NSMakeRect(bounds.origin.x + padding, bounds.origin.y + padding,
+                                 bounds.size.width - (2 * padding), bounds.size.height - (2 * padding))];
 }
 
 - (void) showFindInterface {
@@ -259,6 +266,17 @@ static NSArray *allowedSelectorNamesForJavaScript;
     }
 }
 
+- (NSString*) getSearchOptions:(NSDictionary*)options {
+    NSError *error = nil;
+    NSData *json = [NSJSONSerialization dataWithJSONObject:options options:0 error:&error];
+    
+    if (error || !json) {
+        return nil;
+    }
+    
+    return [[NSString alloc] initWithData:json encoding:NSUTF8StringEncoding];
+}
+
 #pragma mark - Public
 - (NSString *) string {
     return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getValue();"];
@@ -277,6 +295,10 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setMode:(ACEMode)mode {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setMode(\"ace/mode/%@\");", [ACEModeNames nameForMode:mode]]];
 }
+
+- (void) focus {
+    [self executeScriptWhenLoaded:@"focusEditor();"];
+}
 - (void) setTheme:(ACETheme)theme {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setTheme(\"ace/theme/%@\");", [ACEThemeNames nameForTheme:theme]]];
 }
@@ -290,6 +312,18 @@ static NSArray *allowedSelectorNamesForJavaScript;
 - (void) setWrapLimitRange:(NSRange)range {
     [self setUseSoftWrap:YES];
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setWrapLimitRange(%ld, %ld);", range.location, range.length]];
+}
+- (void) setNewLineMode:(NSString*)mode {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setNewLineMode(\"%@\");", mode]];
+}
+- (NSString*) getNewLineMode {
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getSession().getNewLineMode();"];
+}
+- (void) setUseSoftTabs:(BOOL)tabs {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setUseSoftTabs(%@);", ACEStringFromBool(tabs)]];
+}
+- (void) setTabSize:(NSInteger)size {
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.getSession().setTabSize(%ld);", (long)size]];
 }
 - (void) setShowInvisibles:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setShowInvisibles(%@);", ACEStringFromBool(show)]];
@@ -360,6 +394,26 @@ static NSArray *allowedSelectorNamesForJavaScript;
 
 - (void) setShowGutter:(BOOL)show {
     [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.setOption('showGutter', %@);", ACEStringFromBool(show)]];
+}
+
+- (NSUInteger) getLength {
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:@"editor.getSession().getLength();"].integerValue;
+}
+
+- (NSString*) getLine:(NSInteger)line {
+    return [self stringByEvaluatingJavaScriptOnMainThreadFromString:[NSString stringWithFormat:@"editor.getSession().getLine(%ld);", line]];
+}
+
+- (NSArray*) findAll:(NSDictionary*) options {
+    NSString* stringOptions = [self getSearchOptions:options];
+    NSString* script = [NSString stringWithFormat:@"JSON.stringify(new Search().set(%@).findAll(editor.getSession()));", stringOptions];
+    
+    return [ACESearchItem fromString:[self stringByEvaluatingJavaScriptOnMainThreadFromString:script]];
+}
+
+- (void) replaceAll:(NSString*) replacement options:(NSDictionary*)options {
+    NSString* stringOptions = [self getSearchOptions:options];
+    [self executeScriptWhenLoaded:[NSString stringWithFormat:@"editor.replaceAll(\"%@\", %@);", replacement, stringOptions]];
 }
 
 #pragma mark - Printing

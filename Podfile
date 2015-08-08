@@ -1,12 +1,19 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-workspace 'XCSnippetr-Builder.xcworkspace'
+platform :osx, '10.9'
 xcodeproj 'XCSnippetr-Builder.xcodeproj'
 
-platform :osx
+target :XCSnippetrPlugin do
+    pod 'DTXcodeUtils'
+    pod 'SSKeychain', '~> 1.2'
+    pod 'ACEView', :git => 'https://github.com/faceleg/ACEView.git', :commit => '2437ca5'
+end
 
-link_with 'XCSnippetr', 'XCSnippetrApp'
+target :XCSnippetrApp do
+    pod 'SSKeychain', '~> 1.2'
+    pod 'ACEView', :git => 'https://github.com/faceleg/ACEView.git', :commit => '2437ca5'
+end
 
-pod 'DTXcodeUtils'
-pod 'SSKeychain', '~> 1.2'
-pod 'ACEView', :git => 'https://github.com/faceleg/ACEView.git', :commit => '821cfd9', :submodules => true #includes obj-c syntax detection
+target :XCSnippetrTests do
+    pod 'Specta', '0.5.0'
+end
