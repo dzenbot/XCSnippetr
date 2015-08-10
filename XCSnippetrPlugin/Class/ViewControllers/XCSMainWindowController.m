@@ -10,14 +10,7 @@
 #import "XCSMainWindowController.h"
 #import "XCSLoginViewController.h"
 #import "XCSStrings.h"
-#import "XCSMacros.h"
 #import "XCSBezelAlert.h"
-
-#import "XCSAccount.h"
-#import "XCSSnippet.h"
-
-#import "SLKRoomManager.h"
-#import "SLKRoom.h"
 
 #import "NSTextView+Placeholder.h"
 #import "ACEModeNames+Extension.h"
@@ -155,9 +148,10 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     _fileName = fileName;
     
-    [self.snippet setFilename:fileName];
-    [self.snippet setTitle:[fileName stringByDeletingPathExtension]];
-    [self.snippet setFiletype:ACEModeForFileName(fileName)];
+    self.snippet.filename = fileName;
+    self.snippet.title = [fileName stringByDeletingPathExtension];
+    self.snippet.type = ACEModeForFileName(fileName);
+    self.snippet.typeString = NSStringFromACEMode(self.snippet.type);
 }
 
 - (void)setFileContent:(NSString *)fileContent
@@ -236,7 +230,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self.sourceTextView setDelegate:self];
     [self.sourceTextView setWrappingBehavioursEnabled:YES];
     [self.sourceTextView setReadOnly:NO];
-    [self.sourceTextView setMode:self.snippet.filetype];
+    [self.sourceTextView setMode:self.snippet.type];
     [self.sourceTextView setTheme:ACEThemeXcode];
     [self.sourceTextView setKeyboardHandler:ACEKeyboardHandlerAce];
     [self.sourceTextView setShowPrintMargin:NO];
@@ -248,13 +242,13 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     // Buttons
     [self.syntaxButton addItemsWithTitles:[ACEModeNames humanModeNames]];
-    [self.syntaxButton selectItemAtIndex:self.snippet.filetype];
+    [self.syntaxButton selectItemAtIndex:self.snippet.type];
 
     [self configureAccountButton];
     [self configureDirectoryButton];
     
     self.cancelButton.title = kCancelButtonTitle;
-    self.cancelButton.hidden = !isSLKPlugin();
+    self.cancelButton.hidden = !isXCSPlugin();
     self.acceptButton.title = kUploadButtonTitle;
     
     self.privacyCheckBox.title = kMainUploadAsPrivateTitle;
@@ -373,7 +367,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 - (void)presentLoginForm
 {
     NSString *nibName = NSStringFromClass([XCSLoginViewController class]);
-    NSBundle *bundle = SLKBundle();
+    NSBundle *bundle = XCSBundle();
     
     self.loginViewController = [[XCSLoginViewController alloc] initWithNibName:nibName bundle:bundle];
     self.loginViewController.service = self.service;
@@ -427,7 +421,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
             // If successfully copied the url to the pasteboard, present the system toast alert
             if ([pasteboard writeObjects:@[self.snippet.URL]]) {
                 
-                NSImage *icon = [SLKBundle() imageForResource:@"icon_pasteboard"];
+                NSImage *icon = [XCSBundle() imageForResource:@"icon_pasteboard"];
                 [XCSBezelAlert showWithIcon:icon message:kSnippetLinkCopiedTitle];
             }
         }
@@ -458,7 +452,9 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 {
     ACEMode mode = [sender indexOfSelectedItem];
     
-    [self.snippet setFiletype:mode];
+    self.snippet.type = mode;
+    self.snippet.typeString = NSStringFromACEMode(mode);
+    
     [self.sourceTextView setMode:mode];
 }
 
@@ -533,7 +529,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (IBAction)cancelForm:(NSButton *)sender
 {
-    [XCSServiceAPIFactory reset];
+    [XCSClientFactory reset];
     
     [self dismiss:sender returnCode:NSModalResponseCancel];
 }
@@ -553,7 +549,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     self.loading = YES;
     [self updateAcceptButton];
     
-    [[XCSServiceAPIFactory APIClientForService:self.service] uploadSnippet:self.snippet completion:^(NSDictionary *JSON, NSError *error) {
+    [[XCSClientFactory clientForService:self.service] uploadSnippet:self.snippet completion:^(NSDictionary *JSON, NSError *error) {
         
         self.uploading = NO;
         [self didSubmitSnippetWithError:error];
@@ -562,7 +558,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)dismiss:(id)sender returnCode:(NSModalResponse)returnCode
 {
-    [XCSServiceAPIFactory reset];
+    [XCSClientFactory reset];
     
     [[self window] close];
     

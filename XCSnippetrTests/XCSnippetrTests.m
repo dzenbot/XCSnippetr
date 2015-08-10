@@ -9,11 +9,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
+#import <XCSKit/XCSKit.h>
 
-#import "XCSAccount.h"
-#import "XCSMacros.h"
-
-#import "SLKRoom.h"
 #import "SLKAPIConstants.h"
 
 #import "NSJSONSerialization+FileContent.h"

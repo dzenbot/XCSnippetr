@@ -73,7 +73,7 @@ ACEMode ACEModeForFileName(NSString *fileName)
     }
 }
 
-NSString *SLKStringFromACEMode(ACEMode mode)
+NSString *NSStringFromACEMode(ACEMode mode)
 {
     switch (mode) {
         case ACEModeObjC:           return @"objc";

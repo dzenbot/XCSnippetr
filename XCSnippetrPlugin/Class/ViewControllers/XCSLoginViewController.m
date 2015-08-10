@@ -10,9 +10,6 @@
 #import "XCSLoginViewController.h"
 #import "XCSStrings.h"
 
-#import "XCSAccount.h"
-#import "XCSMacros.h"
-
 #import "NSWindow+Shake.h"
 
 @interface XCSLoginViewController ()
@@ -66,10 +63,10 @@
 
 - (void)configureContent
 {
-    NSString *webApiUrl = [XCSServiceAPIFactory tokenSourceUrlForService:self.service];
+    NSString *webApiUrl = [XCSClientFactory tokenSourceUrlForService:self.service];
     NSString *descriptionText = (self.service == XCSServiceSlack) ? kLoginDescriptionTextSlack : kLoginDescriptionTextGithub;
     NSString *serviceImageName = (self.service == XCSServiceSlack) ? @"logo_slack" : @"logo_github";
-    NSImage *serviceImage = [SLKBundle() imageForResource:serviceImageName];
+    NSImage *serviceImage = [XCSBundle() imageForResource:serviceImageName];
     
     self.tokenTextField.placeholderString = kLoginPlaceholder;
     self.detailTextView.string = [NSString stringWithFormat:@"%@ %@", descriptionText, webApiUrl];
@@ -83,7 +80,7 @@
     self.acceptButton.keyEquivalent = kReturnKeyEquivalent;
     
     if ([XCSAccount allAccountsForService:self.service].count == 0) {
-        [self.cancelButton setEnabled:isSLKPlugin()];
+        [self.cancelButton setEnabled:isXCSPlugin()];
     }
 }
 
@@ -93,7 +90,7 @@
 - (IBAction)cancelForm:(id)sender
 {
     // Cancels any pending requests
-    [[XCSServiceAPIFactory APIClientForService:self.service] cancelRequestsIfNeeded];
+    [[XCSClientFactory clientForService:self.service] cancelRequestsIfNeeded];
     
     // Removes the incomplete account
     [self.account clear];
@@ -111,7 +108,7 @@
     
     NSString *token = self.tokenTextField.stringValue;
     
-    [[XCSServiceAPIFactory APIClientForService:self.service] authWithToken:token completion:^(XCSAccount *account, NSError *error) {
+    [[XCSClientFactory clientForService:self.service] authWithToken:token completion:^(XCSAccount *account, NSError *error) {
         
         if (account) {
             self.account = account;

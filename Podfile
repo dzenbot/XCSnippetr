@@ -5,12 +5,10 @@ xcodeproj 'XCSnippetr-Builder.xcodeproj'
 
 target :XCSnippetrPlugin do
     pod 'DTXcodeUtils'
-    pod 'SSKeychain', '~> 1.2'
     pod 'ACEView', :git => 'https://github.com/faceleg/ACEView.git', :commit => '2437ca5'
 end
 
 target :XCSnippetrApp do
-    pod 'SSKeychain', '~> 1.2'
     pod 'ACEView', :git => 'https://github.com/faceleg/ACEView.git', :commit => '2437ca5'
 end
 

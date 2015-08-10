@@ -11,8 +11,6 @@
 #import "XCSMainWindowController.h"
 #import "XCSStrings.h"
 
-#import "XCSMacros.h"
-
 #import <DTXcodeUtils/DTXcodeUtils.h>
 #import <DTXcodeUtils/DTXcodeHeaders.h>
 

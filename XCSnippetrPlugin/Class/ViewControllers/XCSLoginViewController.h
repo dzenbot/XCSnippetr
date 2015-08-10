@@ -8,8 +8,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-#import "XCSServiceAPIFactory.h"
+#import <XCSKit/XCSKit.h>
 
 @class XCSAccount;
 

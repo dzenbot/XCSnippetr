@@ -25,4 +25,4 @@ ACEMode ACEModeForFileName(NSString *fileName);
  @param mode The ACEMode type.
  @return A Slack string type.
  */
-NSString *SLKStringFromACEMode(ACEMode mode);
+NSString *NSStringFromACEMode(ACEMode mode);
