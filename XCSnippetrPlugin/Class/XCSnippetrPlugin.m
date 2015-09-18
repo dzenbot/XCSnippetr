@@ -62,8 +62,8 @@ static NSString * const kIDEWorkspaceWindow =               @"IDEWorkspaceWindow
 - (XCSMainWindowController *)mainWindowController
 {
     if (!_mainWindowController) {
-        NSString *nibName = NSStringFromClass([XCSMainWindowController class]);
-        _mainWindowController = [[XCSMainWindowController alloc] initWithWindowNibName:nibName];
+        
+        _mainWindowController = [[XCSMainWindowController alloc] initWithBundle:self.bundle];
         _mainWindowController.font = [DTXcodeUtils currentSourceTextView].font;
     }
     return _mainWindowController;

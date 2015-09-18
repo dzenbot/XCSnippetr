@@ -31,6 +31,8 @@ typedef void (^XCSLoginViewControllerCompletionHandler)(BOOL didLogin);
 
 @property (nonatomic, strong) XCSLoginViewControllerCompletionHandler completionHandler;
 
+- (instancetype)initWithBundle:(NSBundle *)bundle;
+
 - (IBAction)cancelForm:(id)sender;
 - (IBAction)submitForm:(id)sender;
 

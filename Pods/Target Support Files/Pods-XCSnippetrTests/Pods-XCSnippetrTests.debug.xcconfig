@@ -1,7 +1,0 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(DEVELOPER_FRAMEWORKS_DIR) "$(PLATFORM_DIR)/Developer/Library/Frameworks" "$(DEVELOPER_DIR)/Platforms/MacOSX.platform/Developer/Library/Frameworks" "$(DEVELOPER_LIBRARY_DIR)/Frameworks"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/ACEView" "${PODS_ROOT}/Headers/Public/DTXcodeUtils" "${PODS_ROOT}/Headers/Public/Specta"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/ACEView" -isystem "${PODS_ROOT}/Headers/Public/DTXcodeUtils" -isystem "${PODS_ROOT}/Headers/Public/Specta"
-OTHER_LDFLAGS = -ObjC -l"Pods-XCSnippetrTests-Specta" -framework "Foundation" -framework "XCTest"
-OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
-PODS_ROOT = ${SRCROOT}/Pods

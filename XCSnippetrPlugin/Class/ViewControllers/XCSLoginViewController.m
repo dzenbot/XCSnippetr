@@ -13,11 +13,24 @@
 #import "NSWindow+Shake.h"
 
 @interface XCSLoginViewController ()
+
+@property (nonatomic, strong) NSBundle *bundle;
+
 @property (nonatomic, strong) XCSAccount *account;
 @property (nonatomic, getter=isLoading) BOOL loading;
+
 @end
 
 @implementation XCSLoginViewController
+
+- (instancetype)initWithBundle:(NSBundle *)bundle;
+{
+    self = [super initWithNibName:NSStringFromClass([XCSLoginViewController class]) bundle:bundle];
+    if (self) {
+        self.bundle = bundle;
+    }
+    return self;
+}
 
 - (void)awakeFromNib
 {
@@ -66,7 +79,7 @@
     NSString *webApiUrl = [XCSClientFactory tokenSourceUrlForService:self.service];
     NSString *descriptionText = (self.service == XCSServiceSlack) ? kLoginDescriptionTextSlack : kLoginDescriptionTextGithub;
     NSString *serviceImageName = (self.service == XCSServiceSlack) ? @"logo_slack" : @"logo_github";
-    NSImage *serviceImage = [XCSBundle() imageForResource:serviceImageName];
+    NSImage *serviceImage = [self.bundle imageForResource:serviceImageName];
     
     self.tokenTextField.placeholderString = kLoginPlaceholder;
     self.detailTextView.string = [NSString stringWithFormat:@"%@ %@", descriptionText, webApiUrl];
@@ -80,7 +93,7 @@
     self.acceptButton.keyEquivalent = kReturnKeyEquivalent;
     
     if ([XCSAccount allAccountsForService:self.service].count == 0) {
-        [self.cancelButton setEnabled:isXCSPlugin()];
+        [self.cancelButton setEnabled:isXCSPlugin(self.bundle)];
     }
 }
 

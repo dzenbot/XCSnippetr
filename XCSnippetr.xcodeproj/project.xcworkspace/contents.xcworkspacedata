@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:XCSnippetr.xcodeproj">
+      location = "self:SlackBoard.xcodeproj">
    </FileRef>
 </Workspace>

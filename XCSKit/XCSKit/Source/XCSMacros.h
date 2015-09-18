@@ -40,6 +40,6 @@ inline static NSString *XCSBundleIdentifier() {
 }
 
 /** YES if the bundle is the plugin's. */
-inline static BOOL isXCSPlugin() {
-    return [XCSBundleIdentifier() localizedCaseInsensitiveContainsString:@"plugin"];
+inline static BOOL isXCSPlugin(NSBundle *bundle) {
+    return [bundle.bundleIdentifier localizedCaseInsensitiveContainsString:@"plugin"];
 }

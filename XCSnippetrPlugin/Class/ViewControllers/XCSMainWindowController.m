@@ -24,6 +24,8 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 @interface XCSMainWindowController ()
 
+@property (nonatomic, strong) NSBundle *bundle;
+
 @property (nonatomic, strong) XCSSnippet *snippet;
 @property (nonatomic, strong) XCSLoginViewController *loginViewController;
 
@@ -39,12 +41,13 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 @synthesize fileContent = _fileContent;
 @synthesize font = _font;
 
-- (instancetype)initWithWindowNibName:(NSString *)windowNibName
+- (instancetype)initWithBundle:(NSBundle *)bundle
 {
-    self = [super initWithWindowNibName:windowNibName];
+    self = [super initWithWindowNibName:NSStringFromClass([XCSMainWindowController class])];
     if (self) {
         [self.window setStyleMask:[self.window styleMask] & ~NSResizableWindowMask];
         
+        self.bundle = bundle;
         self.snippet = [[XCSSnippet alloc] init];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidAppear) name:NSWindowDidBecomeKeyNotification object:nil];
@@ -82,6 +85,15 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 
 #pragma mark - Getters
+
+- (XCSLoginViewController *)loginViewController
+{
+    if (!_loginViewController) {
+        _loginViewController = [[XCSLoginViewController alloc] initWithBundle:self.bundle];
+        _loginViewController.service = self.service;
+    }
+    return _loginViewController;
+}
 
 - (NSString *)fileName
 {
@@ -248,7 +260,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self configureDirectoryButton];
     
     self.cancelButton.title = kCancelButtonTitle;
-    self.cancelButton.hidden = !isXCSPlugin();
+    self.cancelButton.hidden = !isXCSPlugin(self.bundle);
     self.acceptButton.title = kUploadButtonTitle;
     
     self.privacyCheckBox.title = kMainUploadAsPrivateTitle;
@@ -366,11 +378,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)presentLoginForm
 {
-    NSString *nibName = NSStringFromClass([XCSLoginViewController class]);
-    NSBundle *bundle = XCSBundle();
     
-    self.loginViewController = [[XCSLoginViewController alloc] initWithNibName:nibName bundle:bundle];
-    self.loginViewController.service = self.service;
     
     NSWindow *window = [[NSWindow alloc] init];
     window.contentViewController = self.loginViewController;
@@ -421,7 +429,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
             // If successfully copied the url to the pasteboard, present the system toast alert
             if ([pasteboard writeObjects:@[self.snippet.URL]]) {
                 
-                NSImage *icon = [XCSBundle() imageForResource:@"icon_pasteboard"];
+                NSImage *icon = [self.bundle imageForResource:@"icon_pasteboard"];
                 [XCSBezelAlert showWithIcon:icon message:kSnippetLinkCopiedTitle];
             }
         }

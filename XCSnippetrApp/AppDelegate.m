@@ -18,11 +18,15 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSString *nibName = NSStringFromClass([XCSMainWindowController class]);
-    self.mainWindowController = [[XCSMainWindowController alloc] initWithWindowNibName:nibName];
-    self.mainWindowController.service = XCSServiceGithub;
+    self.mainWindowController = [[XCSMainWindowController alloc] initWithBundle:[NSBundle mainBundle]];
+    self.mainWindowController.service = XCSServiceSlack;
     
     [[self.mainWindowController window] makeKeyAndOrderFront:self];
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+    return YES;
 }
 
 @end

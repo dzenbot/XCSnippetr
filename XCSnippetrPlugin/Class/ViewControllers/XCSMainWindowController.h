@@ -39,6 +39,8 @@ typedef void (^XCSMainWindowControllerCompletionHandler)(NSModalResponse returnC
 
 @property (nonatomic, strong) XCSMainWindowControllerCompletionHandler completionHandler;
 
+- (instancetype)initWithBundle:(NSBundle *)bundle;
+
 /* IB Fucking Actions*/
 - (IBAction)syntaxModeChanged:(id)sender;
 - (IBAction)accountChanged:(id)sender;
