@@ -11,8 +11,8 @@
 #import "XCSMainWindowController.h"
 #import "XCSStrings.h"
 
-#import <DTXcodeUtils/DTXcodeUtils.h>
-#import <DTXcodeUtils/DTXcodeHeaders.h>
+#import "DTXcodeUtils.h"
+#import "DTXcodeHeaders.h"
 
 static XCSnippetrPlugin *_sharedPlugin;
 

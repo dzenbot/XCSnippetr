@@ -4,7 +4,6 @@ platform :osx, '10.9'
 xcodeproj 'XCSnippetr.xcodeproj'
 
 target :XCSnippetrPlugin do
-    pod 'DTXcodeUtils'
     pod 'ACEView', :git => 'https://github.com/faceleg/ACEView.git', :commit => '2437ca5'
 end
 

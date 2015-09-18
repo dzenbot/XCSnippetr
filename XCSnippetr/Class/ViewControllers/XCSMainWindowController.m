@@ -389,12 +389,15 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     [self.loginViewController setCompletionHandler:^(BOOL didLogin){
         
+        [weakSelf.window endSheet:window];
+        
         // Close the plugin if no account has been registered.
         if ([XCSAccount needsForcedLoginForService:weakSelf.service]) {
-            [weakSelf dismiss:nil returnCode:NSModalResponseCancel];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf dismiss:nil returnCode:NSModalResponseCancel];
+            });
         }
         else {
-            [weakSelf.window endSheet:window];
             [weakSelf configureAccountButton];
             [weakSelf accountChanged:weakSelf.accountButton];
         }
@@ -429,8 +432,10 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
             // If successfully copied the url to the pasteboard, present the system toast alert
             if ([pasteboard writeObjects:@[self.snippet.URL]]) {
                 
-                NSImage *icon = [self.bundle imageForResource:@"icon_pasteboard"];
-                [XCSBezelAlert showWithIcon:icon message:kSnippetLinkCopiedTitle];
+                if (isXCSPlugin(self.bundle)) {
+                    NSImage *icon = [self.bundle imageForResource:@"icon_pasteboard"];
+                    [XCSBezelAlert showWithIcon:icon message:kSnippetLinkCopiedTitle];
+                }
             }
         }
         
