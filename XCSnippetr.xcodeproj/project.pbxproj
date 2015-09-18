@@ -16,7 +16,6 @@
 		4F25D9A71AEEB49200E57436 /* NSWindow+Shake.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F25D9A11AEEB49200E57436 /* NSWindow+Shake.m */; };
 		4F25D9A91AEEB49200E57436 /* XCSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F25D9A61AEEB49200E57436 /* XCSLoginViewController.m */; };
 		4F35AC821B74636300761884 /* NSString+RequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA3A38E1B2FEA770052A3A0 /* NSString+RequestSerialization.m */; };
-		4F35AC851B7463F800761884 /* NSJSONSerialization+FileContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42386E1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.m */; };
 		4F3A8D611AF41DF500DDE855 /* NSTextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A8D601AF41DF500DDE855 /* NSTextView+Placeholder.m */; };
 		4F4282271AED92FA00133F7D /* XCSnippetrPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42821F1AED92F900133F7D /* XCSnippetrPlugin.m */; };
 		4F48D0281AF69BD90017717D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F48D0261AF69BD90017717D /* InfoPlist.strings */; };
@@ -40,9 +39,6 @@
 		4FDDB6221B73E2DF0007A465 /* XCSBezelAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDDB6201B73E2DF0007A465 /* XCSBezelAlert.m */; };
 		4FF217D51AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */; };
 		4FF217D61AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF217D41AF5EA4100A6AEF3 /* ACEModeNames+Extension.m */; };
-		4FFBC26A1B74646C00D0D6B8 /* gist.test.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F42386A1B2CAE7300D2CA79 /* gist.test.json */; };
-		4FFBC26B1B74647000D0D6B8 /* rtm.start.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F4238671B2CAE5500D2CA79 /* rtm.start.json */; };
-		4FFBC26C1B74647200D0D6B8 /* auth.test.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F4238661B2CAE5500D2CA79 /* auth.test.json */; };
 		7CD9186619A7B46F00B814F8 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186519A7B46F00B814F8 /* AppKit.framework */; };
 		7CD9186819A7B46F00B814F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CD9186719A7B46F00B814F8 /* Foundation.framework */; };
 		AD35F30EC0BBA7F7B8C7625F /* libPods-XCSnippetrPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6CF839EB9D963D422C876BD /* libPods-XCSnippetrPlugin.a */; };
@@ -98,8 +94,6 @@
 		094C0656309D1FD1C09ACC30 /* Pods-XCSnippetrTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetrTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetrTests/Pods-XCSnippetrTests.release.xcconfig"; sourceTree = "<group>"; };
 		0F9714A9E3582D7522A193FA /* libPods-XCSnippetrTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-XCSnippetrTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46BF28FC457C70987920AAFD /* Pods-XCSnippetrApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XCSnippetrApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XCSnippetrApp/Pods-XCSnippetrApp.debug.xcconfig"; sourceTree = "<group>"; };
-		4F09262C1AF7FB1300A64AAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F09262D1AF7FB1300A64AAF /* XCSnippetrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XCSnippetrTests.m; sourceTree = "<group>"; };
 		4F0926371AF7FC9D00A64AAF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F0926381AF7FC9D00A64AAF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F0926391AF7FC9D00A64AAF /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
@@ -112,11 +106,6 @@
 		4F25D9A61AEEB49200E57436 /* XCSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCSLoginViewController.m; sourceTree = "<group>"; };
 		4F3A8D5F1AF41DF500DDE855 /* NSTextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+Placeholder.h"; sourceTree = "<group>"; };
 		4F3A8D601AF41DF500DDE855 /* NSTextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+Placeholder.m"; sourceTree = "<group>"; };
-		4F4238661B2CAE5500D2CA79 /* auth.test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = auth.test.json; sourceTree = "<group>"; };
-		4F4238671B2CAE5500D2CA79 /* rtm.start.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rtm.start.json; sourceTree = "<group>"; };
-		4F42386A1B2CAE7300D2CA79 /* gist.test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gist.test.json; sourceTree = "<group>"; };
-		4F42386D1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+FileContent.h"; sourceTree = "<group>"; };
-		4F42386E1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+FileContent.m"; sourceTree = "<group>"; };
 		4F4282061AED92EC00133F7D /* XCSnippetr-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "XCSnippetr-Info.plist"; sourceTree = "<group>"; };
 		4F4282071AED92EC00133F7D /* XCSnippetr-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCSnippetr-Prefix.pch"; sourceTree = "<group>"; };
 		4F42821E1AED92F900133F7D /* XCSnippetrPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSnippetrPlugin.h; sourceTree = "<group>"; };
@@ -176,25 +165,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4F09262A1AF7FB1300A64AAF /* XCSnippetrTests */ = {
-			isa = PBXGroup;
-			children = (
-				4F09262D1AF7FB1300A64AAF /* XCSnippetrTests.m */,
-				4F42386C1B2CB87A00D2CA79 /* Helpers */,
-				4F0926451AF7FF0D00A64AAF /* Fixtures */,
-				4F09262B1AF7FB1300A64AAF /* Supporting Files */,
-			);
-			path = XCSnippetrTests;
-			sourceTree = "<group>";
-		};
-		4F09262B1AF7FB1300A64AAF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				4F09262C1AF7FB1300A64AAF /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		4F0926361AF7FC9D00A64AAF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,15 +173,6 @@
 				4F0926391AF7FC9D00A64AAF /* MainMenu.xib */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		4F0926451AF7FF0D00A64AAF /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				4F4238641B2CAE5500D2CA79 /* Github */,
-				4F4238651B2CAE5500D2CA79 /* Slack */,
-			);
-			name = Fixtures;
 			sourceTree = "<group>";
 		};
 		4F1855A31AEE13B000AAF896 /* Resources */ = {
@@ -250,34 +211,6 @@
 				F5C947871BABDA68002FA8CA /* XCSLoginViewController.xib */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		4F4238641B2CAE5500D2CA79 /* Github */ = {
-			isa = PBXGroup;
-			children = (
-				4F42386A1B2CAE7300D2CA79 /* gist.test.json */,
-			);
-			name = Github;
-			path = fixtures/Github;
-			sourceTree = "<group>";
-		};
-		4F4238651B2CAE5500D2CA79 /* Slack */ = {
-			isa = PBXGroup;
-			children = (
-				4F4238661B2CAE5500D2CA79 /* auth.test.json */,
-				4F4238671B2CAE5500D2CA79 /* rtm.start.json */,
-			);
-			name = Slack;
-			path = fixtures/Slack;
-			sourceTree = "<group>";
-		};
-		4F42386C1B2CB87A00D2CA79 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				4F42386D1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.h */,
-				4F42386E1B2CB87A00D2CA79 /* NSJSONSerialization+FileContent.m */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		4F4282051AED92EC00133F7D /* Supporting Files */ = {
@@ -336,7 +269,6 @@
 			children = (
 				7CD9186919A7B46F00B814F8 /* XCSnippetrPlugin */,
 				4FA17DE11AF494FB0049D26F /* XCSnippetrApp */,
-				4F09262A1AF7FB1300A64AAF /* XCSnippetrTests */,
 				7CD9186419A7B46F00B814F8 /* Frameworks */,
 				7CD9186319A7B46F00B814F8 /* Products */,
 				DE75D12ADE4ECFF4B0395284 /* Pods */,
@@ -494,13 +426,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5C9477F1BABDA64002FA8CA /* XCSMainWindowController.xib in Resources */,
-				4FFBC26A1B74646C00D0D6B8 /* gist.test.json in Resources */,
 				4FA17E081AF498200049D26F /* Images.xcassets in Resources */,
 				F5C947851BABDA68002FA8CA /* XCSLoginViewController.xib in Resources */,
 				4F48D0291AF69BD90017717D /* InfoPlist.strings in Resources */,
 				4F0926401AF7FC9D00A64AAF /* MainMenu.xib in Resources */,
-				4FFBC26C1B74647200D0D6B8 /* auth.test.json in Resources */,
-				4FFBC26B1B74647000D0D6B8 /* rtm.start.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,7 +521,6 @@
 				4FA17E031AF4981D0049D26F /* NSTextView+Placeholder.m in Sources */,
 				4FDDB6221B73E2DF0007A465 /* XCSBezelAlert.m in Sources */,
 				4FF217D61AF5EA4100A6AEF3 /* ACEModeNames+Extension.m in Sources */,
-				4F35AC851B7463F800761884 /* NSJSONSerialization+FileContent.m in Sources */,
 				4FA17E011AF4981D0049D26F /* XCSLoginViewController.m in Sources */,
 				4F35AC821B74636300761884 /* NSString+RequestSerialization.m in Sources */,
 				4FA17DE61AF494FB0049D26F /* AppDelegate.m in Sources */,

@@ -39,6 +39,10 @@
 		4FCD26051B76F5D10058241B /* SSKeychainQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FCD26011B76F5D10058241B /* SSKeychainQuery.h */; };
 		4FCD26061B76F5D10058241B /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD26021B76F5D10058241B /* SSKeychainQuery.m */; };
 		4FCD26081B7838EC0058241B /* XCSMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FCD26071B7838EC0058241B /* XCSMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F56EEC461BABE197005D1F47 /* gist.test.json in Resources */ = {isa = PBXBuildFile; fileRef = F56EEC3F1BABE197005D1F47 /* gist.test.json */; settings = {ASSET_TAGS = (); }; };
+		F56EEC471BABE197005D1F47 /* auth.test.json in Resources */ = {isa = PBXBuildFile; fileRef = F56EEC411BABE197005D1F47 /* auth.test.json */; settings = {ASSET_TAGS = (); }; };
+		F56EEC481BABE197005D1F47 /* rtm.start.json in Resources */ = {isa = PBXBuildFile; fileRef = F56EEC421BABE197005D1F47 /* rtm.start.json */; settings = {ASSET_TAGS = (); }; };
+		F56EEC491BABE197005D1F47 /* NSJSONSerialization+FileContent.m in Sources */ = {isa = PBXBuildFile; fileRef = F56EEC451BABE197005D1F47 /* NSJSONSerialization+FileContent.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +91,11 @@
 		4FCD26011B76F5D10058241B /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
 		4FCD26021B76F5D10058241B /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		4FCD26071B7838EC0058241B /* XCSMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSMacros.h; sourceTree = "<group>"; };
+		F56EEC3F1BABE197005D1F47 /* gist.test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gist.test.json; sourceTree = "<group>"; };
+		F56EEC411BABE197005D1F47 /* auth.test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = auth.test.json; sourceTree = "<group>"; };
+		F56EEC421BABE197005D1F47 /* rtm.start.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rtm.start.json; sourceTree = "<group>"; };
+		F56EEC441BABE197005D1F47 /* NSJSONSerialization+FileContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+FileContent.h"; sourceTree = "<group>"; };
+		F56EEC451BABE197005D1F47 /* NSJSONSerialization+FileContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+FileContent.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				4FCD258E1B76F32C0058241B /* XCSKitTests.m */,
+				F56EEC3D1BABE197005D1F47 /* fixtures */,
+				F56EEC431BABE197005D1F47 /* Helpers */,
 				4FCD258C1B76F32C0058241B /* Supporting Files */,
 			);
 			path = XCSKitTests;
@@ -244,6 +255,41 @@
 			);
 			name = SSKeychain;
 			path = Vendor/SSKeychain;
+			sourceTree = "<group>";
+		};
+		F56EEC3D1BABE197005D1F47 /* fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				F56EEC3E1BABE197005D1F47 /* Github */,
+				F56EEC401BABE197005D1F47 /* Slack */,
+			);
+			path = fixtures;
+			sourceTree = "<group>";
+		};
+		F56EEC3E1BABE197005D1F47 /* Github */ = {
+			isa = PBXGroup;
+			children = (
+				F56EEC3F1BABE197005D1F47 /* gist.test.json */,
+			);
+			path = Github;
+			sourceTree = "<group>";
+		};
+		F56EEC401BABE197005D1F47 /* Slack */ = {
+			isa = PBXGroup;
+			children = (
+				F56EEC411BABE197005D1F47 /* auth.test.json */,
+				F56EEC421BABE197005D1F47 /* rtm.start.json */,
+			);
+			path = Slack;
+			sourceTree = "<group>";
+		};
+		F56EEC431BABE197005D1F47 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F56EEC441BABE197005D1F47 /* NSJSONSerialization+FileContent.h */,
+				F56EEC451BABE197005D1F47 /* NSJSONSerialization+FileContent.m */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +405,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F56EEC471BABE197005D1F47 /* auth.test.json in Resources */,
+				F56EEC481BABE197005D1F47 /* rtm.start.json in Resources */,
+				F56EEC461BABE197005D1F47 /* gist.test.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FCD258F1B76F32C0058241B /* XCSKitTests.m in Sources */,
+				F56EEC491BABE197005D1F47 /* NSJSONSerialization+FileContent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,7 +11,3 @@ end
 target :XCSnippetrApp do
     pod 'ACEView', :git => 'https://github.com/faceleg/ACEView.git', :commit => '2437ca5'
 end
-
-#target :XCSnippetrTests do
-#    pod 'Specta', '0.5.0'
-#end
