@@ -1,9 +1,0 @@
-{
-    "description":"Test",
-    "public":false,
-    "files": {
-        "file1.txt": {
-            "content":"Demo"
-        }
-    }
-}
