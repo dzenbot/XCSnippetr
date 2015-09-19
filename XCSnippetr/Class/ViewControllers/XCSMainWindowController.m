@@ -15,7 +15,7 @@
 #import "NSTextView+Placeholder.h"
 #import "ACEModeNames+Extension.h"
 
-#import <ACEView/ACEModeNames.h>
+#import "ACEModeNames.h"
 
 static CGFloat const kFontPointSize =           12.0;
 

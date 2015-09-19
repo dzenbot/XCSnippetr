@@ -8,7 +8,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ACEView/ACEModeNames.h>
+
+#import "ACEModeNames.h"
 
 /**
  Returns a ACEMode representation of a file name (name + extension).

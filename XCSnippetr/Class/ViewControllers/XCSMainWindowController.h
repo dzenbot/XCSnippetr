@@ -9,7 +9,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import <XCSKit/XCSKit.h>
-#import <ACEView/ACEView.h>
+
+#import "ACEView.h"
 
 typedef void (^XCSMainWindowControllerCompletionHandler)(NSModalResponse returnCode);
 
