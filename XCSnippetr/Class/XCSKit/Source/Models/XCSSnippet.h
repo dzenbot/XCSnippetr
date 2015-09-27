@@ -10,6 +10,7 @@
 #import <Foundation/Foundation.h>
 
 #import "XCSService.h"
+#import "ACEModes.h"
 
 @interface XCSSnippet : NSObject
 
@@ -24,9 +25,11 @@
 /** The original file name where the text was initially selected. */
 @property (nonatomic, copy) NSString *filename;
 /** The file enum type. */
-@property (nonatomic) NSUInteger type;
+@property (nonatomic) ACEMode type;
 /** The file type string such as 'objc', 'javascript', etc. */
-@property (nonatomic, copy) NSString *typeString;
+@property (nonatomic, readonly) NSString *typeString;
+/** A humand readable file type string such as 'Objective-C', 'JavaScript', etc. */
+@property (nonatomic, readonly) NSString *typeHumanString;
 /** Upload as a non-public snippet. */
 @property (nonatomic) BOOL uploadAsPrivate;
 /** Snippet URL assigned after successful upload. */

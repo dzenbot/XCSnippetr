@@ -15,8 +15,6 @@
 #import "NSTextView+Placeholder.h"
 #import "ACEModeNames+Extension.h"
 
-#import "ACEModeNames.h"
-
 static CGFloat const kFontPointSize =           12.0;
 
 static NSString * const kSystemSoundFailure =   @"Basso";
@@ -161,9 +159,6 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     _fileName = fileName;
     
     self.snippet.filename = fileName;
-    self.snippet.title = [fileName stringByDeletingPathExtension];
-    self.snippet.type = ACEModeForFileName(fileName);
-    self.snippet.typeString = NSStringFromACEMode(self.snippet.type);
 }
 
 - (void)setFileContent:(NSString *)fileContent
@@ -466,7 +461,6 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     ACEMode mode = [sender indexOfSelectedItem];
     
     self.snippet.type = mode;
-    self.snippet.typeString = NSStringFromACEMode(mode);
     
     [self.sourceTextView setMode:mode];
 }

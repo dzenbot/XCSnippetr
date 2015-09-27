@@ -14,6 +14,7 @@
 #import "XCSGithubConstants.h"
 #import "SLKRoomManager.h"
 
+#import "ACEModeNames+Extension.h"
 #import "NSObject+SmartDescription.h"
 
 @implementation XCSSnippet
@@ -88,6 +89,25 @@
     return params;
 }
 
+
+- (void)setFilename:(NSString *)filename
+{
+    if (!filename) {
+        return;
+    }
+    
+    _filename = filename;
+    _title = [filename stringByDeletingPathExtension];
+    
+    self.type = ACEModeForFileName(filename);
+}
+
+- (void)setType:(ACEMode)type
+{
+    _type = type;
+    _typeString = NSStringFromACEMode(_type);
+    _typeHumanString = [ACEModeNames humanNameForMode:_type];
+}
 
 #pragma mark - NSObject
 

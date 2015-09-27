@@ -11,6 +11,7 @@
 
 static NSString * const kTitleShareSlack =                  @"Upload Snippet to Slack";
 static NSString * const kTitleShareGist =                   @"Upload New Gist";
+static NSString * const kTitleSaveXcode =                   @"Save Snippet in Xcode";
 
 static NSString * const kIDEXcodeTitle =                    @"Xcode";
 static NSString * const kIDEBarMenuReferenceTitle =         @"Navigate";

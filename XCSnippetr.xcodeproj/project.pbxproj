@@ -63,6 +63,8 @@
 		F56B5B441BADBA2300D37EB8 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B5B2B1BADBA2300D37EB8 /* SSKeychain.m */; };
 		F56B5B451BADBA2300D37EB8 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B5B2D1BADBA2300D37EB8 /* SSKeychainQuery.m */; };
 		F56B5B461BADBA2300D37EB8 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B5B2D1BADBA2300D37EB8 /* SSKeychainQuery.m */; };
+		F59627C41BB7277100D23253 /* XCSSnippetRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = F59627C31BB7277100D23253 /* XCSSnippetRepository.m */; settings = {ASSET_TAGS = (); }; };
+		F59627C61BB728C100D23253 /* XCSSnippetTemplate.plist in Resources */ = {isa = PBXBuildFile; fileRef = F59627C51BB728C100D23253 /* XCSSnippetTemplate.plist */; settings = {ASSET_TAGS = (); }; };
 		F5D008EA1BB0661D007B8E14 /* XCSnippetrPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F503CE561BAC74D6000149D8 /* XCSnippetrPlugin.m */; settings = {ASSET_TAGS = (); }; };
 		F5D7BA441BACE13500D7A535 /* ace.js in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B8E31BACE13400D7A535 /* ace.js */; };
 		F5D7BA451BACE13500D7A535 /* ace.js in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B8E31BACE13400D7A535 /* ace.js */; };
@@ -816,6 +818,9 @@
 		F56B5B2C1BADBA2300D37EB8 /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
 		F56B5B2D1BADBA2300D37EB8 /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 		F56B5B2E1BADBA2300D37EB8 /* XCSKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XCSKit.h; sourceTree = "<group>"; };
+		F59627C21BB7277100D23253 /* XCSSnippetRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XCSSnippetRepository.h; path = Managers/XCSSnippetRepository.h; sourceTree = "<group>"; };
+		F59627C31BB7277100D23253 /* XCSSnippetRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XCSSnippetRepository.m; path = Managers/XCSSnippetRepository.m; sourceTree = "<group>"; };
+		F59627C51BB728C100D23253 /* XCSSnippetTemplate.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = XCSSnippetTemplate.plist; sourceTree = "<group>"; };
 		F5D7B8E11BACE13400D7A535 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F5D7B8E31BACE13400D7A535 /* ace.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ace.js; sourceTree = "<group>"; };
 		F5D7B8E41BACE13400D7A535 /* ext-beautify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "ext-beautify.js"; sourceTree = "<group>"; };
@@ -1364,6 +1369,7 @@
 		F56B5B091BADBA2300D37EB8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F59627C11BB7275600D23253 /* Managers */,
 				F56B5B0A1BADBA2300D37EB8 /* Categories */,
 				F56B5B0F1BADBA2300D37EB8 /* Clients */,
 				F56B5B1E1BADBA2300D37EB8 /* Models */,
@@ -1450,6 +1456,16 @@
 				F56B5B2D1BADBA2300D37EB8 /* SSKeychainQuery.m */,
 			);
 			path = SSKeychain;
+			sourceTree = "<group>";
+		};
+		F59627C11BB7275600D23253 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F59627C21BB7277100D23253 /* XCSSnippetRepository.h */,
+				F59627C31BB7277100D23253 /* XCSSnippetRepository.m */,
+				F59627C51BB728C100D23253 /* XCSSnippetTemplate.plist */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		F5D7B8DE1BACE13400D7A535 /* ACEView */ = {
@@ -2392,6 +2408,7 @@
 				F5D7BA6A1BACE13500D7A535 /* ext-whitespace.js in Resources */,
 				F5D7BBC81BACE13500D7A535 /* ini.js in Resources */,
 				F5D7BB001BACE13500D7A535 /* mode-maze.js in Resources */,
+				F59627C61BB728C100D23253 /* XCSSnippetTemplate.plist in Resources */,
 				F5D7BB0A1BACE13500D7A535 /* mode-mysql.js in Resources */,
 				F503CE511BAC732F000149D8 /* Images.xcassets in Resources */,
 				F5D7BA9E1BACE13500D7A535 /* mode-django.js in Resources */,
@@ -2686,6 +2703,7 @@
 				F56B5B411BADBA2300D37EB8 /* XCSClientFactory.m in Sources */,
 				F56B5B371BADBA2300D37EB8 /* SLKRoomManager.m in Sources */,
 				F56B5B2F1BADBA2300D37EB8 /* NSObject+SmartDescription.m in Sources */,
+				F59627C41BB7277100D23253 /* XCSSnippetRepository.m in Sources */,
 				F5D008EA1BB0661D007B8E14 /* XCSnippetrPlugin.m in Sources */,
 				F5D7BCCA1BACE13500D7A535 /* NSString+EscapeForJavaScript.m in Sources */,
 				F56B5B311BADBA2300D37EB8 /* NSString+RequestSerialization.m in Sources */,

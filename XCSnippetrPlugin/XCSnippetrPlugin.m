@@ -9,6 +9,7 @@
 
 #import "XCSnippetrPlugin.h"
 #import "XCSMainWindowController.h"
+#import "XCSSnippetRepository.h"
 #import "XCSStrings.h"
 
 #import "DTXcodeUtils.h"
@@ -157,6 +158,9 @@ NSString *activeDocumentName()
         // Creates the Gist Menu Item
         NSMenuItem *gistItem = [submenu itemWithTitle:kTitleShareGist];
         
+        // Creates the Xcode Menu Item
+        NSMenuItem *xcodeItem = [submenu itemWithTitle:kTitleSaveXcode];
+        
         // Configure Slack Item
         if (!slackItem) {
             slackItem = [[NSMenuItem alloc] initWithTitle:kTitleShareSlack action:@selector(shareCodeSnippet:) keyEquivalent:@""];
@@ -175,14 +179,27 @@ NSString *activeDocumentName()
             gistItem.tag = XCSServiceGithub;
             gistItem.target = target;
             
-            NSMenuItem *separator = [NSMenuItem separatorItem];
-            
             [submenu insertItem:gistItem atIndex:idx+1];
-            [submenu insertItem:separator atIndex:idx+2];
         }
         else {
             gistItem.target = target;
         }
+        
+        // Configure Slack Item
+        if (!xcodeItem) {
+            xcodeItem = [[NSMenuItem alloc] initWithTitle:kTitleSaveXcode action:@selector(saveCodeSnippet:) keyEquivalent:@""];
+            xcodeItem.tag = XCSServiceUndefined;
+            xcodeItem.target = target;
+            
+            NSMenuItem *separator = [NSMenuItem separatorItem];
+            
+            [submenu insertItem:xcodeItem atIndex:idx+2];
+            [submenu insertItem:separator atIndex:idx+3];
+        }
+        else {
+            xcodeItem.target = target;
+        }
+        
     }
 }
 
@@ -270,6 +287,17 @@ NSString *activeDocumentName()
     [window setFrameOrigin:windowFrame.origin];
     
     [self.mainWindowController showWindow:self];
+}
+
+- (void)saveCodeSnippet:(NSMenuItem *)menuItem
+{
+    XCSSnippet *snippet = [[XCSSnippet alloc] init];
+    snippet.filename = activeDocumentName();
+    snippet.content = self.selectedText;
+    
+    [[XCSSnippetRepository defaultRepository] saveSnippet:snippet completion:^(NSString *filePath, NSError *error) {
+        NSLog(@"%s filePath: %@ error: %@",__FUNCTION__, filePath, error);
+    }];
 }
 
 
