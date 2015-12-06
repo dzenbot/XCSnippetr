@@ -8,8 +8,9 @@
 
 #import "XCSSnippetRepository.h"
 
-static NSString const *XCSSnippetRepositoryPath = @"~/Library/Developer/Xcode/UserData/CodeSnippets/";
-static NSString const *XCSSnippetLanguageDomain = @"Xcode.SourceCodeLanguage";
+static NSString const *kIDECodeSnippetDirectoryPath = @"Developer/Xcode/UserData/CodeSnippets";
+static NSString const *kIDECodeSnippetLanguageDomain = @"Xcode.SourceCodeLanguage";
+static NSString const *kIDECodeSnippetFileExtension = @"codesnippet";
 
 static NSString const *XCSSnippetTemplateName = @"XCSSnippetTemplate";
 
@@ -32,10 +33,15 @@ static NSString const *XCSSnippetTemplateName = @"XCSSnippetTemplate";
     return [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject];
 }
 
+- (NSString *)snippetFilePathForName:(NSString *)fileName
+{
+    return [[self libraryDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@.%@", kIDECodeSnippetDirectoryPath, fileName, kIDECodeSnippetFileExtension]];
+}
+
 - (void)saveSnippet:(XCSSnippet *)snippet completion:(void (^)(NSString *filePath, NSError *error))completion
 {
     NSString *identifier = [NSUUID UUID].UUIDString;
-    NSString *filePath = [[self libraryDirectory] stringByAppendingPathComponent:[NSString stringWithFormat:@"Developer/Xcode/UserData/CodeSnippets/%@.codesnippet", identifier]];
+    NSString *filePath = [self snippetFilePathForName:identifier];
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *plistPath = [bundle pathForResource:[XCSSnippetTemplateName copy] ofType:@"plist"];
@@ -44,7 +50,7 @@ static NSString const *XCSSnippetTemplateName = @"XCSSnippetTemplate";
 
     template[@"IDECodeSnippetContents"] = snippet.content;
     template[@"IDECodeSnippetIdentifier"] = identifier;
-    template[@"IDECodeSnippetLanguage"] = [NSString stringWithFormat:@"%@.%@", XCSSnippetLanguageDomain, snippet.typeHumanString];
+    template[@"IDECodeSnippetLanguage"] = [NSString stringWithFormat:@"%@.%@", kIDECodeSnippetLanguageDomain, snippet.typeHumanString];
     template[@"IDECodeSnippetTitle"] = snippet.title;
     template[@"IDECodeSnippetCompletionPrefix"] = snippet.title;
     
