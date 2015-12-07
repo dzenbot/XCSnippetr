@@ -119,7 +119,7 @@ NSString *activeDocumentName()
     return [filePath lastPathComponent];
 }
 
-- (BOOL)canShareSnippet
+- (BOOL)canPresentSnippetEditor
 {
     if (![self menuTarget]) {
         return NO;
@@ -159,15 +159,17 @@ NSString *activeDocumentName()
         NSMenuItem *gistItem = [submenu itemWithTitle:kTitleShareGist];
         
         // Creates the Xcode Menu Item
-        NSMenuItem *xcodeItem = [submenu itemWithTitle:kTitleSaveXcode];
+        NSMenuItem *xcodeItem = [submenu itemWithTitle:kTitleAddXcode];
         
         // Configure Slack Item
         if (!slackItem) {
-            slackItem = [[NSMenuItem alloc] initWithTitle:kTitleShareSlack action:@selector(shareCodeSnippet:) keyEquivalent:@""];
+            slackItem = [[NSMenuItem alloc] initWithTitle:kTitleShareSlack action:@selector(presentSnippetEditor:) keyEquivalent:@""];
             slackItem.tag = XCSServiceSlack;
             slackItem.target = target;
             
             [submenu insertItem:slackItem atIndex:idx];
+            
+            idx++;
         }
         else {
             slackItem.target = target;
@@ -175,11 +177,13 @@ NSString *activeDocumentName()
         
         // Configure Gist Item
         if (!gistItem) {
-            gistItem = [[NSMenuItem alloc] initWithTitle:kTitleShareGist action:@selector(shareCodeSnippet:) keyEquivalent:@""];
+            gistItem = [[NSMenuItem alloc] initWithTitle:kTitleShareGist action:@selector(presentSnippetEditor:) keyEquivalent:@""];
             gistItem.tag = XCSServiceGithub;
             gistItem.target = target;
             
-            [submenu insertItem:gistItem atIndex:idx+1];
+            [submenu insertItem:gistItem atIndex:idx];
+            
+            idx++;
         }
         else {
             gistItem.target = target;
@@ -187,19 +191,20 @@ NSString *activeDocumentName()
         
         // Configure Slack Item
         if (!xcodeItem) {
-            xcodeItem = [[NSMenuItem alloc] initWithTitle:kTitleSaveXcode action:@selector(saveCodeSnippet:) keyEquivalent:@""];
-            xcodeItem.tag = XCSServiceUndefined;
+            xcodeItem = [[NSMenuItem alloc] initWithTitle:kTitleAddXcode action:@selector(presentSnippetEditor:) keyEquivalent:@""];
+            xcodeItem.tag = XCSServiceXcode;
             xcodeItem.target = target;
             
-            NSMenuItem *separator = [NSMenuItem separatorItem];
+            [submenu insertItem:xcodeItem atIndex:idx];
             
-            [submenu insertItem:xcodeItem atIndex:idx+2];
-            [submenu insertItem:separator atIndex:idx+3];
+            idx++;
         }
         else {
             xcodeItem.target = target;
         }
         
+        NSMenuItem *separator = [NSMenuItem separatorItem];
+        [submenu insertItem:separator atIndex:idx];
     }
 }
 
@@ -249,9 +254,9 @@ NSString *activeDocumentName()
 
 #pragma mark - Events
 
-- (void)shareCodeSnippet:(NSMenuItem *)menuItem
+- (void)presentSnippetEditor:(NSMenuItem *)menuItem
 {
-    if (![self canShareSnippet]) {
+    if (![self canPresentSnippetEditor]) {
         return;
     }
     
@@ -289,16 +294,17 @@ NSString *activeDocumentName()
     [self.mainWindowController showWindow:self];
 }
 
-- (void)saveCodeSnippet:(NSMenuItem *)menuItem
-{
-    XCSSnippet *snippet = [[XCSSnippet alloc] init];
-    snippet.filename = activeDocumentName();
-    snippet.content = self.selectedText;
-    
-    [[XCSSnippetRepository defaultRepository] saveSnippet:snippet completion:^(NSString *filePath, NSError *error) {
-        NSLog(@"%s filePath: %@ error: %@",__FUNCTION__, filePath, error);
-    }];
-}
+//- (void)saveCodeSnippet:(NSMenuItem *)menuItem
+//{
+//    XCSSnippet *snippet = [[XCSSnippet alloc] init];
+//    snippet.title = NSLocalizedString(@"My Code Snippet", nil);
+//    snippet.filename = activeDocumentName();
+//    snippet.content = self.selectedText;
+//    
+//    [[XCSSnippetRepository defaultRepository] saveSnippet:snippet completion:^(NSString *filePath, NSError *error) {
+//        NSLog(@"%s filePath: %@ error: %@",__FUNCTION__, filePath, error);
+//    }];
+//}
 
 
 #pragma mark - Lifeterm

@@ -56,10 +56,6 @@
 /** Returns YES if the account is the current. */
 - (BOOL)isCurrentForService:(XCSService)service;
 
-
-/** Returns YES if no account is yet registered. */
-+ (BOOL)needsForcedLoginForService:(XCSService)service;
-
 /** Returns all available accounts. */
 + (NSArray *)allAccountsForService:(XCSService)service;
 

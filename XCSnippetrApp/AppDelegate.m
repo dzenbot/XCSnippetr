@@ -19,7 +19,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.mainWindowController = [[XCSMainWindowController alloc] initWithBundle:[NSBundle mainBundle]];
-    self.mainWindowController.service = XCSServiceSlack;
+    self.mainWindowController.service = XCSServiceXcode;
     
     [[self.mainWindowController window] makeKeyAndOrderFront:self];
 }

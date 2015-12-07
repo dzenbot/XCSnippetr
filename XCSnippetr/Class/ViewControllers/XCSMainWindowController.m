@@ -74,7 +74,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     [self configureContent];
     
-    if ([XCSAccount needsForcedLoginForService:self.service]) {
+    if ([self requiresToLoginFirst]) {
         [self performSelector:@selector(presentLoginForm) withObject:nil afterDelay:0.3];
     }
     
@@ -91,6 +91,51 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         _loginViewController.service = self.service;
     }
     return _loginViewController;
+}
+
+- (NSString *)windowTitle
+{
+    switch (self.service) {
+        case XCSServiceSlack:       return kTitleShareSlack;
+        case XCSServiceGithub:      return kTitleShareGist;
+        case XCSServiceXcode:       return kTitleAddXcode;
+        case XCSServiceUndefined:   return nil;
+    }
+}
+
+- (NSString *)titlePlaceholder
+{
+    switch (self.service) {
+        case XCSServiceSlack:       return kMainTitlePlaceholderSlack;
+        case XCSServiceGithub:      return kMainTitlePlaceholderGist;
+        case XCSServiceXcode:       return kMainTitlePlaceholderXcode;
+        case XCSServiceUndefined:   return nil;
+    }
+}
+
+- (NSString *)commentPlaceholder
+{
+    switch (self.service) {
+        case XCSServiceSlack:       return kMainCommentPlaceholderSlack;
+        case XCSServiceGithub:      return kMainCommentPlaceholderGist;
+        case XCSServiceXcode:       return kMainCommentPlaceholderXcode;
+        case XCSServiceUndefined:   return nil;
+    }
+}
+
+- (NSString *)cancelButtonTitle
+{
+    switch (self.service) {
+        default:                    return kCancelButtonTitle;
+    }
+}
+
+- (NSString *)acceptButtonTitle
+{
+    switch (self.service) {
+        case XCSServiceXcode:       return kSaveButtonTitle;
+        default:                    return kUploadButtonTitle;
+    }
 }
 
 - (NSString *)fileName
@@ -125,6 +170,15 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     idx++; // Increments to consider the empty space at first position
     
     return idx;
+}
+
+- (BOOL)requiresToLoginFirst
+{
+    if (self.service == XCSServiceXcode) {
+        return NO;
+    }
+    
+    return ([XCSAccount allAccountsForService:self.service].count == 0) ? YES : NO;
 }
 
 - (BOOL)canAccept
@@ -211,12 +265,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)configureContent
 {
-    BOOL isSlack = (self.service == XCSServiceSlack);
-    
-    NSString *titlePlaceholder = isSlack ? kMainTitlePlaceholderSlack : kMainTitlePlaceholderGist;
-    NSString *commentPlaceholder = isSlack ? kMainCommentPlaceholderSlack : kMainCommentPlaceholderGist;
-
-    self.window.title = isSlack ? kTitleShareSlack : kTitleShareGist;
+    self.window.title = [self windowTitle];
     
     XCSAccount *currentAccount = [XCSAccount currentAccountForService:self.service];
     
@@ -227,11 +276,11 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     
     // Title View
     self.titleTextField.stringValue = StringOrEmpty(self.snippet.title);
-    self.titleTextField.placeholderString = titlePlaceholder;
+    self.titleTextField.placeholderString = [self titlePlaceholder];
 
     // Comment View
     self.commentTextView.string = @"";
-    self.commentTextView.placeholderString = commentPlaceholder;
+    self.commentTextView.placeholderString = [self commentPlaceholder];
     
     // Source Text View
     [self.sourceTextView setDelegate:self];
@@ -250,22 +299,31 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     // Buttons
     [self.syntaxButton addItemsWithTitles:[ACEModeNames humanModeNames]];
     [self.syntaxButton selectItemAtIndex:self.snippet.type];
-
-    [self configureAccountButton];
-    [self configureDirectoryButton];
     
-    self.cancelButton.title = kCancelButtonTitle;
+    self.cancelButton.title = [self cancelButtonTitle];
     self.cancelButton.hidden = !isXCSPlugin(self.bundle);
-    self.acceptButton.title = kUploadButtonTitle;
+    self.acceptButton.title = [self acceptButtonTitle];
     
-    self.privacyCheckBox.title = kMainUploadAsPrivateTitle;
-    self.uploadTypeCheckBox.title = kMainUploadAsSnippetTitle;
     
     if (self.service != XCSServiceSlack) {
-        
         self.uploadTypeCheckBox.hidden = YES;
         self.directoryButton.hidden = YES;
         self.directoryButtononstraint.constant = 0.0;
+    }
+    else {
+        [self configureDirectoryButton];
+    }
+    
+    if (self.service == XCSServiceXcode) {
+        self.accountButton.hidden = YES;
+        self.privacyCheckBox.hidden = YES;
+        self.uploadTypeCheckBox.hidden = YES;
+    }
+    else {
+        self.privacyCheckBox.title = kMainUploadAsPrivateTitle;
+        self.uploadTypeCheckBox.title = kMainUploadAsSnippetTitle;
+        
+        [self configureAccountButton];
     }
 }
 
@@ -373,8 +431,6 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
 
 - (void)presentLoginForm
 {
-    
-    
     NSWindow *window = [[NSWindow alloc] init];
     window.contentViewController = self.loginViewController;
     
@@ -387,7 +443,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
         [weakSelf.window endSheet:window];
         
         // Close the plugin if no account has been registered.
-        if ([XCSAccount needsForcedLoginForService:weakSelf.service]) {
+        if ([weakSelf requiresToLoginFirst]) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf dismiss:nil returnCode:NSModalResponseCancel];
             });

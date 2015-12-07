@@ -182,11 +182,6 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
 
 #pragma mark - Getters
 
-+ (BOOL)needsForcedLoginForService:(XCSService)service
-{
-    return ([XCSAccount allAccountsForService:service].count == 0) ? YES : NO;
-}
-
 + (NSArray *)allAccountsForService:(XCSService)service
 {
     NSArray *accounts = [XCSAccountManager defaultManager].accounts;

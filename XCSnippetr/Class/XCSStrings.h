@@ -9,26 +9,29 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString * const kTitleShareSlack =                  @"Upload Snippet to Slack";
-static NSString * const kTitleShareGist =                   @"Upload New Gist";
-static NSString * const kTitleSaveXcode =                   @"Save Snippet in Xcode";
-
 static NSString * const kIDEXcodeTitle =                    @"Xcode";
 static NSString * const kIDEBarMenuReferenceTitle =         @"Navigate";
 static NSString * const kIDESubMenuReferenceTitle =         @"Reveal in Project Navigator";
+
+static NSString * const kTitleShareSlack =                  @"Upload Snippet to Slack";
+static NSString * const kTitleShareGist =                   @"Upload New Gist";
+static NSString * const kTitleAddXcode =                    @"Add Snippet to Xcode";
 
 static NSString * const kAddTeamButtonTitle =               @"Add Team...";
 static NSString * const kAddUserButtonTitle =               @"Add User...";
 
 static NSString * const kCancelButtonTitle =                @"Cancel";
 static NSString * const kUploadButtonTitle =                @"Upload";
+static NSString * const kSaveButtonTitle =                  @"Save";
 static NSString * const kLoginButtonTitle =                 @"Login";
 
 static NSString * const kMainTitlePlaceholderSlack =        @"Title (optional)";
 static NSString * const kMainTitlePlaceholderGist =         @"Name this file...";
+static NSString * const kMainTitlePlaceholderXcode =        @"My Code Snippet";
 
 static NSString * const kMainCommentPlaceholderSlack =      @"Add Comment (optional)";
 static NSString * const kMainCommentPlaceholderGist =       @"Gist description...";
+static NSString * const kMainCommentPlaceholderXcode =      @"Summary";
 
 static NSString * const kMainUploadAsSnippetTitle =         @"Upload as snippet";
 static NSString * const kMainUploadAsPrivateTitle =         @"Upload as private";

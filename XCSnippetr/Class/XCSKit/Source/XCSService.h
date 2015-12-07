@@ -10,7 +10,8 @@
 typedef NS_ENUM(NSUInteger, XCSService) {
     XCSServiceUndefined,
     XCSServiceSlack,
-    XCSServiceGithub
+    XCSServiceGithub,
+    XCSServiceXcode
 };
 
 static inline NSString *NSStringFromXCSService(XCSService service) {
