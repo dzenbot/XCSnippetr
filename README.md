@@ -30,6 +30,7 @@ Gist only:
 ## Configuration
 
 Select any code snippet you would like to share and right click on it.
+
 ![contextual menu](https://raw.githubusercontent.com/dzenbot/XCSnippetr/master/Documentation/Screenshots/screenshot_contextual_menu.png)
 
 The first time, you will be prompt to authenticate.
