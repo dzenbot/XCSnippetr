@@ -63,7 +63,7 @@
 		F56B5B441BADBA2300D37EB8 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B5B2B1BADBA2300D37EB8 /* SSKeychain.m */; };
 		F56B5B451BADBA2300D37EB8 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B5B2D1BADBA2300D37EB8 /* SSKeychainQuery.m */; };
 		F56B5B461BADBA2300D37EB8 /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = F56B5B2D1BADBA2300D37EB8 /* SSKeychainQuery.m */; };
-		F5D008EA1BB0661D007B8E14 /* XCSnippetrPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F503CE561BAC74D6000149D8 /* XCSnippetrPlugin.m */; settings = {ASSET_TAGS = (); }; };
+		F5D008EA1BB0661D007B8E14 /* XCSnippetrPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F503CE561BAC74D6000149D8 /* XCSnippetrPlugin.m */; };
 		F5D7BA441BACE13500D7A535 /* ace.js in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B8E31BACE13400D7A535 /* ace.js */; };
 		F5D7BA451BACE13500D7A535 /* ace.js in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B8E31BACE13400D7A535 /* ace.js */; };
 		F5D7BA461BACE13500D7A535 /* ext-beautify.js in Resources */ = {isa = PBXBuildFile; fileRef = F5D7B8E41BACE13400D7A535 /* ext-beautify.js */; };
