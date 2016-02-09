@@ -27,7 +27,7 @@ Gist only:
 - Upload private gists
 
 
-## Configuration
+## How to use
 
 Select any code snippet you would like to share and right click on it.
 
