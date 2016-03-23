@@ -141,7 +141,7 @@
 
 - (void)setRooms:(NSDictionary *)rooms forAccount:(XCSAccount *)account
 {
-    if (!isNonEmptyString(account.accountId)) {
+    if (isNonEmptyString(account.accountId) == NO) {
         return;
     }
     

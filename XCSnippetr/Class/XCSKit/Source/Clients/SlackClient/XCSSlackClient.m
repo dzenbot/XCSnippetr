@@ -42,7 +42,7 @@
 
 - (void)authWithToken:(NSString *)token completion:(void (^)(XCSAccount *account, NSError *error))completion
 {
-    if (!isNonEmptyString(token)) {
+    if (isNonEmptyString(token) == NO) {
         return;
     }
     
@@ -96,7 +96,7 @@
     XCSAccount *account = [XCSAccount currentAccountForService:XCSServiceSlack];
     NSString *teamId = account.teamId;
     
-    if (!isNonEmptyString(teamId)) {
+    if (isNonEmptyString(teamId) == NO) {
         return;
     }
     

@@ -50,7 +50,7 @@
 
 - (void)authWithToken:(NSString *)token completion:(void (^)(XCSAccount *account, NSError *error))completion
 {
-    if (!isNonEmptyString(token)) {
+    if (isNonEmptyString(token) == NO) {
         return;
     }
     

@@ -18,7 +18,7 @@
 
 + (instancetype)roomWithId:(NSString *)tsid name:(NSString *)name
 {
-    if (!isNonEmptyString(tsid) || !isNonEmptyString(name)) {
+    if (isNonEmptyString(tsid) == NO || isNonEmptyString(name) == NO) {
         return nil;
     }
     
@@ -94,7 +94,7 @@
         
         NSString *userId = raw[kSlackAPIParamUser];
         
-        if (!isNonEmptyString(userId)) {
+        if (isNonEmptyString(userId) == NO) {
             continue;
         }
         

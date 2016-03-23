@@ -217,7 +217,7 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
     switch (self.service) {
         case XCSServiceSlack:
         {
-            if (!isNonEmptyString(_teamId) || !isNonEmptyString(_userId)) {
+            if (isNonEmptyString(_teamId) == NO || isNonEmptyString(_userId) == NO) {
                 return nil;
             }
             
@@ -257,7 +257,7 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
 
 - (void)setAsCurrentForService:(XCSService)service
 {
-    if (!isNonEmptyString(self.accountId)) {
+    if (isNonEmptyString(self.accountId) == NO) {
         return;
     }
     
@@ -269,7 +269,7 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
 
 - (void)setChannelId:(NSString *)channelId
 {
-    if (!isNonEmptyString(self.accountId)) {
+    if (isNonEmptyString(self.accountId) == NO) {
         return;
     }
     
@@ -285,7 +285,7 @@ static NSString *kUserDefaultsAccountIds = @"com.dzn.XCSnippetr.userdefaults.acc
 {
     XCSAccountManager *manager = [XCSAccountManager defaultManager];
     
-    if (!isNonEmptyString(_accessToken) || !isNonEmptyString(self.accountId)) {
+    if (isNonEmptyString(_accessToken) == NO || isNonEmptyString(self.accountId) == NO) {
         return NO;
     }
     

@@ -23,7 +23,7 @@
 - (NSDictionary *)paramsForService:(XCSService)service
 {
     // Checks for requiered fields
-    if (!isNonEmptyString(self.content)) {
+    if (isNonEmptyString(self.content) == NO) {
         return nil;
     }
     
@@ -44,7 +44,7 @@
             }
         }
         else {
-            if (!isNonEmptyString(self.channelId)) {
+            if (isNonEmptyString(self.channelId) == NO) {
                 return nil;
             }
             

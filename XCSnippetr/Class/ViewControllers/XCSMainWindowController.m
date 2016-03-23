@@ -300,7 +300,7 @@ static NSString * const kSystemSoundSuccess =   @"Glass";
     [self.directoryButton removeAllItems];
     
     // Doesn't configure the button and disables it, when the team id isn't available
-    if (!isNonEmptyString(self.snippet.teamId)) {
+    if (isNonEmptyString(self.snippet.teamId) == NO) {
         self.directoryButton.enabled = NO;
         return;
     }
