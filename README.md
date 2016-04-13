@@ -50,9 +50,9 @@ Simply pick the team and channel to share to. Add a comment. Share! 💥
 
 Install through [Alcatraz](http://alcatraz.io/), the package manager for Xcode.
 
-Alternatively, clone the project:
+Alternatively, clone the repo:
 
-1. Build the project to install the plugin. The plugin will be installed in `/Library/Application Support/Developer/Shared/Xcode/Plug-ins/XCSnippetr.xcplugin`.
+1. Build the project to install the plugin. The plugin will be installed in `~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/XCSwiftr.xcplugin`.
 
 3. Restart Xcode so the plugin bundle is loaded.
 
