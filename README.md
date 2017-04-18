@@ -1,4 +1,4 @@
-#XCSnippetr
+# XCSnippetr
 
 [![Alcatraz compatible](https://img.shields.io/badge/Alcatraz-compatible-4BC51D.svg?style=flat)](http://alcatraz.io/)
 [![License](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
